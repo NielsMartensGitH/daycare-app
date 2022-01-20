@@ -27,8 +27,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/startbootstrap-sb-admin-gh-pages/css/styles.css"
+              "src/assets/startbootstrap-sb-admin-gh-pages/css/styles.css",
+              "src/styles.css"
+              
             ],
             "scripts": [
               "src/assets/startbootstrap-sb-admin-gh-pages/js/scripts.js",
