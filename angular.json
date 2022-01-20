@@ -27,11 +27,14 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/startbootstrap-sb-admin-gh-pages/css/styles.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "src/assets/startbootstrap-sb-admin-gh-pages/js/scripts.js",
+              "src/assets/startbootstrap-sb-admin-gh-pages/assets/demo/chart-area-demo.js",
+              "src/assets/startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js"
+
             ]
           },
           "configurations": {
