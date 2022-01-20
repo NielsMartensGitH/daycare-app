@@ -10,6 +10,7 @@ import { appModel } from './app.model';
 export class AppComponent implements OnInit {
   
   daycares$!: appModel[]
+  sidebar: boolean = false;
 
   constructor(private appService: AppService){}
 
@@ -17,4 +18,7 @@ export class AppComponent implements OnInit {
       this.appService.getDaycares().subscribe(daycare => this.daycares$ = daycare)
   }
 
+  toggleSideBar() {
+    this.sidebar = !this.sidebar
+  }
 }

@@ -9,6 +9,7 @@ import { appModel } from './app.model';
 export class AppService {
   url: string = "http://localhost/daycare/public/api"
 
+
   constructor(private http: HttpClient) { }
 
   getDaycares(): Observable<any> {
