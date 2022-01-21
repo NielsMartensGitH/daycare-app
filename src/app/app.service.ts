@@ -7,13 +7,17 @@ import { appModel } from './app.model';
   providedIn: 'root'
 })
 export class AppService {
-  url: string = "http://localhost/daycare/public/api"
+  url: string = "http://localhost:8000/api/daycares"
 
 
   constructor(private http: HttpClient) { }
 
   getDaycares(): Observable<any> {
     return this.http.get<[appModel[]]>(this.url).pipe();
+  }
+
+  showOneDayCare(id: number): Observable<any> {
+    return this.http.get<appModel>(this.url + '/' + id).pipe();
   }
 
 }

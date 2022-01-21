@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './app.service';
-import { appModel } from './app.model';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +7,10 @@ import { appModel } from './app.model';
 })
 export class AppComponent implements OnInit {
   
-  daycares$!: appModel[]
-
-  constructor(private appService: AppService){}
+  constructor(){}
 
   ngOnInit() {
-      this.appService.getDaycares().subscribe(daycare => this.daycares$ = daycare)
+      
   }
 
 

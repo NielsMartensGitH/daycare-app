@@ -1,0 +1,15 @@
+.sb-topnav {
+    background-color: #E27D60;
+}
+
+.sb-sidenav {
+    background-color: #85CDCA;
+}
+
+.sb-sidenav-menu-heading {
+    color: white
+}
+
+.sb-sidenav a {
+    color: white;
+}
