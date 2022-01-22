@@ -20,4 +20,6 @@ export class AppService {
     return this.http.get<appModel>(this.url + '/' + id).pipe();
   }
 
+  
+
 }
