@@ -1,33 +1,19 @@
 <div class="sb-nav-fixed">
     <app-topnavbar></app-topnavbar>
 
+    
     <div id="layoutSidenav">
+        <!-- this is de left sidebar of the dashboard -->
         <app-sidenavbar></app-sidenavbar>        
+
+
         <div id="layoutSidenav_content">
             <div class="container">
+                <!-- all components of dashboard are displayed here in as content of the dashboard -->
             <router-outlet></router-outlet>
             </div>
-            <!-- <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h2>features to add here</h2>
-                            <ul>
-                                <li *ngFor="let daycare of daycares$">{{daycare.name}} - {{daycare.email}}</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <input type="number" class="form-control my-2" type="text" #id placeholder="choose an id">
-                            <button type="button" class="btn btn-primary" (click)="showDaycare(+id.value)">Click</button>
-                            <h4>Name here:</h4>
-                            <p *ngIf="myDaycare">{{myDaycare.name}}</p>
-                        </div>
-                    </div>
-                </div>
-            </main> -->
+
+            <!-- here we display the copyright in the footer -->
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
@@ -35,6 +21,7 @@
                     </div>
                 </div>
             </footer>
+
         </div>
     </div>
 </div>

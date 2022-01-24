@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+.top-nav {
+    background-color: #E27D60;
+    color: white;
+    padding: 0;
+}
+
+.navbar-brand {
+    padding: 0
+}
+
+.nav-links a {
+    color: white;
+}
