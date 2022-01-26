@@ -8,7 +8,7 @@ import { AppRouterModule } from './routing.module';
 import { TopnavbarComponent } from './dashboard/topnavbar/topnavbar.component';
 import { SidenavbarComponent } from './dashboard/sidenavbar/sidenavbar.component';
 import { ChildrenComponent } from './dashboard/children/children.component';
-import { EmployeesComponent } from './dashboard/employees/employees.component';
+import { ParentsComponent } from './dashboard/parents/parents.component';
 import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
 import { MbNavbarComponent } from './messageboard/mb-navbar/mb-navbar.component';
@@ -26,7 +26,7 @@ import { MbCalendarComponent } from './messageboard/mb_sidebar/mb-calendar/mb-ca
     TopnavbarComponent,
     SidenavbarComponent,
     ChildrenComponent,
-    EmployeesComponent,
+    ParentsComponent,
     CalendarComponent,
     PostsComponent,
     MbNavbarComponent,
