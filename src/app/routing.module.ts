@@ -6,7 +6,11 @@ import { ChildrenComponent } from './dashboard/children/children.component';
 import { ParentsComponent } from './dashboard/parents/parents.component';
 import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
+<<<<<<< HEAD
 import { ParentAddComponent } from './dashboard/parents/parent-add/parent-add.component';
+=======
+import { LoginscreenComponent } from './loginscreen/loginscreen.component';
+>>>>>>> a77fe4768e0caff9e6bede238cf3e7b5e59ff165
 
 const routes: Routes = [
     {path: '', redirectTo: '/messageboard', pathMatch: 'full'},
@@ -19,8 +23,13 @@ const routes: Routes = [
         ]},
         {path: 'calendar', component: CalendarComponent},
         {path: 'posts', component: PostsComponent}
+<<<<<<< HEAD
         
     ]}
+=======
+    ]},
+    {path: 'loginscreen', component: LoginscreenComponent}
+>>>>>>> a77fe4768e0caff9e6bede238cf3e7b5e59ff165
 ]
 
 
