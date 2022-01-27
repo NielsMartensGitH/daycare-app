@@ -3,55 +3,27 @@
         <h1>Posts</h1>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-12">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Type</th>
-      <th scope="col">Posted at</th>
-      <th scope="col">Privacy</th>
-      <th scope="col">Visible to</th>
-      <th scope="col">Comments</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>First message</td>
-      <td>Message</td>
-      <td>12-01-2022 12.45pm</td>
-      <td>Public</td>
-      <td>Everyone</td>
-      <td>3</td>
-      <td>
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-success m-1">See Details</button>
-            <button type="button" class="btn btn-warning m-1">Edit</button>
-            <button type="button" class="btn btn-danger m-1">Delete</button>
+<div *ngFor="let post of posts$" class="row justify-content-center my-3">
+  <div class="col-sm-10">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-1">
+            <i class="border p-3 rounded-circle fas fa-user"></i>
           </div>
-    </td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>First message</td>
-        <td>Child</td>
-        <td>12-01-2022 12.45pm</td>
-        <td>Private</td>
-        <td>Parents of Nore</td>
-        <td>3</td>
-        <td>
-          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <button type="button" class="btn btn-success m-1">See Details</button>
-              <button type="button" class="btn btn-warning m-1">Edit</button>
-              <button type="button" class="btn btn-danger m-1">Delete</button>
-            </div>
-      </td>
-      </tr>
-  </tbody>
-</table>
+          <div class="col-sm-10">
+            <h5 class="card-title">Childcare Sunshine</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Posted {{post.created_at}}</h6>
+          </div>
+        </div>
+        <p class="card-text">{{post.message}}</p>
+      </div>
+      <div class="card-footer text-muted">
+       <div class="privacy d-flex justify-content-between">
+         <p class="m-0">Every parent can see this message</p>
+         <p class="m-0">Comments</p>
+       </div> 
+      </div>
     </div>
+  </div>
 </div>
