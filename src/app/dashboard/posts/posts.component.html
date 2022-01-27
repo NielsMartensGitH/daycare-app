@@ -14,12 +14,13 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-1">
-            <i class="border p-3 rounded-circle fas fa-user"></i>
+          <div class="col-auto">
+            <img src="{{post.daycareavatar}}" class="img-responsiverounded-circle" width="50px" alt="">
+            <!-- <i class="border p-3 rounded-circle fas fa-user"></i> -->
           </div>
           <div class="col-sm-10">
-            <h5 class="card-title">Childcare Sunshine</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Posted {{post.created_at}}</h6>
+            <h5 class="card-title">{{post.daycarename}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Posted at {{post.created_at}}</h6>
           </div>
           <div class="col-sm-1">
             <div class="dropdown">
@@ -37,7 +38,8 @@
       </div>
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">
-         <p class="m-0">Every parent can see this message</p>
+         <p class="m-0" *ngIf="post.privacy == 0; else private">Every parent can see this message</p>
+         <ng-template #private>Only You can see this message</ng-template>
          <p class="m-0">Comments</p>
        </div> 
       </div>

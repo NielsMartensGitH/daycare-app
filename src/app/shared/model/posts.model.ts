@@ -6,7 +6,8 @@ export class Posts {
         public child_id: number,
         public picture: string,
         public message: string,
-        public daycare_id: number,
-        public privacy: number
+        public privacy: number,
+        public daycarename: string,
+        public daycareavatar: string    
     ) {}
 }
