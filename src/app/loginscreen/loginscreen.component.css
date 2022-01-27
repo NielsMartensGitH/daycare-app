@@ -1,0 +1,32 @@
+.daycare{
+    background-image: url(../../assets/img/Daycare.jpg);
+    width: 50%;
+    position: absolute;
+    height: 100%;
+    right: 0px;
+    background-position: center;
+}
+.family{
+    background-image: url(../../assets/img/happyfamily.webp);
+    width: 50%;
+    position: absolute;
+    height: 100%;
+    left: 0px;
+    background-position: center;
+}
+.container{
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-bottom: 0%;
+    margin-top: 0%;
+}
+.btn{
+    margin-top: 50%;
+    margin-left:  50%;
+}
+.family:hover{
+    opacity: .5;
+}
+.daycare:hover{
+    opacity: .5;
+}
