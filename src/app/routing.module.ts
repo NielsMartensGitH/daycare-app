@@ -6,6 +6,7 @@ import { ChildrenComponent } from './dashboard/children/children.component';
 import { ParentsComponent } from './dashboard/parents/parents.component';
 import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
+import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/messageboard', pathMatch: 'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
         {path: 'parents', component: ParentsComponent},
         {path: 'calendar', component: CalendarComponent},
         {path: 'posts', component: PostsComponent}
-    ]}
+    ]},
+    {path: 'loginscreen', component: LoginscreenComponent}
 ]
 
 
