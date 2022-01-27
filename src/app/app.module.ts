@@ -17,11 +17,8 @@ import { MbSidebarComponent } from './messageboard/mb-sidebar/mb-sidebar.compone
 import { MbAddchildrenComponent } from './messageboard/mb_sidebar/mb-addchildren/mb-addchildren.component';
 import { MbMydaycareComponent } from './messageboard/mb_sidebar/mb-mydaycare/mb-mydaycare.component';
 import { MbCalendarComponent } from './messageboard/mb_sidebar/mb-calendar/mb-calendar.component';
-<<<<<<< HEAD
 import { ParentAddComponent } from './dashboard/parents/parent-add/parent-add.component';
-=======
 import { LoginscreenComponent } from './loginscreen/loginscreen.component';
->>>>>>> a77fe4768e0caff9e6bede238cf3e7b5e59ff165
 
 @NgModule({
   declarations: [
@@ -40,11 +37,8 @@ import { LoginscreenComponent } from './loginscreen/loginscreen.component';
     MbAddchildrenComponent,
     MbMydaycareComponent,
     MbCalendarComponent,
-<<<<<<< HEAD
-    ParentAddComponent
-=======
+    ParentAddComponent,
     LoginscreenComponent
->>>>>>> a77fe4768e0caff9e6bede238cf3e7b5e59ff165
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule
