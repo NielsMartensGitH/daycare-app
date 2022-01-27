@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Posts } from 'src/app/shared/model/posts.model';
+import { DatastorageService } from 'src/app/datastorage.service';
 
 @Component({
   selector: 'app-posts',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+  posts$!: Posts[];
 
-  constructor() { }
+  constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
+    this.dataStorage.getAllPosts().subscribe(posts => this.posts$ = posts)
   }
 
 }
