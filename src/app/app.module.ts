@@ -23,8 +23,8 @@ import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 import { RegisterComponent } from './register/register.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { dayGridPlugin } from '@fullcalendar/daygrid'; // a plugin!
-import { interactionPlugin } from '@fullcalendar/interaction'; // a plugin!
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
