@@ -19,6 +19,7 @@ import { MbMydaycareComponent } from './messageboard/mb_sidebar/mb-mydaycare/mb-
 import { MbCalendarComponent } from './messageboard/mb_sidebar/mb-calendar/mb-calendar.component';
 import { ParentAddComponent } from './dashboard/parents/parent-add/parent-add.component';
 import { LoginscreenComponent } from './loginscreen/loginscreen.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoginscreenComponent } from './loginscreen/loginscreen.component';
     MbMydaycareComponent,
     MbCalendarComponent,
     ParentAddComponent,
-    LoginscreenComponent
+    LoginscreenComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule

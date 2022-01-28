@@ -8,6 +8,7 @@ import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
 import { ParentAddComponent } from './dashboard/parents/parent-add/parent-add.component';
 import { LoginscreenComponent } from './loginscreen/loginscreen.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/messageboard', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routes: Routes = [
         {path: 'posts', component: PostsComponent},
 
     ]},
-    {path: 'login', component: LoginscreenComponent}
+    {path: 'login', component: LoginscreenComponent},
+    {path: 'register', component: RegisterComponent}
 ]
 
 
