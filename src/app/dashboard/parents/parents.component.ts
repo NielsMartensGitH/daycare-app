@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
+import { DatastorageService } from 'src/app/datastorage.service';
+import { Parent } from 'src/app/shared/model/parent.model';
 
 @Component({
   selector: 'app-parents',
@@ -7,10 +9,12 @@ import { NavigationEnd } from '@angular/router';
   styleUrls: ['./parents.component.css']
 })
 export class ParentsComponent implements OnInit {
-  
-  constructor() { }
+  parents$!:Parent[];
+  isclicked:boolean = false;
+  constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
+    this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents)
   }
 
   /*onActiveOutlet(component: Component) {
@@ -27,7 +31,7 @@ export class ParentsComponent implements OnInit {
 }*/
 
   onClick() {
-    alert("Would you like to add a new parent?")
+    this.isclicked = !this.isclicked
   }
 
 }

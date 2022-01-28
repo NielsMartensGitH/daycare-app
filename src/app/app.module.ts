@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -19,6 +19,14 @@ import { MbMydaycareComponent } from './messageboard/mb_sidebar/mb-mydaycare/mb-
 import { MbCalendarComponent } from './messageboard/mb_sidebar/mb-calendar/mb-calendar.component';
 import { ParentAddComponent } from './dashboard/parents/parent-add/parent-add.component';
 import { LoginscreenComponent } from './loginscreen/loginscreen.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -41,9 +49,10 @@ import { LoginscreenComponent } from './loginscreen/loginscreen.component';
     LoginscreenComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRouterModule
+    BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
