@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -12,7 +11,8 @@ import { Observable } from 'rxjs';
 export class PostsComponent implements OnInit {
   posts$!: Posts[];
   postsForm!: FormGroup;
-  privacies: string[] = ["public", "private"]
+  privacies: string[] = ["public", "private"];
+  default = null;
 
   constructor(private dataStorage: DatastorageService) { }
 
@@ -24,6 +24,12 @@ export class PostsComponent implements OnInit {
       'privacy': new FormControl(null, [Validators.required]),
       'message': new FormControl(null, [Validators.required])
     })
+
+    // this.postsForm.setValue({
+    //   'title': "",
+    //   'privacy': "",
+    //   'message': ""
+    // })
 
     this.postsForm.statusChanges.subscribe(
       (status) => console.log(status)
