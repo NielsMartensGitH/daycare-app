@@ -26,7 +26,8 @@ import { RegisterComponent } from './register/register.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { PackagesComponent } from './home/packages/packages.component'; // a plugin!
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -53,7 +54,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MbCalendarComponent,
     ParentAddComponent,
     LoginscreenComponent,
-    RegisterComponent
+    RegisterComponent,
+    PackagesComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule

@@ -1,32 +1,3 @@
-header {
-    box-sizing: border-box;
-    background-color: #E27D60;
-    color: white;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    width: 100%;
-    height: 10%;
-}
-.logo{
-    padding-left: 20px;
-}
-.signin{
-    padding-top: 5%;
-    font-size: 150%;
-}
-body{
-    height: 100%;
-}
-.toddlers{
-    background-image: url(../../assets/img/Playingtoddlers.png);
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-    width: 50%;
-    height: 100%;
-}
-
 
 body {
     font-family: 'Karla', sans-serif; }
@@ -137,4 +108,3 @@ body {
         -webkit-transform: translateY(3px);
                 transform: translateY(3px);
         box-shadow: none; }
-  
