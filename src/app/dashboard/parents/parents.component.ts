@@ -11,6 +11,7 @@ import { Parent } from 'src/app/shared/model/parent.model';
 export class ParentsComponent implements OnInit {
   parents$!:Parent[];
   isclicked:boolean = false;
+  childparents$:any;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -34,10 +35,17 @@ export class ParentsComponent implements OnInit {
     this.isclicked = !this.isclicked
   }
 
-  onReceive(parent:Parent){
+  onAddParent(parent:Parent){
+
     this.dataStorage.addParent(parent).subscribe((parent) => this.parents$.push(parent));
+
+    this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents)
+    //console.log(parent)
   }
 
+  onSeeDetails(parentId:number){
+    this.dataStorage.getChildParents(parentId).subscribe(childparents => this.childparents$ = childparents)
+  }
   
 
 }

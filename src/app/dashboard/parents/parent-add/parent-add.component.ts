@@ -10,7 +10,7 @@ import { Parent } from 'src/app/shared/model/parent.model';
 export class ParentAddComponent implements OnInit {
   @Output() onSubmitted = new EventEmitter<Parent>();
   newParent!:Parent;
-  id!:number;
+  id:any = null;
   firstname!:string;
   lastname!:string;
   email!:string;
@@ -25,7 +25,7 @@ export class ParentAddComponent implements OnInit {
 
   onSubmit() {
     this.onSubmitted.emit(new Parent(
-      5, this.firstname, this.lastname, this.email, this.phone, this.password
+     this.id, this.firstname, this.lastname, this.email, this.phone, this.password
     ))
   }
 

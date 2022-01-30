@@ -10,7 +10,7 @@
         </a>
     </div>
     <app-parent-add
-    (onSubmitted)="onReceive($event)"></app-parent-add>
+    (onSubmitted)="onAddParent($event)"></app-parent-add>
 </div>
 <div class="row">
     <div class="col-sm-12">
@@ -34,7 +34,8 @@
                 <td>{{parent.phone}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-success m-1">See Details</button>
+                        <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#detailModal"
+                        (click)="onSeeDetails(parent.id)">See Details</button>
                         <button type="button" class="btn btn-warning m-1">Edit</button>
                         <button type="button" class="btn btn-danger m-1">Delete</button>
                       </div>
@@ -44,4 +45,28 @@
             </tbody>
           </table>
     </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Children</h5>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let child of childparents$">
+          <span>{{child.child_firstname}}</span>
+          <span>{{child.child_lastname}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

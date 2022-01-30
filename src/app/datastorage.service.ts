@@ -39,5 +39,9 @@ export class DatastorageService {
     return this.http.post<Parent>(this.parentUrl, parent, httpOptions);
   }
 
+  getChildParents(id:any): Observable<any> {
+    return this.http.get<any>(this.url + 'childparent/' + id).pipe()
+  }
+
 }
 
