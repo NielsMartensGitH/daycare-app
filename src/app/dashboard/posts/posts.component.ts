@@ -25,18 +25,35 @@ export class PostsComponent implements OnInit {
       'message': new FormControl(null, [Validators.required])
     })
 
-    // this.postsForm.setValue({
-    //   'title': "",
-    //   'privacy': "",
-    //   'message': ""
-    // })
-
+    
     this.postsForm.statusChanges.subscribe(
       (status) => console.log(status)
     )
   }
 
-  onSubmit() {
+  addPost(privacy: number, message: string) {
+
+    const time = new Date();
+    console.log(time.toLocaleString())
+
+    const newPost = {
+      'id': null,
+      'type_id': 1,
+      'picture': "",
+      'message': message,
+      'daycare_id': 1,
+      'privacy': privacy
+    }
+
+    this.dataStorage.addPost(newPost).subscribe(
+      () => this.ngOnInit()
+    );
+
+    
+
+  }
+
+  clearForm() {
     this.postsForm.reset();
   }
 
