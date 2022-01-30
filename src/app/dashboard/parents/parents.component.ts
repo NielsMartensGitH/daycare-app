@@ -34,4 +34,10 @@ export class ParentsComponent implements OnInit {
     this.isclicked = !this.isclicked
   }
 
+  onReceive(parent:Parent){
+    this.dataStorage.addParent(parent).subscribe((parent) => this.parents$.push(parent));
+  }
+
+  
+
 }

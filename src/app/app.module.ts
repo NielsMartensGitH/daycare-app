@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -55,10 +55,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ParentAddComponent,
     LoginscreenComponent,
     RegisterComponent,
-    PackagesComponent
+    PackagesComponent,
+    
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule
+    BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

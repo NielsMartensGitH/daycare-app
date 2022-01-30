@@ -1,28 +1,33 @@
-<form>
+<form (ngSubmit)="onSubmit()">
     <div class="container-sm mb-5">
         <div class="row">
         <div class="col m-1">
-            <input type="text" class="form-control" id="name" placeholder="First name" name="name">
+            <input type="text" class="form-control" id="name" placeholder="First name" name="name"
+            [(ngModel)]="firstname">
         </div>
         <div class="col m-1">
-            <input type="text" class="form-control" id="lastname" placeholder="Last name" name="lastname">
+            <input type="text" class="form-control" id="lastname" placeholder="Last name" name="lastname"
+            [(ngModel)]="lastname">
         </div>
         </div>
         <div class="row">
             <div class="col m-1">
-                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email"
+                [(ngModel)]="email">
             </div>
             <div class="col m-1">
-                <input type="text" class="form-control" id="phoneNum" placeholder="Phone number" name="phone">
+                <input type="text" class="form-control" id="phoneNum" placeholder="Phone number" name="phone"
+                [(ngModel)]="phone">
             </div>
         </div>
         <div class="row">
             <div class="col m-1">
-                <input type="password" class="form-control" placeholder="Enter password" name="pswd">
+                <input type="password" class="form-control" placeholder="Enter password" name="pswd"
+                [(ngModel)]="password">
             </div>
             <div class="col m-1">
-                <a routerLink="parents"><button class="btn btn-success"
-                    >Submit</button></a>
+                <button type="submit" class="btn btn-success"
+                >Submit</button>
             </div>
         </div>
     </div>

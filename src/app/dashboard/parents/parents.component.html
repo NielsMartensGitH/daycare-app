@@ -9,7 +9,8 @@
           </button>
         </a>
     </div>
-    <router-outlet></router-outlet>
+    <app-parent-add
+    (onSubmitted)="onReceive($event)"></app-parent-add>
 </div>
 <div class="row">
     <div class="col-sm-12">
@@ -30,7 +31,7 @@
                 <td>{{parent.firstname}}</td>
                 <td>{{parent.lastname}}</td>
                 <td>{{parent.email}}</td>
-                <td>0494/123456</td>
+                <td>{{parent.phone}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-success m-1">See Details</button>
