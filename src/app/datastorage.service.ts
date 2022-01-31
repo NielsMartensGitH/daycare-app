@@ -41,9 +41,9 @@ export class DatastorageService {
   }
 
 
-  deleteParent(parent: Parent): Observable<Parent> {
+  deleteParent(parent: Parent) {
     const url = `${this.parentUrl}/${parent.id}`;
-    return this.http.delete<Parent>(url);
+    return this.http.delete(url, {responseType: 'text'});
   }
 
   getChildParents(id:any): Observable<any> {
