@@ -31,6 +31,11 @@ export class DatastorageService {
     return this.http.post(this.postUrl, newPost, {headers: headers});    
   }
 
+  deletePost(id: number): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.delete(this.postUrl + '/' + id, {responseType: 'text'});
+  }
+
   getAllParents(): Observable<Parent[]> {
     return this.http.get<Parent[]>(this.url + 'parents').pipe()
   }
@@ -41,7 +46,9 @@ export class DatastorageService {
   }
 
 
-  deleteParent(parent: Parent) {
+
+  deleteParent(parent: Parent): Observable<any> {
+
     const url = `${this.parentUrl}/${parent.id}`;
     return this.http.delete(url, {responseType: 'text'});
   }
