@@ -37,10 +37,7 @@ export class ParentsComponent implements OnInit {
 
   onAddParent(parent:Parent){
 
-    this.dataStorage.addParent(parent).subscribe((parent) => this.parents$.push(parent));
-
-    this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents)
-    console.log(parent)
+    this.dataStorage.addParent(parent).subscribe(() => this.ngOnInit());
   }
 
   onSeeDetails(parentId:number){
