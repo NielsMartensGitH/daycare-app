@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
 import { DatastorageService } from 'src/app/datastorage.service';
+import { Child } from 'src/app/shared/model/child.models';
 import { Parent } from 'src/app/shared/model/parent.model';
 
 @Component({
@@ -14,24 +15,12 @@ export class ParentsComponent implements OnInit {
   childparents$:any;
   sureDelete:boolean = false;
   currentParent!:string;
+  addChildClicked:boolean = false;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
     this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents)
   }
-
-  /*onActiveOutlet(component: Component) {
-    let previousUrl = this.router.url;
-        this.router.events.subscribe(
-          event => {
-            if (event instanceof NavigationEnd) {
-              if (previousUrl != this.router.url && previousUrl.includes(this.router.url)) {
-                this.outlet.deactivate();
-              }
-            }
-        }
-    )
-}*/
 
   onClick() {
     this.isclicked = !this.isclicked
@@ -68,6 +57,14 @@ export class ParentsComponent implements OnInit {
 
   onSeeDetails(parentId:number){
     this.dataStorage.getChildParents(parentId).subscribe(childparents => this.childparents$ = childparents)
+  }
+
+  onAddChild(child:Child){
+
+
+    this.dataStorage.addChild(child).subscribe(() => this.ngOnInit());
+
+
   }
   
 

@@ -45,7 +45,7 @@ export class DatastorageService {
     return this.http.post(this.parentUrl, parent, {headers: headers});
   }
 
-
+  
 
   deleteParent(parent: Parent): Observable<any> {
 
@@ -56,6 +56,12 @@ export class DatastorageService {
   getChildParents(id:any): Observable<any> {
     return this.http.get<any>(this.url + 'childparent/' + id).pipe()
   }
+
+  addChild(child: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + 'children', child, {headers: headers});
+  }
+
 
 }
 

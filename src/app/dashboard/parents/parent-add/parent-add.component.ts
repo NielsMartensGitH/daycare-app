@@ -24,9 +24,13 @@ export class ParentAddComponent implements OnInit {
   
 
   onSubmit() {
-    this.onSubmitted.emit(new Parent(
-     this.id, this.firstname, this.lastname, this.email, this.phone, this.password
-    ))
+
+
+    const newParent = new Parent(
+      this.id, this.firstname, this.lastname, this.email, this.phone, this.password
+     )
+
+    this.onSubmitted.emit(newParent);
   }
 
   

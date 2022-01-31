@@ -63,7 +63,12 @@
       <div class="modal-body">
         <div class="d-flex d-row">
           <h3 class="mr-1">Children</h3>
-          <button class="btn btn-success rounded-pill ml-1"><i class="fas fa-plus-circle"></i> Add</button>
+          <button class="btn btn-success rounded-pill ml-1"
+          (click)="addChildClicked = !addChildClicked"><i class="fas fa-plus-circle"></i> Add</button>
+        </div>
+        <div *ngIf="addChildClicked">
+          <app-child-add 
+          (onChildAdded)="onAddChild($event)"></app-child-add>
         </div>
         <div *ngFor="let child of childparents$">
           <span>{{child.child_firstname}}</span>
