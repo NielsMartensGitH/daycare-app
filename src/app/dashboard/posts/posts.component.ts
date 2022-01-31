@@ -15,8 +15,7 @@ export class PostsComponent implements OnInit {
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getAllPosts().subscribe(
-      
+    this.dataStorage.getAllPosts().subscribe( 
       posts => {
         this.posts$ = posts
         this.dataStorage.posts$ = posts;
