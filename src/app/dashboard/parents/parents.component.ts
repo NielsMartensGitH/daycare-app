@@ -12,6 +12,8 @@ export class ParentsComponent implements OnInit {
   parents$!:Parent[];
   isclicked:boolean = false;
   childparents$:any;
+  sureDelete:boolean = false;
+  currentParent!:string;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -46,8 +48,21 @@ export class ParentsComponent implements OnInit {
   }
 
   onDelete(parent:Parent){
-    this.dataStorage.deleteParent(parent).subscribe(() => this.ngOnInit());
-    console.log(parent)
+    this.currentParent = `${parent.firstname} ${parent.lastname}`;
+    setTimeout(() => {
+    if (this.sureDelete){
+      this.dataStorage.deleteParent(parent).subscribe(() => this.ngOnInit());
+      console.log(this.sureDelete);
+      this.sureDelete = false;
+        }
+        else {
+          console.log(this.sureDelete)
+        }
+     }
+    
+      , 4000); 
+     
+    
   }
 
 

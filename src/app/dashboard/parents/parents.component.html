@@ -39,7 +39,7 @@
                         <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#detailModal"
                         (click)="onSeeDetails(parent.id)">See Details</button>
                         <button type="button" class="btn btn-warning m-1">Edit</button>
-                        <button type="button" class="btn btn-danger m-1"
+                        <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal"
                         (click)="onDelete(parent)">Delete</button>
                       </div>
                 </td>
@@ -51,7 +51,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- See detail modal -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -69,6 +69,29 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Delete parent modal-->
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <h4>Are you sure you want to delete {{currentParent}}?</h4>
+
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+        (click)="sureDelete = true">Delete</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        (click)="sureDelete = !true">Cancel</button>
       </div>
     </div>
   </div>
