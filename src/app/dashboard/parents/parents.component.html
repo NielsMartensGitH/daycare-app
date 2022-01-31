@@ -37,9 +37,10 @@
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#detailModal"
-                        (click)="onSeeDetails(parent.id)">See Details</button>
-                        <button type="button" class="btn btn-warning m-1">Edit</button>
-                        <button type="button" class="btn btn-danger m-1">Delete</button>
+                        (click)="onSeeDetails(parent.id)"><i class="fas fa-info-circle"></i> Details</button>
+                        <button type="button" class="btn btn-warning m-1"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        (click)="onDelete(parent)"><i class="far fa-trash-alt"></i> Delete</button>
                       </div>
                 </td>
               </tr>
@@ -50,24 +51,52 @@
 </div>
 
 
-<!-- Modal -->
+<!-- See details modal -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Children</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Parent details</h5>
         
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="d-flex d-row">
+          <h3 class="mr-1">Children</h3>
+          <button class="btn btn-success rounded-pill ml-1"><i class="fas fa-plus-circle"></i> Add</button>
+        </div>
         <div *ngFor="let child of childparents$">
           <span>{{child.child_firstname}}</span>
           <span>{{child.child_lastname}}</span>
+          <span><button type="button" class="btn btn-secondary rounded-circle m-1"><i class="far fa-trash-alt"></i></button></span>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Delete parent modal-->
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <h4>Are you sure you want to delete {{currentParent}}?</h4>
+      <p>if you press the button Delete, {{currentParent}} will be deleted permanently</p>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+        (click)="sureDelete = true">Delete</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        (click)="sureDelete = !true">Cancel</button>
       </div>
     </div>
   </div>
