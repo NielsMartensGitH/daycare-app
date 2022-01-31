@@ -35,8 +35,9 @@ export class DatastorageService {
     return this.http.get<Parent[]>(this.url + 'parents').pipe()
   }
 
-  addParent(parent: Parent): Observable<Parent> {
-    return this.http.post<Parent>(this.parentUrl, parent, httpOptions);
+  addParent(parent: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.parentUrl, parent, {headers: headers});
   }
 
   getChildParents(id:any): Observable<any> {

@@ -5,12 +5,14 @@
         (click)=onClick()>
           <button type="button" class="btn btn-success">
             <span *ngIf="!isclicked"><i class="fa fa-plus-circle"></i> Add </span>
-            <span *ngIf="isclicked"><i class="fa fa-times-circle"></i> Add </span>
+            <span *ngIf="isclicked"><i class="fa fa-times-circle"></i> Close </span>
           </button>
         </a>
     </div>
-    <app-parent-add
-    (onSubmitted)="onAddParent($event)"></app-parent-add>
+    <div *ngIf="isclicked">
+      <app-parent-add
+      (onSubmitted)="onAddParent($event)"></app-parent-add>
+    </div>
 </div>
 <div class="row">
     <div class="col-sm-12">

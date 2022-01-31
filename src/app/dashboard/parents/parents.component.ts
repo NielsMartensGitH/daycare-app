@@ -40,7 +40,7 @@ export class ParentsComponent implements OnInit {
     this.dataStorage.addParent(parent).subscribe((parent) => this.parents$.push(parent));
 
     this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents)
-    //console.log(parent)
+    console.log(parent)
   }
 
   onSeeDetails(parentId:number){
