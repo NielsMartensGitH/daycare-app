@@ -39,7 +39,8 @@
                         <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#detailModal"
                         (click)="onSeeDetails(parent.id)">See Details</button>
                         <button type="button" class="btn btn-warning m-1">Edit</button>
-                        <button type="button" class="btn btn-danger m-1">Delete</button>
+                        <button type="button" class="btn btn-danger m-1"
+                        (click)="onDelete(parent)">Delete</button>
                       </div>
                 </td>
               </tr>

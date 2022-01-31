@@ -40,6 +40,12 @@ export class DatastorageService {
     return this.http.post(this.parentUrl, parent, {headers: headers});
   }
 
+
+  deleteParent(parent: Parent): Observable<Parent> {
+    const url = `${this.parentUrl}/${parent.id}`;
+    return this.http.delete<Parent>(url);
+  }
+
   getChildParents(id:any): Observable<any> {
     return this.http.get<any>(this.url + 'childparent/' + id).pipe()
   }

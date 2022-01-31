@@ -45,6 +45,11 @@ export class ParentsComponent implements OnInit {
 
   }
 
+  onDelete(parent:Parent){
+    this.dataStorage.deleteParent(parent).subscribe(() => this.ngOnInit());
+    console.log(parent)
+  }
+
   onSeeDetails(parentId:number){
     this.dataStorage.getChildParents(parentId).subscribe(childparents => this.childparents$ = childparents)
   }
