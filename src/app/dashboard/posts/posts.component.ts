@@ -49,9 +49,15 @@ export class PostsComponent implements OnInit {
       () => this.ngOnInit()
     );
 
-    
-
   }
+
+  deletePost(postId: number) {
+   this.dataStorage.deletePost(postId).subscribe(
+     () => this.ngOnInit()
+   );   
+  }
+
+
 
   clearForm() {
     this.postsForm.reset();

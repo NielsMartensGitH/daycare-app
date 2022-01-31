@@ -31,6 +31,11 @@ export class DatastorageService {
     return this.http.post(this.postUrl, newPost, {headers: headers});    
   }
 
+  deletePost(id: number): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.delete(this.postUrl + '/' + id, {responseType: 'text'});
+  }
+
   getAllParents(): Observable<Parent[]> {
     return this.http.get<Parent[]>(this.url + 'parents').pipe()
   }
