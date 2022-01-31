@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Posts } from './shared/model/posts.model';
 import { Parent } from './shared/model/parent.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
-};
+import { PostsServiceService } from './posts-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +11,19 @@ const httpOptions = {
 export class DatastorageService {
   url: string = "http://gameofcones.be/api/";
   parentUrl: string = "http://gameofcones.be/api/parents";
-  postUrl: string = "";
+  postUrl: string = "http://gameofcones.be/api/posts";
   posts$!: Posts[]
-  constructor(private http: HttpClient) { 
-    this.postUrl = "http://gameofcones.be/api/posts";
+  constructor(private http: HttpClient, private postsService: PostsServiceService) { 
   }
   
-  getAllPosts(): Observable<Posts[]> {
-    return this.http.get<Posts[]>(this.url + 'posts').pipe()
+  // ===================== POST METHODS =============================
+
+  fetchPosts() {
+    return this.http.get<Posts[]>(this.url + 'posts').pipe(
+      tap(posts => {
+        this.postsService.setPosts(posts)
+      })
+    ).subscribe()
 
   }
 
@@ -33,9 +33,11 @@ export class DatastorageService {
   }
 
   deletePost(id: number): Observable<any> {
-    const headers = new HttpHeaders().set("Content-Type", "application/json");
     return this.http.delete(this.postUrl + '/' + id, {responseType: 'text'});
   }
+
+
+ // ===================== PARENT METHODS =============================
 
   getAllParents(): Observable<Parent[]> {
     return this.http.get<Parent[]>(this.url + 'parents').pipe()
@@ -54,6 +56,7 @@ export class DatastorageService {
     return this.http.delete(url, {responseType: 'text'});
   }
 
+  
   getChildParents(id:any): Observable<any> {
     return this.http.get<any>(this.url + 'childparent/' + id).pipe()
   }

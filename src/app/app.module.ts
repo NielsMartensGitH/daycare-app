@@ -59,7 +59,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     RegisterComponent,
     PackagesComponent,
     AddPostFormComponent,
-    ChildAddComponent
+    ChildAddComponent,
     
   ],
   imports: [
