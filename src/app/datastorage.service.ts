@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-  import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Posts } from './shared/model/posts.model';
 import { Parent } from './shared/model/parent.model';
@@ -17,6 +17,7 @@ export class DatastorageService {
   url: string = "http://gameofcones.be/api/";
   parentUrl: string = "http://gameofcones.be/api/parents";
   postUrl: string = "";
+  posts$!: Posts[]
   constructor(private http: HttpClient) { 
     this.postUrl = "http://gameofcones.be/api/posts";
   }
