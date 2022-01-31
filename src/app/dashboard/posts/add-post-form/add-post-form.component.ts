@@ -31,8 +31,6 @@ export class AddPostFormComponent implements OnInit {
       (status) => console.log(status)
     )
 
-
-    
   }
 
   addPost(privacy: number, message: string) {

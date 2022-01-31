@@ -9,7 +9,7 @@ import { DatastorageService } from 'src/app/datastorage.service';
 })
 export class PostsComponent implements OnInit {
   posts$!: Posts[];
-
+  currentId!: number; 
 
   constructor(private dataStorage: DatastorageService) { }
 
@@ -32,6 +32,10 @@ export class PostsComponent implements OnInit {
    this.dataStorage.deletePost(postId).subscribe(
      () => this.ngOnInit()
    );   
+  }
+
+  setCurrentId(id: number): void {
+    this.currentId = id;
   }
 
   
