@@ -8,8 +8,7 @@ import { DatastorageService } from 'src/app/datastorage.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts$!: Posts[];
-  currentId!: number; 
+  posts$!: Posts[]; 
 
   constructor(private dataStorage: DatastorageService) { }
 
@@ -33,11 +32,6 @@ export class PostsComponent implements OnInit {
      () => this.ngOnInit()
    );   
   }
-
-  setCurrentId(id: number): void {
-    this.currentId = id;
-  }
-
   
 
 }

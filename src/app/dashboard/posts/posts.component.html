@@ -31,7 +31,7 @@
                 Actions
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" (click)="setCurrentId(post.id)" data-bs-target="#editmessage">Edit</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editmessage">Edit</a></li>
                 <li><a class="dropdown-item" (click)="deletePost(post.id)">Delete</a></li>
               </ul>
             </div>
@@ -48,7 +48,8 @@
       </div>
     </div>
   </div>
+  <app-edit-post-form [message]="post.message"></app-edit-post-form>
 </div>
   <app-add-post-form (onSubmitted)="onAddPost($event)"></app-add-post-form>
-  <app-edit-post-form [message]="currentId"></app-edit-post-form>
+  
 

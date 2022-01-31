@@ -7,14 +7,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./edit-post-form.component.css']
 })
 export class EditPostFormComponent implements OnInit {
-  @Input() message!: number;
+  @Input() message!: string;
   postsForm!: FormGroup;
   privacies: string[] = ["public", "private"];
   default = null;
   constructor() { }
 
   ngOnInit() {
-
+    console.log(this.message)
     this.postsForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
