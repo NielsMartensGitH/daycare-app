@@ -17,7 +17,7 @@ export class DatastorageService {
   url: string = "http://gameofcones.be/api/";
   parentUrl: string = "http://gameofcones.be/api/parents";
   postUrl: string = "";
-  posts$!: Posts[]
+
   constructor(private http: HttpClient) { 
     this.postUrl = "http://gameofcones.be/api/posts";
   }

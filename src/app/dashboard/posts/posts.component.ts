@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-posts',
@@ -18,15 +17,18 @@ export class PostsComponent implements OnInit {
     this.dataStorage.getAllPosts().subscribe( 
       posts => {
         this.posts$ = posts
-        this.dataStorage.posts$ = posts;
       })
 
   }
 
-
+  onAddPost(posts: Posts[]) {
+    this.dataStorage.addPost(posts).subscribe(
+      () => {
+        this.ngOnInit();
+      })
+  }
 
   deletePost(postId: number) {
-    console.log(this.dataStorage.posts$)
    this.dataStorage.deletePost(postId).subscribe(
      () => this.ngOnInit()
    );   

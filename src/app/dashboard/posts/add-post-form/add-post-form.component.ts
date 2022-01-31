@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+
 
 @Component({
   selector: 'app-add-post-form',
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./add-post-form.component.css']
 })
 export class AddPostFormComponent implements OnInit {
-
+  @Output() onSubmitted = new EventEmitter();
   postsForm!: FormGroup;
   privacies: string[] = ["public", "private"];
   default = null;
@@ -29,12 +30,12 @@ export class AddPostFormComponent implements OnInit {
     this.postsForm.statusChanges.subscribe(
       (status) => console.log(status)
     )
+
+
+    
   }
 
   addPost(privacy: number, message: string) {
-
-    const time = new Date();
-    console.log(time.toLocaleString())
 
     const newPost = {
       'id': null,
@@ -45,9 +46,8 @@ export class AddPostFormComponent implements OnInit {
       'privacy': privacy
     }
 
-    this.dataStorage.addPost(newPost).subscribe(
-      () => this.ngOnInit()
-    );
+    // this.dataStorage.addPost(newPost).subscribe();
+    this.onSubmitted.emit(newPost)
 
   }
 
