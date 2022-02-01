@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 @Component({
@@ -12,6 +12,12 @@ export class EditPostFormComponent implements OnInit {
   privacies: string[] = ["public", "private"];
   default = null;
   constructor() { }
+ 
+  ngOnChanges(changes: SimpleChanges) {
+     {
+      this.ngOnInit();
+    }
+  }
 
   ngOnInit() {
     console.log(this.message)
