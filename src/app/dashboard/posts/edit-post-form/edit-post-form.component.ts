@@ -13,7 +13,7 @@ export class EditPostFormComponent implements OnInit {
   default = null;
   constructor() { }
  
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
      {
       this.ngOnInit();
     }
