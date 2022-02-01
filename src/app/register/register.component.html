@@ -17,50 +17,57 @@
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                           <form class="row gx-2 gy-2 align-items-center">
                             <div class="col">
-                              <div  *ngIf="isdaycare">
-                                <div class="input-group-icon mb-3">
-                                <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Company Name" />
-                                </div>
-                                <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="E-mail address" />
-                                </div>
-                                <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="address" />
-                                </div>
-                                <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="BTW" />
-                                </div>
-                                <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="phone" />
-                                </div>
-                                <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Password" />
+                              <form (ngSubmit)="Onsubmit()">
+                                <!--
+                                <div  *ngIf="isdaycare">
+                                  <div class="input-group-icon mb-3">
+                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Company Name" >
                                 </div>
                                   <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Verify Password" />
-                                </div>                
-                              </div>
-                              <div *ngIf="!isdaycare">
-                                <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="Pfirstname" type="text" placeholder="First Name" />
+                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="E-mail address" >
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="address" />
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="BTW" />
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="phone" />
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Password" />
+                                  </div>
+                                    <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Verify Password" />
+                                  </div>                
                                 </div>
-                                <div class="input-group-icon mb-3">
-                                  <label class="visually-hidden" for="inputEmail">E-mail address</label>
-                                  <input class="form-control input-box form-foodwagon-control" id="Psurname" type="text" placeholder="Surname" />
+                                -->
+                                <div *ngIf="!isdaycare">
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="Pfirstname" type="text" placeholder="First Name" [(ngModel)]=firstname name="firstname">
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="Psurname" type="text" placeholder="Surname" [(ngModel)]=lastname name="lastname">
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="Pemail" type="email" placeholder="Email" [(ngModel)]=email name="email">
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="Pphone" type="number" placeholder="Phonenumber" [(ngModel)]=phone name="phone">
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="Ppass" type="password" placeholder="Password" [(ngModel)]=password name="password">
+                                  </div>
+                                  <div class="input-group-icon mb-3">
+                                    <input class="form-control input-box form-foodwagon-control" id="Pverify" type="password" placeholder="Password" [(ngModel)]=pasverify  name="pasverify">
+                                  </div>
+                                  
                                 </div>
-  
-                                <div class="input-group-icon mb-3">
-                                  <label class="visually-hidden" for="inputPassword">Password</label>
-                                  <input class="form-control input-box form-foodwagon-control" id="inputPassword" type="password" placeholder="Password" />
-                                </div>
-                                <div class="input-group-icon mb-3">
-                                  <label class="visually-hidden" for="inputPassword">Password</label>
-                                  <input class="form-control input-box form-foodwagon-control" id="inputPassword" type="password" placeholder="Password" />
-                                </div>
-                                
-                              </div>
-                              <button class="btn btn-danger" id="submit" type="submit">Sign up</button>
+                                <button class="btn btn-danger" id="submit" type="submit">Sign up</button>
+                                </form>
                             </div>
+                            
                             <!--<div class="d-grid gap-3 col-sm-auto">-->
                               
                             <!--</div>-->
