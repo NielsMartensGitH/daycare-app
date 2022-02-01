@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Parent } from 'src/app/shared/model/parent.model';
 
 
@@ -16,9 +17,18 @@ export class ParentAddComponent implements OnInit {
   email!:string;
   phone!:number;
   password!:string;
+  parentAddForm!: FormGroup;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.parentAddForm = new FormGroup({
+        'firstname': new FormControl(null, Validators.required),
+        'lastname': new FormControl(null, Validators.required),
+        'email': new FormControl(null, [Validators.required, Validators.email]),
+        'phone': new FormControl(null, Validators.required),
+        'password': new FormControl(null, Validators.required)
+    })
   }
 
   

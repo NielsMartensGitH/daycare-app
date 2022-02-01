@@ -1,29 +1,54 @@
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" [formGroup]="parentAddForm">
     <div class="container-sm mb-5">
         <div class="row">
         <div class="col m-1">
-            <input type="text" class="form-control" id="name" placeholder="First name" name="name"
+            <input type="text" 
+            class="form-control" 
+            id="name" 
+            placeholder="First name" 
+            formControlName="firstname"
             [(ngModel)]="firstname">
+            <span *ngIf="!parentAddForm.get('firstname')?.valid && parentAddForm.get('firstname')?.touched" 
+            class="help-block">Please enter a name!</span>
         </div>
         <div class="col m-1">
-            <input type="text" class="form-control" id="lastname" placeholder="Last name" name="lastname"
+            <input type="text" 
+            class="form-control" 
+            id="lastname" 
+            placeholder="Last name" 
+            formControlName="lastname"
             [(ngModel)]="lastname">
+            <span *ngIf="!parentAddForm.get('lastname')?.valid && parentAddForm.get('lastname')?.touched" class="help-block">Please enter a lastname!</span>
         </div>
         </div>
         <div class="row">
             <div class="col m-1">
-                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email"
+                <input type="text" 
+                class="form-control" 
+                id="email" 
+                placeholder="Enter email" 
+                formControlName="email"
                 [(ngModel)]="email">
+                <span *ngIf="!parentAddForm.get('email')?.valid && parentAddForm.get('email')?.touched" class="help-block">Please enter a valid email!</span>
             </div>
             <div class="col m-1">
-                <input type="text" class="form-control" id="phoneNum" placeholder="Phone number" name="phone"
+                <input type="text" 
+                class="form-control" 
+                id="phoneNum" 
+                placeholder="Phone number" 
+                formControlName="phone"
                 [(ngModel)]="phone">
+                <span *ngIf="!parentAddForm.get('phone')?.valid && parentAddForm.get('phone')?.touched" class="help-block">Please enter a phone number!</span>
             </div>
         </div>
         <div class="row">
             <div class="col m-1">
-                <input type="password" class="form-control" placeholder="Enter password" name="pswd"
+                <input type="password" 
+                class="form-control" 
+                placeholder="Enter password" 
+                formControlName="password"
                 [(ngModel)]="password">
+                <span *ngIf="!parentAddForm.get('password')?.valid && parentAddForm.get('password')?.touched" class="help-block">Please enter a valid password!</span>
             </div>
             <div class="col m-1">
                 <button type="submit" class="btn btn-success"
