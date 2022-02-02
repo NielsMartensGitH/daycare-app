@@ -26,7 +26,6 @@ export class ChildAddComponent implements OnInit {
       )
 
     this.onChildAdded.emit(newChild);
-    console.log(newChild)
   }
 
 }

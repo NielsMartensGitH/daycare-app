@@ -1,0 +1,77 @@
+<div class="modal fade" id="editParent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Edit parent</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="onSubmit(firstname.value, lastname.value, email.value, phone.value, password.value)" [formGroup]="parentEditForm">
+                <div class="container-sm mb-5 p-4 bg-light bg-gradient">
+                    <h3>Edit the parent</h3>
+                    <div class="row">
+                    <div class="col m-1">
+                        <input type="text" 
+                        class="form-control" 
+                        id="name" 
+                        placeholder="First name" 
+                        formControlName="firstname"
+                        #firstname>
+                        <span *ngIf="!parentEditForm.get('firstname')?.valid && parentEditForm.get('firstname')?.touched" 
+                        class="help-block">Please enter a name!</span>
+                    </div>
+                    <div class="col m-1">
+                        <input type="text" 
+                        class="form-control" 
+                        id="lastname" 
+                        placeholder="Last name" 
+                        formControlName="lastname"
+                        #lastname>
+                        <span *ngIf="!parentEditForm.get('lastname')?.valid && parentEditForm.get('lastname')?.touched" class="help-block">Please enter a lastname!</span>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m-1">
+                            <input type="text" 
+                            class="form-control" 
+                            id="email" 
+                            placeholder="Enter email" 
+                            formControlName="email"
+                            #email>
+                            <span *ngIf="!parentEditForm.get('email')?.valid && parentEditForm.get('email')?.touched" class="help-block">Please enter a valid email!</span>
+                        </div>
+                        <div class="col m-1">
+                            <input type="tel" 
+                            class="form-control" 
+                            id="phoneNum" 
+                            placeholder="Phone number" 
+                            formControlName="phone"
+                            #phone>
+                            <span *ngIf="!parentEditForm.get('phone')?.valid && parentEditForm.get('phone')?.touched" class="help-block">Phone number should start with 04 and have 10 digits</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m-1">
+                            <input type="password" 
+                            class="form-control" 
+                            placeholder="Enter password" 
+                            formControlName="password"
+                            #password>
+                            <span *ngIf="!parentEditForm.get('password')?.valid && parentEditForm.get('password')?.touched" class="help-block">Please enter a valid password!</span>
+                        </div>
+                        <div class="col m-1">
+                            <button type="submit" class="btn btn-success"
+                            [disabled]="!parentEditForm.valid"
+                            >Submit</button>
+                        </div>
+                    </div>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -38,7 +38,8 @@
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#detailModal"
                         (click)="parentId = parent.id"><i class="fas fa-info-circle"></i> Details</button>
-                        <button type="button" class="btn btn-warning m-1"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-warning m-1"><i class="fas fa-edit"
+                        data-bs-toggle="modal" data-bs-target="#editParent"></i> Edit</button>
                         <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal"
                         (click)="onDelete(parent)"><i class="far fa-trash-alt"></i> Delete</button>
                       </div>
@@ -52,7 +53,7 @@
 
 
 <app-parent-details [detail]="parentId" (addedChild)="onAddChild($event)"></app-parent-details>
-
+<app-parent-edit></app-parent-edit>
 <!--Delete parent modal-->
 <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">

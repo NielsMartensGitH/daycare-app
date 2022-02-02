@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd } from '@angular/router';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Child } from 'src/app/shared/model/child.models';
 import { Parent } from 'src/app/shared/model/parent.model';
