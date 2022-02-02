@@ -18,31 +18,31 @@
                           <form class="row gx-2 gy-2 align-items-center">
                             <div class="col">
                               <form (ngSubmit)="Onsubmit()">
-                                <!--
+                                
                                 <div  *ngIf="isdaycare">
                                   <div class="input-group-icon mb-3">
-                                  <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Company Name" >
+                                  <input class="form-control input-box form-foodwagon-control" id="companyname" type="text" placeholder="Company Name" [(ngModel)]=companyname name="firstname">
                                 </div>
                                   <div class="input-group-icon mb-3">
-                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="E-mail address" >
+                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="E-mail address" [(ngModel)]=dcemail name="dcemail">
                                   </div>
                                   <div class="input-group-icon mb-3">
-                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="address" />
+                                    <input class="form-control input-box form-foodwagon-control" id="dcadress" type="text" placeholder="address" [(ngModel)]=dcadress name="dcadress">
                                   </div>
                                   <div class="input-group-icon mb-3">
-                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="BTW" />
+                                    <input class="form-control input-box form-foodwagon-control" id="BTW" type="text" placeholder="BTW" [(ngModel)]=dcbtw name="dcbtw">
                                   </div>
                                   <div class="input-group-icon mb-3">
-                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="phone" />
+                                    <input class="form-control input-box form-foodwagon-control" id="dcphone" type="number" placeholder="phone" [(ngModel)]=dcphone name="dcphone">
                                   </div>
                                   <div class="input-group-icon mb-3">
-                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Password" />
+                                    <input class="form-control input-box form-foodwagon-control" id="dcpassword" type="password" placeholder="Password" [(ngModel)]=dcpassword name="dcpassword">
                                   </div>
                                     <div class="input-group-icon mb-3">
-                                    <input class="form-control input-box form-foodwagon-control" id="inputEmail" type="email" placeholder="Verify Password" />
+                                    <input class="form-control input-box form-foodwagon-control" id="pasverify" type="password" placeholder="Verify Password" [(ngModel)]=pasverify name="pasverify">
                                   </div>                
                                 </div>
-                                -->
+                                
                                 <div *ngIf="!isdaycare">
                                   <div class="input-group-icon mb-3">
                                     <input class="form-control input-box form-foodwagon-control" id="Pfirstname" type="text" placeholder="First Name" [(ngModel)]=firstname name="firstname">

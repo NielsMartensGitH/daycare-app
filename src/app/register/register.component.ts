@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { Parent } from 'src/app/shared/model/parent.model'
+import { Daycare } from 'src/app/shared/model/daycare.model'
 
 @Component({
   selector: 'app-register',
@@ -8,8 +9,9 @@ import { Parent } from 'src/app/shared/model/parent.model'
 })
 export class RegisterComponent implements OnInit {
   @Output() onSubmitted = new EventEmitter <Parent>();
-  
-  isdaycare = false;
+  @Output() onSubmit = new EventEmitter <Daycare>();
+
+  isdaycare = true;
   
   newParent!:Parent;
   id:any = null;
@@ -20,6 +22,17 @@ export class RegisterComponent implements OnInit {
   password!: string;
   pasverify!: string;
 
+  newDaycare!: Daycare;
+  did:any = null;
+  companyname!:string;
+  dcadress!: string;
+  dcemail!: string;
+  dcphone!: number;
+  dcpassword!: string;
+  dcbtw!: string;
+  
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -27,7 +40,15 @@ export class RegisterComponent implements OnInit {
   Onsubmit(){
 
     if(this.isdaycare){
-
+      if (this.pasverify == this.dcpassword){
+        const newDaycare = new Daycare(
+          this.did, this.companyname, this.dcadress,this.dcemail,this.dcphone, this.dcpassword,this.dcbtw
+        )
+        console.log(newDaycare)
+      }
+      else{
+        window.alert("Incorrect password")
+      }
     }
     else{
       if (this.pasverify == this.password){
