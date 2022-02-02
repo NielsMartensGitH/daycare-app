@@ -1,5 +1,6 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="parentAddForm">
-    <div class="container-sm mb-5">
+    <div class="container-sm mb-5 p-4 bg-light bg-gradient">
+        <h3>Add a new parent</h3>
         <div class="row">
         <div class="col m-1">
             <input type="text" 
@@ -38,7 +39,7 @@
                 placeholder="Phone number" 
                 formControlName="phone"
                 [(ngModel)]="phone">
-                <span *ngIf="!parentAddForm.get('phone')?.valid && parentAddForm.get('phone')?.touched" class="help-block">Please enter a phone number!</span>
+                <span *ngIf="!parentAddForm.get('phone')?.valid && parentAddForm.get('phone')?.touched" class="help-block">Phone number should start with 04 and have 10 digits</span>
             </div>
         </div>
         <div class="row">

@@ -1,0 +1,32 @@
+<!-- See details modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Parent details</h5>
+          
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex d-row">
+            <h3 class="mr-1">Children</h3>
+            <button class="btn btn-success rounded-pill ml-1"
+            (click)="addChildClicked = !addChildClicked"><i class="fas fa-plus-circle"></i> Add</button>
+          </div>
+          <div *ngIf="addChildClicked">
+            <app-child-add 
+            (onChildAdded)="addChild($event)"></app-child-add>
+          </div>
+          <div *ngFor="let child of childparents$">
+            <span>{{child.child_firstname}}</span>
+            <span>{{child.child_lastname}}</span>
+            <span><button type="button" class="btn btn-secondary rounded-circle m-1"><i class="far fa-trash-alt"></i></button></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

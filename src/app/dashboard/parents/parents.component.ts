@@ -12,10 +12,9 @@ import { Parent } from 'src/app/shared/model/parent.model';
 export class ParentsComponent implements OnInit {
   parents$!:Parent[];
   isclicked:boolean = false;
-  childparents$:any;
   sureDelete:boolean = false;
   currentParent!:string;
-  addChildClicked:boolean = false;
+  parentId: number = 1;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -54,9 +53,6 @@ export class ParentsComponent implements OnInit {
   }
 
 
-  onSeeDetails(parentId:number){
-    this.dataStorage.getChildParents(parentId).subscribe(childparents => this.childparents$ = childparents)
-  }
 
   onAddChild(child:Child){
 
