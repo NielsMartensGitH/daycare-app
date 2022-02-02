@@ -6,19 +6,32 @@ import { CalendarOptions } from '@fullcalendar/angular';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent {
+export class CalendarComponent{
+  date!:string;
+  eventName!:string;
+  events$!:[
+    { title: string, date: string }
+  ];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this), // bind is important!
-    events: [
-      { title: 'Halloween party', date: '2022-01-28' },
-      { title: 'Sinterklaas is coming', date: '2022-01-29' }
-    ]
+    weekends: true,
+    dateClick: this.handleDateClick.bind(this),
+    events: this.events$
   };
 
   handleDateClick(arg:any) {
-    alert('date click! ' + arg.dateStr)
+     this.date = arg.dateStr;
+     
   }
+  
+  onSbt(event:string){
+    this.events$ = [{title: event, date: this.date}];
+    console.log(this.events$);
+  }
+
+  toggleWeekends() {
+    this.calendarOptions.weekends = !this.calendarOptions.weekends 
+     }
   
 
 }
