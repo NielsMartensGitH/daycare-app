@@ -26,7 +26,7 @@ export class ParentAddComponent implements OnInit {
         'firstname': new FormControl(null, Validators.required),
         'lastname': new FormControl(null, Validators.required),
         'email': new FormControl(null, [Validators.required, Validators.email]),
-        'phone': new FormControl(null, Validators.required),
+        'phone': new FormControl('1', Validators.pattern('(04)[0-9 ]{8}')),
         'password': new FormControl(null, Validators.required)
     })
   }
@@ -41,6 +41,7 @@ export class ParentAddComponent implements OnInit {
      )
 
     this.onSubmitted.emit(newParent);
+    this.parentAddForm.reset()
   }
 
   

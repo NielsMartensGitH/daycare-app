@@ -38,19 +38,18 @@ export class ParentsComponent implements OnInit {
 
   onDelete(parent:Parent){
     this.currentParent = `${parent.firstname} ${parent.lastname}`;
-    setTimeout(() => {
+      setTimeout(() => {
         if (this.sureDelete){
           this.dataStorage.deleteParent(parent).subscribe(() => this.ngOnInit());
-          console.log(this.sureDelete);
+          
           this.sureDelete = false;
+          console.log(this.sureDelete);
         }
         else {
-          console.log(this.sureDelete)
+          console.log(this.sureDelete);
         }
-     }
-    
-      , 4000); 
      
+      }, 5000)
     
   }
 

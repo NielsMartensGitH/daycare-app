@@ -52,6 +52,7 @@
             </div>
             <div class="col m-1">
                 <button type="submit" class="btn btn-success"
+                [disabled]="!parentAddForm.valid"
                 >Submit</button>
             </div>
         </div>
