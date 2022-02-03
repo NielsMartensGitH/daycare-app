@@ -7,7 +7,7 @@ import { Event } from 'src/app/shared/model/event.models';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent{
+export class CalendarComponent implements OnInit{
   eventDate!:string;
   eventName!:string;
   events$:Event[] = [];
@@ -15,11 +15,14 @@ export class CalendarComponent{
   calendarOptions!: CalendarOptions;
   
   ngOnInit() {
-      this.calendarOptions= {
-      initialView: 'dayGridMonth',
-      dateClick: this.handleDateClick.bind(this),
-      events: this.events$
-    };
+      setTimeout(() => {
+        this.calendarOptions= {
+          initialView: 'dayGridMonth',
+          dateClick: this.handleDateClick.bind(this),
+          events: this.events$
+        };
+      }, 2500)
+      
   }
   handleDateClick(arg:any) {
      this.eventDate = arg.dateStr;
@@ -33,7 +36,10 @@ export class CalendarComponent{
     }
     this.events$.push(newEvent);
     console.log(this.events$);
-    this.ngOnInit();
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 2200)
+    
   }
 
   

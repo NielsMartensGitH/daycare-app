@@ -1,1 +1,16 @@
+button.btn.btn-succes {
+    background-color: #85CDCA;
+    color: white
+ }
+ 
+ button.btn.btn-warnin {
+     background-color: #E27D60 !important;
+     color: white
+  }
 
+  button.btn.btn-dange {
+    background-color: #C38D9E !important;
+    color: white
+ }
+
+  
