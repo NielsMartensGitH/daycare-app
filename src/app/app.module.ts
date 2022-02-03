@@ -26,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { PackagesComponent } from './home/packages/packages.component';
 import { AddPostFormComponent } from './dashboard/posts/add-post-form/add-post-form.component'; // a plugin!
@@ -36,6 +37,7 @@ import { ParentEditComponent } from './dashboard/parents/parent-edit/parent-edit
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
+  timeGridPlugin,
   interactionPlugin
 ]);
 
