@@ -16,6 +16,19 @@ export class LoginscreenComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  Plogin(){
+
+  }
+  DClogin(){
+    
+  }
+
+  registerP(){
+    sessionStorage.setItem("isdaycare", 'false');
+  }
+  registerDC(){
+    sessionStorage.setItem("isdaycare", 'true');
+  }
   
 }
 

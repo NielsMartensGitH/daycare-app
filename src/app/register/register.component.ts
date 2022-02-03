@@ -36,6 +36,13 @@ export class RegisterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let tempbool = sessionStorage.getItem("isdaycare");
+    if(tempbool=== "true"){
+      this.isdaycare = true;
+    }
+    else{
+      this.isdaycare = false;
+    }
   }
   Onsubmit(){
 
