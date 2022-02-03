@@ -6,15 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  @Input()   toggleComment: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  openCloseComment() {
-    this.toggleComment = !this.toggleComment;
-  }
 
 }

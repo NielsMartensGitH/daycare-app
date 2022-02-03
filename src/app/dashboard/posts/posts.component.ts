@@ -10,6 +10,8 @@ import { DatastorageService } from 'src/app/datastorage.service';
 export class PostsComponent implements OnInit {
   posts$!: Posts[]; 
   editThisMsg!:string;
+  msgId!: number;
+  msgToggle: boolean = false;
 
   constructor(private dataStorage: DatastorageService) { }
 
@@ -19,10 +21,6 @@ export class PostsComponent implements OnInit {
         this.posts$ = posts
       })
 
-  }
-
-  CommentToggle() {
-    return 
   }
 
   onAddPost(posts: Posts[]) {
@@ -41,6 +39,18 @@ export class PostsComponent implements OnInit {
   onEdit(sendMsg:string){
     this.editThisMsg = sendMsg;
     console.log(this.editThisMsg);
+  }
+
+  messageId(id: number) {
+    console.log(id == this.msgId)
+    if (id == this.msgId) {
+      this.msgToggle = false;
+      this.msgId = 0
+    } else {
+      this.msgId = id;
+      this.msgToggle = true;
+    }
+   
   }
 
 }

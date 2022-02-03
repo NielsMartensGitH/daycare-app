@@ -44,10 +44,10 @@
        <div class="privacy d-flex justify-content-between">
          <p class="m-0" *ngIf="post.privacy == 0; else private">Every parent can see this message</p>
          <ng-template #private>Only You can see this message</ng-template>
-         <p class="m-0 commentbutton">Comments</p>
+         <p class="m-0 commentbutton" (click)="messageId(post.id)">Comments</p>
        </div> 
       </div>
-      <app-comments></app-comments>
+      <app-comments *ngIf="msgId == post.id && msgToggle"></app-comments>
     </div>
   </div>
   <app-edit-post-form [message]="editThisMsg"></app-edit-post-form>
