@@ -1,25 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
 @Component({
-  selector: 'app-singlepost',
-  templateUrl: './singlepost.component.html',
-  styleUrls: ['./singlepost.component.css']
+  selector: 'app-comments',
+  templateUrl: './comments.component.html',
+  styleUrls: ['./comments.component.css']
 })
-export class SinglePostComponent implements OnInit {
+export class CommentsComponent implements OnInit {
   @Input()   toggleComment: boolean = false;
 
-
   constructor() { }
-
 
   ngOnInit(): void {
   }
 
-  
   openCloseComment() {
     this.toggleComment = !this.toggleComment;
   }
 
 }
-
