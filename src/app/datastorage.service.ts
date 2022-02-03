@@ -37,8 +37,12 @@ export class DatastorageService {
     return this.http.delete(this.postUrl + '/' + id, {responseType: 'text'});
   }
 
+  getCommentsbyPostId(id: number): Observable<any> {
+    return this.http.get(this.url + 'comments/' + id ).pipe();
+  }
+
   getAllParents(): Observable<Parent[]> {
-    return this.http.get<Parent[]>(this.url + 'parents').pipe()
+    return this.http.get<Parent[]>(this.url + 'parents').pipe();
   }
 
   addParent(parent: any): Observable<any> {

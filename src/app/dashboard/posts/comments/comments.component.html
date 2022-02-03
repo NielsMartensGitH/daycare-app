@@ -1,12 +1,12 @@
 <div class="card-body">
-    <div class="row">
+    <div *ngFor="let comment of comments$" class="row">
       <div class="col-auto mx-2 avatarbox">
-        <img src="../../../assets/img/daycaresunshine_avatar.jpg" alt="" width="50px" class="rounded-pill">
+        <img src="../../../assets/img/person-icon.png" alt="" width="50px" class="rounded-pill">
       </div>
       <div class="col-auto">
-        <div class="card-text px-3 py-1 bg-light rounded-pill">
+        <div class="card-text px-3 py-1 my-1 bg-light rounded-pill">
           <h6>Daycare Sunshine</h6>
-          <p>This is my first comment</p>
+          <p>{{comment.comment}}</p>
         </div>
       </div>
     </div>

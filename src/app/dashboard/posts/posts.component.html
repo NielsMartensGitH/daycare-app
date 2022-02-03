@@ -47,7 +47,7 @@
          <p class="m-0 commentbutton" (click)="messageId(post.id)">Comments</p>
        </div> 
       </div>
-      <app-comments *ngIf="msgId == post.id && msgToggle"></app-comments>
+      <app-comments [postId]="post.id" *ngIf="msgId == post.id && msgToggle"></app-comments>
     </div>
   </div>
   <app-edit-post-form [message]="editThisMsg"></app-edit-post-form>

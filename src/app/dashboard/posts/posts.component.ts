@@ -45,7 +45,7 @@ export class PostsComponent implements OnInit {
     console.log(id == this.msgId)
     if (id == this.msgId) {
       this.msgToggle = false;
-      this.msgId = 0
+      this.msgId = 0;
     } else {
       this.msgId = id;
       this.msgToggle = true;
