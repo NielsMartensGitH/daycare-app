@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
+import { Event } from 'src/app/shared/model/event.models';
 
 @Component({
   selector: 'app-calendar',
@@ -7,31 +8,35 @@ import { CalendarOptions } from '@fullcalendar/angular';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent{
-  date!:string;
+  eventDate!:string;
   eventName!:string;
-  events$!:[
-    { title: string, date: string }
-  ];
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    weekends: true,
-    dateClick: this.handleDateClick.bind(this),
-    events: this.events$
-  };
-
+  events$:Event[] = [];
+  id!:number;
+  calendarOptions!: CalendarOptions;
+  
+  ngOnInit() {
+      this.calendarOptions= {
+      initialView: 'dayGridMonth',
+      dateClick: this.handleDateClick.bind(this),
+      events: this.events$
+    };
+  }
   handleDateClick(arg:any) {
-     this.date = arg.dateStr;
+     this.eventDate = arg.dateStr;
      
   }
   
   onSbt(event:string){
-    this.events$ = [{title: event, date: this.date}];
+    const newEvent = {
+      title: event,
+      date: this.eventDate
+    }
+    this.events$.push(newEvent);
     console.log(this.events$);
+    this.ngOnInit();
   }
 
-  toggleWeekends() {
-    this.calendarOptions.weekends = !this.calendarOptions.weekends 
-     }
+  
   
 
 }
