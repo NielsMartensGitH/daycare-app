@@ -10,6 +10,7 @@ import { DatastorageService } from 'src/app/datastorage.service';
 export class PostsComponent implements OnInit {
   posts$!: Posts[]; 
   editThisMsg!:string;
+
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -18,6 +19,10 @@ export class PostsComponent implements OnInit {
         this.posts$ = posts
       })
 
+  }
+
+  CommentToggle() {
+    return 
   }
 
   onAddPost(posts: Posts[]) {

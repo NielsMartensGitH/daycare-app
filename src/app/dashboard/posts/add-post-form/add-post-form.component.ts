@@ -33,6 +33,7 @@ export class AddPostFormComponent implements OnInit {
 
   }
 
+
   addPost(privacy: number, message: string) {
 
     const newPost = {

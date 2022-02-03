@@ -18,7 +18,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-auto">
-            <img src="{{post.daycareavatar}}" class="img-responsiverounded-circle" width="50px" alt="">
+            <img src="{{post.daycareavatar}}" class="img-responsive rounded-circle" width="50px" alt="">
             <!-- <i class="border p-3 rounded-circle fas fa-user"></i> -->
           </div>
           <div class="col-sm-10">
@@ -44,13 +44,15 @@
        <div class="privacy d-flex justify-content-between">
          <p class="m-0" *ngIf="post.privacy == 0; else private">Every parent can see this message</p>
          <ng-template #private>Only You can see this message</ng-template>
-         <p class="m-0">Comments</p>
+         <p class="m-0 commentbutton">Comments</p>
        </div> 
       </div>
+      <app-singlepost></app-singlepost>
     </div>
   </div>
   <app-edit-post-form [message]="editThisMsg"></app-edit-post-form>
 </div>
+
   <app-add-post-form (onSubmitted)="onAddPost($event)"></app-add-post-form>
   
 
