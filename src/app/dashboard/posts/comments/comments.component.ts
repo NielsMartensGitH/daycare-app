@@ -10,12 +10,15 @@ import { Comments } from 'src/app/shared/model/comments.model';
 export class CommentsComponent implements OnInit {
   @Input() postId!: number;
   comments$!: Comments[]
+  textareaHeight: string = '58px'
   constructor(private dataStorageService: DatastorageService) { }
 
   ngOnInit() {
     this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => this.comments$ = comments);
   }
 
-
+autogrow(el: HTMLElement) {
+  el.style.height = el.scrollHeight + 'px';
+}
 
 }
