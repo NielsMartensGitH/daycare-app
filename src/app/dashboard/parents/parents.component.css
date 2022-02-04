@@ -2,14 +2,26 @@ button.btn.btn-kindfox-success {
     background-color: #85CDCA;
     color: white
  }
+
+ button.btn.btn-kindfox-success:hover {
+    background-color: #77c3bf;
+  }
  
  button.btn.btn-kindfox-warning {
      background-color: #E27D60 ;
      color: white
   }
+  button.btn.btn-kindfox-warning:hover {
+    background-color: #de7558 ;
+    color: white
+ }
 
  button.btn.btn-kindfox-danger {
     background-color: #A40043 ;
+    color: white
+ }
+ button.btn.btn-kindfox-danger:hover {
+    background-color: #89023a ;
     color: white
  }
 

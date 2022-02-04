@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./child-diary.component.css']
 })
 export class ChildDiaryComponent implements OnInit {
-
+  moods = ["very good", "good", "not so good", "bad"];
+  involvement = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
   constructor() { }
 
   ngOnInit(): void {
