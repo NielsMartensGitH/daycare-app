@@ -4,7 +4,7 @@ export class Child {
         public child_firstname: string,
         public child_lastname: string,
         public age: number,
-        public childcode: string
-         
+        public childcode: string,
+        public parent_id: number
     ) {}
 }

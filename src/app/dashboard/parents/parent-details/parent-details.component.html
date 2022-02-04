@@ -15,7 +15,8 @@
           </div>
           <div *ngIf="addChildClicked">
             <app-child-add 
-            (onChildAdded)="addChild($event)"></app-child-add>
+            (onChildAdded)="addChild($event)"
+            [parentId]="detail"></app-child-add>
           </div>
           <div *ngFor="let child of childparents$">
             <span>{{child.child_firstname}}</span>

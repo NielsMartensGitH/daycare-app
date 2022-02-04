@@ -66,7 +66,7 @@ export class DatastorageService {
   }
 
   getChildParents(id:any): Observable<any> {
-    return this.http.get<any>(this.url + 'childparent/' + id).pipe()
+    return this.http.get<any>(this.url + 'children/' + id).pipe()
   }
 
   addChild(child: any): Observable<any> {
