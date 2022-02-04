@@ -22,9 +22,10 @@ export class RegisterComponent implements OnInit {
   dcphone!: number;
   dcpassword!: string;
   dcbtw!: string;
-  dccountry: any = null;
-  dccity: any = null;
-  dcpostalcode: any = null;
+  dccountry: any = "null";
+  dccity: any = "null";
+  dcpostalcode: any = "null";
+  dcavatar: any="null"
   
 
 
@@ -51,10 +52,11 @@ export class RegisterComponent implements OnInit {
           this.dcbtw,
           this.dccountry,
           this.dccity,
-          this.dcpostalcode
+          this.dcpostalcode,
+          this.dcavatar
         )
         console.log(newDaycare)
-        this.onSubmitted.emit(newDaycare);
+        this.dataStorage.addDaycare(newDaycare).subscribe(() => this.ngOnInit());
       }
       else{
         window.alert("Incorrect password")

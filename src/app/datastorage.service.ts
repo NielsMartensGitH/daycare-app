@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Posts } from './shared/model/posts.model';
 import { Parent } from './shared/model/parent.model';
 import { Child } from './shared/model/child.models';
+import { Daycare } from 'src/app/shared/model/daycare.model'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -86,6 +87,11 @@ export class DatastorageService {
   //the idk section
   loginsearch(email: any):Observable<any>{
     return this.http.get<any>(this.url + 'parents/search/' + email);
+  }
+
+  addDaycare(newDaycare: any) :Observable<any>{
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + 'daycares', newDaycare, {headers: headers});
   }
 }
 
