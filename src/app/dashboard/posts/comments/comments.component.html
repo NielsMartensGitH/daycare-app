@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="form-floating m-3">
-      <textarea #refEl class="form-control commentinput" (keydown)="autogrow(refEl)" [style.height]="textareaHeight" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      <textarea #refEl class="form-control commentinput" (keydown)="triggerFunction($event, refEl.value, refEl)" [style.height]="textareaHeight" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
       <label for="floatingTextarea">Write a comment</label>
     </div>
   </div>

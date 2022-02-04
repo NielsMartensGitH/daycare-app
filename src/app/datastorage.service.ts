@@ -32,6 +32,11 @@ export class DatastorageService {
     return this.http.post(this.postUrl, newPost, {headers: headers});    
   }
 
+  addComment(newComment: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + 'comments', newComment, {headers: headers});    
+  }
+
   deletePost(id: number): Observable<any> {
     const headers = new HttpHeaders().set("Content-Type", "application/json");
     return this.http.delete(this.postUrl + '/' + id, {responseType: 'text'});
@@ -72,6 +77,7 @@ export class DatastorageService {
     const url = `${this.parentUrl}/${parent.id}`;
     return this.http.put<Parent>(url, parent, {headers: headers});
   }
+
 
 }
 
