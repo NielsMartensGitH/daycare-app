@@ -15,4 +15,8 @@ export class ChildrenComponent implements OnInit {
     this.dataStorage.getAllChildren().subscribe(children => this.children$ = children)
   }
 
+  onDelete(child:Child){
+    this.dataStorage.deleteChild(child).subscribe(() => this.ngOnInit());
+  }
+
 }
