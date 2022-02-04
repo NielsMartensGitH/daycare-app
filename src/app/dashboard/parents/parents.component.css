@@ -1,15 +1,15 @@
-button.btn.btn-succes {
+button.btn.btn-kindfox-success {
     background-color: #85CDCA;
     color: white
  }
  
- button.btn.btn-warnin {
-     background-color: #E27D60 !important;
+ button.btn.btn-kindfox-warning {
+     background-color: #E27D60 ;
      color: white
   }
 
-  button.btn.btn-dange {
-    background-color: #C38D9E !important;
+ button.btn.btn-kindfox-danger {
+    background-color: #A40043 ;
     color: white
  }
 

@@ -67,6 +67,11 @@ export class DatastorageService {
     return this.http.post(this.url + 'children', child, {headers: headers});
   }
 
+  updateParent(parent: Parent): Observable<Parent> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    const url = `${this.parentUrl}/${parent.id}`;
+    return this.http.put<Parent>(url, parent, {headers: headers});
+  }
 
 }
 

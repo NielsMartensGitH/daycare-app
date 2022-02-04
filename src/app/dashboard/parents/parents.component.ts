@@ -14,6 +14,7 @@ export class ParentsComponent implements OnInit {
   sureDelete:boolean = false;
   currentParent!:string;
   parentId: number = 1;
+  editThisParent!: any;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -59,6 +60,10 @@ export class ParentsComponent implements OnInit {
     this.dataStorage.addChild(child).subscribe(() => this.ngOnInit());
 
 
+  }
+
+  onEdit(edittedPar:Parent){
+    this.dataStorage.updateParent(edittedPar).subscribe(() => this.ngOnInit())
   }
   
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Parent } from 'src/app/shared/model/parent.model';
 
@@ -8,9 +8,17 @@ import { Parent } from 'src/app/shared/model/parent.model';
   styleUrls: ['./parent-edit.component.css']
 })
 export class ParentEditComponent implements OnInit {
+  @Input() parentToEdit!:any;
+  @Output() edittedParent = new EventEmitter<Parent>();
   parentEditForm!:FormGroup;
-  id:any = null;
+  id:any;
   constructor() { }
+
+  ngOnChanges() {
+    {
+     this.ngOnInit();
+   }
+ }
 
   ngOnInit(): void {
     this.parentEditForm = new FormGroup({
@@ -20,15 +28,27 @@ export class ParentEditComponent implements OnInit {
       'phone': new FormControl('1', Validators.pattern('(04)[0-9 ]{8}')),
       'password': new FormControl(null, Validators.required)
     })
+
+    this.parentEditForm.patchValue({
+      'firstname': this.parentToEdit.firstname,
+      'lastname': this.parentToEdit.lastname,
+      'email': this.parentToEdit.email,
+      'phone': this.parentToEdit.phone,
+      'password': this.parentToEdit.password
+
+    })
   }
 
   onSubmit(firstname:string, lastname:string, email:string, phone:any, password:string) {
 
 
     const newParent = new Parent(
-      this.id, firstname, lastname, email, phone, password
+      this.parentToEdit.id, firstname, lastname, email, phone, password
      )
-    console.log(newParent);
+    
+    this.edittedParent.emit(newParent);
+
   }
+
 
 }
