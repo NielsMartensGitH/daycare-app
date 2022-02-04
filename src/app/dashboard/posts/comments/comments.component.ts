@@ -11,6 +11,7 @@ export class CommentsComponent implements OnInit {
   @Input() postId!: number;
   comments$!: Comments[]
   textareaHeight: string = '58px'
+  commentText: string =  ""
   constructor(private dataStorageService: DatastorageService) { }
 
   ngOnInit() {
@@ -36,9 +37,12 @@ autogrow(el: HTMLElement) {
   el.style.height = el.scrollHeight + 'px';
 }
 
-triggerFunction(e: any, comment: string, el: HTMLElement) {
+triggerFunction(e: any, el: HTMLElement) {
   if(e.key === 'Enter') {
-    this.onAddComment(comment)
+    console.log(this.commentText)
+    this.onAddComment(this.commentText)
+    this.commentText = "";
+    
   } else {
     this.autogrow(el)
   }

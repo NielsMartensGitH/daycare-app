@@ -8,7 +8,85 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+            <form>
+                <div class="mb-3 row">
+                    <label for="exampleInputEmail1" class="form-label">What I ate<i class="fas fa-utensils"></i></label>
+                    <div class="col">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col d-flex d-row">
+                        <button type="button" class="btn">
+                            <i class="fas fa-smile-beam"></i>
+                        </button>
+                        <button type="button" class="btn">
+                            <i class="fas fa-frown-open"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="exampleInputEmail1" class="form-label">Did I eat my veggies?<i class="fas fa-carrot"></i></label>
+                    <div class="col">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col d-flex d-row">
+                        <button type="button" class="btn mt-0">
+                            <i class="fas fa-smile-beam"></i>
+                        </button>
+                        <button type="button" class="btn mt-0">
+                            <i class="fas fa-frown-open"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="exampleInputEmail1" class="form-label">How I slept?</label>
+                    <div class="col">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col d-flex d-row">
+                        <button type="button" class="btn">
+                            <i class="fas fa-smile-beam"></i>
+                        </button>
+                        <button type="button" class="btn">
+                            <i class="fas fa-frown-open"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Pot visits</h5>
+                        <i class="fas fa-poo"></i><i class="fas fa-poo"></i><i class="fas fa-poo"></i><i class="fas fa-poo"></i><i class="fas fa-poo"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex d-row">
+                        <h5>My well-being</h5>
+                        <div class="form-check" *ngFor="let mood of moods">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{mood}}
+                              </label>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Activities</p>
+                        <textarea name="" id="" cols="30" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Involvement</h5>
+                        <div class="form-check" *ngFor="let inv of involvement">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{inv}}
+                              </label>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

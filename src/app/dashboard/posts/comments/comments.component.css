@@ -14,3 +14,13 @@ textarea {
     min-height: 50px;
     max-height: 100px;
 }
+
+.message {
+    min-width: 30%;
+    max-width: 80%;
+    margin-left: -30px;
+}
+
+.dropdown {
+    cursor: pointer;
+}
