@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
-import { Parent } from 'src/app/shared/model/parent.model'
+import { DatastorageService } from 'src/app/datastorage.service';
 import { Daycare } from 'src/app/shared/model/daycare.model'
 
 @Component({
@@ -8,20 +8,12 @@ import { Daycare } from 'src/app/shared/model/daycare.model'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Output() onSubmitted = new EventEmitter <Parent>();
-  @Output() onSubmit = new EventEmitter <Daycare>();
-
-  isdaycare = true;
+  @Output() onSubmitted = new EventEmitter <Daycare>();
   
-  newParent!:Parent;
-  id:any = null;
-  firstname!: string;
-  lastname!: string;
-  email!: string;
-  phone!: number;
-  password!: string;
-  pasverify!: string;
+  isdaycare = true;
 
+  pasverify!: string;
+  
   newDaycare!: Daycare;
   did:any = null;
   companyname!:string;
@@ -30,10 +22,13 @@ export class RegisterComponent implements OnInit {
   dcphone!: number;
   dcpassword!: string;
   dcbtw!: string;
+  dccountry: any = null;
+  dccity: any = null;
+  dcpostalcode: any = null;
   
 
 
-  constructor() { }
+  constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
     let tempbool = sessionStorage.getItem("isdaycare");
@@ -45,29 +40,24 @@ export class RegisterComponent implements OnInit {
     }
   }
   Onsubmit(){
-
-    if(this.isdaycare){
       if (this.pasverify == this.dcpassword){
         const newDaycare = new Daycare(
-          this.did, this.companyname, this.dcadress,this.dcemail,this.dcphone, this.dcpassword,this.dcbtw
+          this.did, 
+          this.companyname, 
+          this.dcadress,
+          this.dcemail,
+          this.dcphone, 
+          this.dcpassword,
+          this.dcbtw,
+          this.dccountry,
+          this.dccity,
+          this.dcpostalcode
         )
         console.log(newDaycare)
+        this.onSubmitted.emit(newDaycare);
       }
       else{
         window.alert("Incorrect password")
       }
-    }
-    else{
-      if (this.pasverify == this.password){
-        const newParent = new Parent(
-          this.id, this.firstname, this.lastname,this.email,this.phone, this.password
-        )
-        console.log(newParent)
-      }
-      else{
-        window.alert("Incorrect password")
-      }
-    }
-
   }
 }

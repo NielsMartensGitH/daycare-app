@@ -7,8 +7,8 @@ export class Daycare {
         public dcphone: number,
         public dcpassword: string,
         public dcbtw: string,
-        //public dccountry: string,
-        //public dccity: string,
-        //public dcpostalcode: number
+        public dccountry: string,
+        public dccity: string,
+        public dcpostalcode: number
     ) {}
 }
