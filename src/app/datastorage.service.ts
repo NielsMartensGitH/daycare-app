@@ -67,6 +67,11 @@ export class DatastorageService {
     return this.http.post(this.url + 'children', child, {headers: headers});
   }
 
+  //the idk section
+  loginsearch(email: any):Observable<any>{
+    return this.http.get<any>(this.url + 'parents/search/' + email);
+  }
+
 
 }
 
