@@ -24,7 +24,6 @@ onAddComment(comment: string) {
     'post_id': this.postId,
     'parent_id': null,
     'daycare_id': 1
-
   }
   this.dataStorageService.addComment(newComment).subscribe(
     () => {

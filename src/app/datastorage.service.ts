@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Posts } from './shared/model/posts.model';
 import { Parent } from './shared/model/parent.model';
+import { Child } from './shared/model/child.models';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -78,6 +79,13 @@ export class DatastorageService {
     return this.http.put<Parent>(url, parent, {headers: headers});
   }
 
+  getAllChildren(): Observable<Child[]> {
+    return this.http.get<Child[]>(this.url + 'children').pipe();
+  }
 
+  //the idk section
+  loginsearch(email: any):Observable<any>{
+    return this.http.get<any>(this.url + 'parents/search/' + email);
+  }
 }
 

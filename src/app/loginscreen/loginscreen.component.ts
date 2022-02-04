@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
-import { Parent } from 'src/app/shared/model/parent.model';
-import { Routes } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loginscreen',
@@ -9,37 +8,31 @@ import { Routes } from '@angular/router';
   styleUrls: ['./loginscreen.component.css']
 })
 export class LoginscreenComponent implements OnInit {
-  parents$!:Parent[];
   email!:string;
   password!:string;
 
-  constructor(private dataStorage: DatastorageService) { 
+  constructor(private dataStorage: DatastorageService, private router:Router) { 
     
   }
 
   ngOnInit(): void {
-    this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents)
   }
 
   Plogin(){
-    console.log(this.parents$);
-    /*
-    fetch(this.testurl + '/search/' + this.email).then(res=>res.json()).then(
-      res=> {
-        if(res.length == 0){
-          alert("wrong username or password")
+    this.dataStorage.loginsearch(this.email).subscribe(res => {
+      if(res.length == 0){
+        alert("wrong username or password")
+      }
+      else{
+        if(res[0].password == this.password){
+          sessionStorage.setItem('parentID',res[0].id)
+          this.router.navigate(['/messageboard'])
         }
         else{
-          if(res[0].password == this.password){
-            alert("login succesfull");
-          }
-          else{
-            alert("wrong username or password")
-          }
+          alert("wrong username or password")
         }
       }
-    )
-    */
+    });    
   }
   DClogin(){
 
