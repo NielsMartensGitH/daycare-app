@@ -35,6 +35,7 @@ import { EditPostFormComponent } from './dashboard/posts/edit-post-form/edit-pos
 import { ParentDetailsComponent } from './dashboard/parents/parent-details/parent-details.component';
 import { ParentEditComponent } from './dashboard/parents/parent-edit/parent-edit.component';
 import { CommentsComponent } from './dashboard/posts/comments/comments.component';
+import { ChildDiaryComponent } from './dashboard/children/child-diary/child-diary.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -69,7 +70,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     EditPostFormComponent,
     ParentDetailsComponent,
     ParentEditComponent,
-    CommentsComponent
+    CommentsComponent,
+    ChildDiaryComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule
