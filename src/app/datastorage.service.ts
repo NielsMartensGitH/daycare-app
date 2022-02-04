@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Posts } from './shared/model/posts.model';
 import { Parent } from './shared/model/parent.model';
+import { Child } from './shared/model/child.models';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -71,6 +72,10 @@ export class DatastorageService {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     const url = `${this.parentUrl}/${parent.id}`;
     return this.http.put<Parent>(url, parent, {headers: headers});
+  }
+
+  getAllChildren(): Observable<Child[]> {
+    return this.http.get<Child[]>(this.url + 'children').pipe();
   }
 
 }
