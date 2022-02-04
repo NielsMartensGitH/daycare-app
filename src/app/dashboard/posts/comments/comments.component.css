@@ -7,3 +7,14 @@
     border-radius: 25px;
     border: solid 1px gray;
 }
+
+.commentinput {
+    border-radius: 25px;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
