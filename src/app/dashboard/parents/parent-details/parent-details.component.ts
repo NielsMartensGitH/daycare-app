@@ -15,6 +15,7 @@ export class ParentDetailsComponent implements OnInit {
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
+    this.dataStorage.getChildParents(this.detail).subscribe(childparents => this.childparents$ = childparents)
   }
 
   addChild(newChild:Child){
@@ -26,5 +27,8 @@ export class ParentDetailsComponent implements OnInit {
       this.dataStorage.getChildParents(this.detail).subscribe(childparents => this.childparents$ = childparents)
     }
  }
+  onSaveChanges(){
+    this.ngOnInit();
+  }
   
 }

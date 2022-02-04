@@ -84,6 +84,11 @@ export class DatastorageService {
     return this.http.get<Child[]>(this.url + 'children').pipe();
   }
 
+  deleteChild(child: Child): Observable<any> {
+    const url = `${this.url}/children/${child.id}`;
+    return this.http.delete(url, {responseType: 'text'});
+  }
+
   //the idk section
   loginsearch(email: any):Observable<any>{
     return this.http.get<any>(this.url + 'parents/search/' + email);

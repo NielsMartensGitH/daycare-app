@@ -18,7 +18,8 @@ export class ParentsComponent implements OnInit {
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents)
+    this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents);
+    
   }
 
   onClick() {
