@@ -18,6 +18,12 @@ export class CommentsComponent implements OnInit {
     this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => this.comments$ = comments);
   }
 
+  onDeleteComment(id: number) {
+    this.dataStorageService.deleteComment(id).subscribe(
+      () => this.ngOnInit()
+    );   
+  }
+
 onAddComment(comment: string) {
   const newComment = {
     'id': null,

@@ -48,6 +48,10 @@ export class DatastorageService {
     return this.http.get(this.url + 'comments/' + id ).pipe();
   }
 
+  deleteComment(id: number): Observable<any> {
+    return this.http.delete(this.url + 'comments/' + id, {responseType: 'text'});
+  }
+
   getAllParents(): Observable<Parent[]> {
     return this.http.get<Parent[]>(this.url + 'parents').pipe();
   }
