@@ -10,6 +10,7 @@ export class ChildDiaryComponent implements OnInit {
   involvement = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
   smileIndFood!:number;
   smileIndSleep!:number;
+  
   constructor() { }
 
   ngOnInit(): void {
