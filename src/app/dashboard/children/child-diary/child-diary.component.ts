@@ -7,9 +7,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class ChildDiaryComponent implements OnInit {
   moods = ["very good", "good", "not so good", "bad"];
-  involvement = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
-  smileIndFood!:number;
-  smileIndSleep!:number;
+  involvements = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
+  poopies = ['fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo']
+  smileIndFood!:string;
+  smileIndSleep!:string;
   poopInd!:number;
   moodMsg!:number;
   involvementMsg!:number;
@@ -24,10 +25,10 @@ export class ChildDiaryComponent implements OnInit {
         foodSmile: this.smileIndFood,
         sleep: messageSleep,
         sleepSmile: this.smileIndSleep,
-        pooped: this.poopInd,
+        poop: this.poopies.slice(0, this.poopInd+1),
         mood: this.moods[this.moodMsg],
         activities: messageAct,
-        invol: this.involvement[this.involvementMsg]
+        involvement: this.involvements[this.involvementMsg]
       }
       console.log(newDiary)
   }

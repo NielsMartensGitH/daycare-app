@@ -55,6 +55,19 @@ i.fas.fa-poo {
     color: rgb(106, 57, 46)
 }
 
+button.btn.btn-kindfox-primary {
+    background-color: #41B3A3 ;
+    color: white
+ }
+
+ button.btn.btn-kindfox-primary:hover {
+    background-color: #2b7b71 ;
+    color: white
+ }
+
+ .yellow-face {
+     color: yellow;
+ }
 
 
 
