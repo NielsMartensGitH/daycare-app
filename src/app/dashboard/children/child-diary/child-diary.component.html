@@ -1,8 +1,8 @@
 <!--Diary Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header kindfox-green-bg">
           <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
           <h5 class="modal-title" id="exampleModalLabel">Diary</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -10,54 +10,48 @@
         <div class="modal-body">
             <form>
                 <div class="mb-3 row">
-                    <label for="exampleInputEmail1" class="form-label">What I ate<i class="fas fa-utensils"></i></label>
-                    <div class="col">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div class="col form-floating m-2 p-4 green-border">
+                        <div class="row">
+                            <p>What I ate?</p>
+                            <textarea name="" id="" cols="30" rows="3"></textarea>
+                        </div>
+                        <div class="d-flex d-row justify-content-center m-3">
+                            
+                                <button type="button" class="btn btn-smile">
+                                    <i class="fas fa-smile-beam"></i>
+                                </button>
+                            
+                                <button type="button" class="btn btn-smile">
+                                    <i class="fas fa-frown-open"></i>
+                                </button>
+                            
+                        </div>
                     </div>
-                    <div class="col d-flex d-row">
-                        <button type="button" class="btn">
-                            <i class="fas fa-smile-beam"></i>
-                        </button>
-                        <button type="button" class="btn">
-                            <i class="fas fa-frown-open"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="exampleInputEmail1" class="form-label">Did I eat my veggies?<i class="fas fa-carrot"></i></label>
-                    <div class="col">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="col d-flex d-row">
-                        <button type="button" class="btn mt-0">
-                            <i class="fas fa-smile-beam"></i>
-                        </button>
-                        <button type="button" class="btn mt-0">
-                            <i class="fas fa-frown-open"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="exampleInputEmail1" class="form-label">How I slept?</label>
-                    <div class="col">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="col d-flex d-row">
-                        <button type="button" class="btn">
-                            <i class="fas fa-smile-beam"></i>
-                        </button>
-                        <button type="button" class="btn">
-                            <i class="fas fa-frown-open"></i>
-                        </button>
+                    <div class="col form-floating m-2 p-4 green-border">
+                        <div class="row">
+                            <p>How I slept?</p>
+                            <textarea name="" id="" cols="30" rows="3"></textarea>
+                        </div>
+                        <div class="d-flex d-row justify-content-center m-3">
+                            
+                                <button type="button" class="btn btn-smile">
+                                    <i class="fas fa-smile-beam"></i>
+                                </button>
+                            
+                                <button type="button" class="btn btn-smile">
+                                    <i class="fas fa-frown-open"></i>
+                                </button>
+                            
+                        </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row kindfox-green-bg">
                     <div class="col">
                         <h5>Pot visits</h5>
                         <i class="fas fa-poo"></i><i class="fas fa-poo"></i><i class="fas fa-poo"></i><i class="fas fa-poo"></i><i class="fas fa-poo"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row kindfox-green-bg">
                     <div class="col d-flex d-row">
                         <h5>My well-being</h5>
                         <div class="form-check" *ngFor="let mood of moods">
@@ -68,13 +62,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
+                <div class="row green-border">
+                    <div class="col form-floating m-3">
                         <p>Activities</p>
                         <textarea name="" id="" cols="30" rows="3"></textarea>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row kindfox-green-bg">
                     <div class="col">
                         <h5>Involvement</h5>
                         <div class="form-check" *ngFor="let inv of involvement">

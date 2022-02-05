@@ -4,7 +4,7 @@ button.btn.btn-kindfox-success {
  }
 
  button.btn.btn-kindfox-success:hover {
-    background-color: #77c3bf;
+    background-color: #66a7a4;
   }
  
  button.btn.btn-kindfox-warning {
@@ -12,7 +12,7 @@ button.btn.btn-kindfox-success {
      color: white
   }
   button.btn.btn-kindfox-warning:hover {
-    background-color: #de7558 ;
+    background-color: #c66145 ;
     color: white
  }
 
@@ -24,5 +24,13 @@ button.btn.btn-kindfox-success {
     background-color: #89023a ;
     color: white
  }
+ button.btn.btn-kindfox-primary {
+    background-color: #41B3A3 ;
+    color: white
+ }
 
+ button.btn.btn-kindfox-primary:hover {
+    background-color: #2b7b71 ;
+    color: white
+ }
   

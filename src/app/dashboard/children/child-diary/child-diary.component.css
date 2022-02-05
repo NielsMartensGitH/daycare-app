@@ -7,3 +7,28 @@ i.fa-smile-beam {
     color: #E27D60 ;
     font-size: 48px;
 }
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
+
+button.btn-smile {
+    border-radius: 25px;
+    margin:0
+}
+
+.green-border {
+    border: 5px solid #85CDCA;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.kindfox-green-bg {
+    background-color: #85CDCA;
+}
+
+
+
