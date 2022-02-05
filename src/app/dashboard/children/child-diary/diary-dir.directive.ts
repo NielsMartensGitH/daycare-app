@@ -12,4 +12,5 @@ export class DiaryDirDirective {
     this.isBrown = !this.isBrown;
   }
 
+
 }
