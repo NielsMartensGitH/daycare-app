@@ -23,6 +23,8 @@ export class CommentsComponent implements OnInit {
   calculateTimeSince(timeStamp: string) {
     const timestamp = new Date(timeStamp);
     timestamp.setHours( timestamp.getHours() + 1 );
+    timestamp.setMinutes( timestamp.getMinutes() + 7);
+   
     return this.timeService.timeSince(timestamp);
   }
 

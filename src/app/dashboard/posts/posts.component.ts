@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
+import { TimeService } from 'src/app/time.service';
 
 @Component({
   selector: 'app-posts',
@@ -13,7 +14,7 @@ export class PostsComponent implements OnInit {
   msgId!: number;
   msgToggle: boolean = false;
 
-  constructor(private dataStorage: DatastorageService) { }
+  constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit(): void {
     this.dataStorage.getAllPosts().subscribe( 
@@ -21,6 +22,13 @@ export class PostsComponent implements OnInit {
         this.posts$ = posts
       })
 
+  }
+
+  calculateTimeSince(timeStamp: string) {
+    const timestamp = new Date(timeStamp);
+    timestamp.setHours( timestamp.getHours() + 1 );
+    timestamp.setMinutes( timestamp.getMinutes() + 7);
+    return this.timeService.timeSince(timestamp);
   }
 
   onAddPost(posts: Posts[]) {
