@@ -36,6 +36,7 @@ import { ParentDetailsComponent } from './dashboard/parents/parent-details/paren
 import { ParentEditComponent } from './dashboard/parents/parent-edit/parent-edit.component';
 import { CommentsComponent } from './dashboard/posts/comments/comments.component';
 import { ChildDiaryComponent } from './dashboard/children/child-diary/child-diary.component';
+import { DiaryDirDirective } from './dashboard/children/child-diary/diary-dir.directive';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -71,7 +72,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ParentDetailsComponent,
     ParentEditComponent,
     CommentsComponent,
-    ChildDiaryComponent
+    ChildDiaryComponent,
+    DiaryDirDirective
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule
