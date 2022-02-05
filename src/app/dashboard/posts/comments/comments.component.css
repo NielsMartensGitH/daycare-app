@@ -24,3 +24,12 @@ textarea {
 .dropdown {
     cursor: pointer;
 }
+
+h6 {
+    margin-bottom: -3px;
+}
+
+small {
+    color: gray;
+    font-size: 12px;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Comments } from 'src/app/shared/model/comments.model';
+import { TimeService } from 'src/app/time.service';
 
 @Component({
   selector: 'app-comments',
@@ -12,10 +13,19 @@ export class CommentsComponent implements OnInit {
   comments$!: Comments[]
   textareaHeight: string = '58px'
   commentText: string =  ""
-  constructor(private dataStorageService: DatastorageService) { }
+  constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
+    console.log(this.comments$)
     this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => this.comments$ = comments);
+  }
+
+  calculateTimeSince(timeStamp: string) {
+    const timestamp = new Date(timeStamp);
+    timestamp.setHours( timestamp.getHours() + 1 );
+    timestamp.setMinutes( timestamp.getMinutes() + 7);
+   
+    return this.timeService.timeSince(timestamp);
   }
 
   onDeleteComment(id: number) {
