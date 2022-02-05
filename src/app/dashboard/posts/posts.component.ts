@@ -9,7 +9,9 @@ import { TimeService } from 'src/app/time.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts$!: Posts[]; 
+  posts$!:any[];
+  newPosts$!: any;
+  diaries$!:[];
   editThisMsg!:string;
   msgId!: number;
   msgToggle: boolean = false;
@@ -19,9 +21,14 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.dataStorage.getAllPosts().subscribe( 
       posts => {
-        this.posts$ = posts
+        this.posts$ = posts;
       })
-
+    this.dataStorage.getAllDiaries().subscribe( 
+        diaries => {
+          this.posts$.push(diaries[0]);
+        })
+    
+    
   }
 
   calculateTimeSince(timeStamp: string) {
@@ -36,6 +43,7 @@ export class PostsComponent implements OnInit {
       () => {
         this.ngOnInit();
       })
+      
   }
 
   deletePost(postId: number) {
