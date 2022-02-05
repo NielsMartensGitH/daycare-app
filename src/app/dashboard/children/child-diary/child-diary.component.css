@@ -1,3 +1,7 @@
+*{
+    color: white;
+}
+
 i.fa-frown-open {
     color: #E27D60 ;
     font-size: 48px;
@@ -13,6 +17,9 @@ textarea {
     overflow: hidden;
     min-height: 50px;
     max-height: 100px;
+    border: 2px solid #E27D60;
+    border-radius: 5px;
+    color:black;
 }
 
 button.btn-smile {
@@ -28,7 +35,22 @@ button.btn-smile {
 
 .kindfox-green-bg {
     background-color: #85CDCA;
+    border-radius: 5px;
 }
+
+.kindfox-font-orange {
+    color: #E27D60 ;
+    font-size: large;
+    font-weight: 500;
+}
+
+i.fas.fa-poo {
+    color: rgb(128, 72, 36);
+    font-size: 35px;
+    margin:auto;
+    padding: 3px;
+}
+
 
 
 
