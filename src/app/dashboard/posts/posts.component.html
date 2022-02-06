@@ -39,8 +39,8 @@
           </div>
         </div>
         <p class="card-text">{{post.message}}</p>
-        <!--     Diary template--->
-        <div class="container green-border p-3" *ngIf="post.child_firstname">
+        <!----    Diary template--->
+        <div class="container green-border p-3 m-2" *ngIf="post.child_firstname">
           <div class="row">
             <div class="col green-border m-3 p-2">
               {{post.child_firstname}} {{post.child_lastname}}
@@ -77,6 +77,7 @@
             {{post.extra_message}}
           </div>
         </div>
+        <!---Diary template ends here-->
       </div>
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">

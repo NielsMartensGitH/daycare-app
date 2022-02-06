@@ -92,13 +92,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="row green-border">
+                    <div class="col form-floating m-3">
+                        <p class="kindfox-font-orange">Message to the parent</p>
+                        <textarea name="" id="" cols="80" rows="3" placeholder="Write here a message to the parent"
+                        #extraMessage></textarea>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-kindfox-primary"
-                (click)="onSubmit(message_food.value, message_sleep.value, messageAct.value)">Submit</button>
+                (click)="onSubmit(message_food.value, message_sleep.value, messageAct.value, extraMessage.value)">Submit</button>
               </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

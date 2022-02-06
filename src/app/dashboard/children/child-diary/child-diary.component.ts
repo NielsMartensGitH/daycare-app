@@ -22,7 +22,7 @@ export class ChildDiaryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(messageFood:string, messageSleep:string, messageAct:string){
+  onSubmit(messageFood:string, messageSleep:string, messageAct:string, extraMessage:string){
       const newDiary = {
         type_id: 1,
         child_id: this.child_id,
@@ -35,7 +35,7 @@ export class ChildDiaryComponent implements OnInit {
         mood: this.moods[this.moodMsg],
         activities: messageAct,
         involvement: this.involvements[this.involvementMsg],
-        extra_message: "Something",
+        extra_message: extraMessage,
         daycare_id: this.daycare_id,
         privacy: 1
       }
