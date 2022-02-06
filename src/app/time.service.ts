@@ -9,30 +9,60 @@ export class TimeService {
 
   timeSince(date: Date) {
 
-    const seconds = Math.floor((+new Date() - +date) / 1000);
-  
-    let interval = seconds / 31536000;
-  
+    const seconds = Math.floor((+new Date() - +date) / 1000); // seconds between today and given timestamp in parameter
+
+    //  YEAR OR YEARS AGO
+    let interval = seconds / 31536000; // seconds in a year
     if (interval > 1) {
-      return Math.floor(interval) + " years";
+      const timeAgo = Math.floor(interval);
+      if (timeAgo == 1) {
+        return timeAgo + " year";  
+      }
+      return timeAgo + " years";
     }
-    interval = seconds / 2592000;
+
+    // MONTH OR MONTHS AGO
+    interval = seconds / 2592000; // seconds in a month
     if (interval > 1) {
-      return Math.floor(interval) + " months";
+      const timeAgo = Math.floor(interval);
+      if (timeAgo == 1) {
+        return timeAgo + " month";  
+      }
+      return timeAgo + " months";
     }
-    interval = seconds / 86400;
+
+    // DAY OR DAYS AGO
+    interval = seconds / 86400; // seconds in a day
     if (interval > 1) {
-      return Math.floor(interval) + " days";
+      const timeAgo = Math.floor(interval);
+      if (timeAgo == 1) {
+        return timeAgo + " day";  
+      }
+      return timeAgo + " days";
     }
-    interval = seconds / 3600;
+
+    // HOUR OR HOURS AGO
+    interval = seconds / 3600; // seconds in an hour
     if (interval > 1) {
-      return Math.floor(interval) + " hours";
+      const timeAgo = Math.floor(interval)
+      if (timeAgo == 1) {
+        return timeAgo + " hour";  
+      }
+      return timeAgo + " hours";
     }
-    interval = seconds / 60;
+
+
+    // MINUTE OR MINUTES AGO
+    interval = seconds / 60; // seconds in a minute
     if (interval > 1) {
-      return Math.floor(interval) + " minutes";
+      const timeAgo = Math.floor(interval)
+      if (timeAgo == 1) {
+        return timeAgo + " minute";
+      }
+      return timeAgo + " minutes";
     }
-    return Math.floor(seconds) + " seconds";
+    // return Math.floor(seconds) + " seconds";
+    return "a moment";
   }
 
 
