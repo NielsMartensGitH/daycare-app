@@ -14,7 +14,8 @@
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-kindfox-warning">Edit</button>
                     <button type="button" class="btn btn-kindfox-primary"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal">Diary</button>
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="childId = child.id">Diary</button>
                     <button type="button" class="btn btn-kindfox-danger"
                     (click)="onDelete(child)">Delete</button>
                   </div>
@@ -25,4 +26,4 @@
 </div>
 </div>
 
-<app-child-diary></app-child-diary>
+<app-child-diary [child_id]="childId" (diaryAdded)="onDiaryAdd($event)"></app-child-diary>

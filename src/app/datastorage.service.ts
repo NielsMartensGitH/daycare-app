@@ -106,5 +106,10 @@ export class DatastorageService {
   getAllDiaries(): Observable<any> {
     return this.http.get<any>(this.url + 'diaries').pipe();
   }
+
+  addDiary(newDiary: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + "diaries", newDiary, {headers: headers});    
+  }
 }
 

@@ -9,6 +9,7 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ChildrenComponent implements OnInit {
   children$!: Child[];
+  childId!: number;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -17,6 +18,10 @@ export class ChildrenComponent implements OnInit {
 
   onDelete(child:Child){
     this.dataStorage.deleteChild(child).subscribe(() => this.ngOnInit());
+  }
+
+  onDiaryAdd(newDiary:any){
+     this.dataStorage.addDiary(newDiary).subscribe(() => this.ngOnInit());
   }
 
 }

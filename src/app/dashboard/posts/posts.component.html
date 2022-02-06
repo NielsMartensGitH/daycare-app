@@ -40,7 +40,12 @@
         </div>
         <p class="card-text">{{post.message}}</p>
         <!--     Diary template--->
-        <div class="container green-border p-3" *ngIf="post.food">
+        <div class="container green-border p-3" *ngIf="post.child_firstname">
+          <div class="row">
+            <div class="col green-border m-3 p-2">
+              {{post.child_firstname}} {{post.child_lastname}}
+            </div>
+          </div>
           <div class="row">
             <div class="col green-border m-3 p-2">
               <span><p class="card-text kindfox-font-orange">{{post.food}}</p>
