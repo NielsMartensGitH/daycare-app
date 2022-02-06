@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 @Component({
@@ -7,7 +7,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./edit-post-form.component.css']
 })
 export class EditPostFormComponent implements OnInit {
+  @Output() onSubmitted = new EventEmitter();
   @Input() message!: string;
+  @Input() postId!: number;
   postsForm!: FormGroup;
   privacies: string[] = ["public", "private"];
   default = null;
@@ -35,6 +37,27 @@ export class EditPostFormComponent implements OnInit {
     this.postsForm.patchValue({
       'message': this.message
     })
+
+
+  }
+
+  editPost(message: string) {
+    
+    
+    const privacy = this.postsForm.controls["privacy"].value
+
+    const privacyValue = privacy == "private" ? 1 : 0
+
+    const editedPost =  {
+      'id': this.postId,
+      'type_id': 1,
+      'picture': "",
+      'message': message,
+      'daycare_id': 1,
+      'privacy': privacyValue
+    }
+
+    this.onSubmitted.emit(editedPost);
   }
 
 }

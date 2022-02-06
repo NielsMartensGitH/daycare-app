@@ -32,7 +32,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editmessage"
-                  (click)="onEdit(post.message)">Edit</a></li>
+                  (click)="onEdit(post.message, post.id)">Edit</a></li>
                 <li><a class="dropdown-item" (click)="deletePost(post.id)">Delete</a></li>
               </ul>
             </div>
@@ -91,7 +91,7 @@
       <app-comments [postId]="post.id" *ngIf="msgId == post.id && msgToggle"></app-comments>
     </div>
   </div>
-  <app-edit-post-form [message]="editThisMsg"></app-edit-post-form>
+  <app-edit-post-form (onSubmitted)="onEditPost($event)" [message]="editThisMsg" [postId]="editId" ></app-edit-post-form>
 </div>
 
   <app-add-post-form (onSubmitted)="onAddPost($event)"></app-add-post-form>
