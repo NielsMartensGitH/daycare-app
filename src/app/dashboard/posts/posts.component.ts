@@ -25,9 +25,13 @@ export class PostsComponent implements OnInit {
       })
     this.dataStorage.getAllDiaries().subscribe( 
         diaries => {
-          this.posts$.push(diaries[0]);
+          this.diaries$ = diaries;
         })
+        setTimeout(() => {
+          this.newPosts$ = [...this.posts$, ...this.diaries$];
+        }, 1000)
     
+      
     
   }
 
