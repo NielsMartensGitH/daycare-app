@@ -12,7 +12,10 @@ export class PostsComponent implements OnInit {
   posts$!:any[];
   newPosts$!: any;
   diaries$!:[];
+  
   editThisMsg!:string;
+  editId!: number;
+
   msgId!: number;
   msgToggle: boolean = false;
 
@@ -29,6 +32,7 @@ export class PostsComponent implements OnInit {
         })
         setTimeout(() => {
           this.newPosts$ = [...this.posts$, ...this.diaries$];
+          console.log(this.newPosts$)
         }, 1000)
     
       
@@ -50,14 +54,22 @@ export class PostsComponent implements OnInit {
       
   }
 
+  onEditPost(posts: any) {
+
+    this.dataStorage.updatePost(posts, posts.id).subscribe(
+      () => this.ngOnInit()
+    )
+  }
+
   deletePost(postId: number) {
    this.dataStorage.deletePost(postId).subscribe(
      () => this.ngOnInit()
    );   
   }
   
-  onEdit(sendMsg:string){
+  onEdit(sendMsg:string, id: number){
     this.editThisMsg = sendMsg;
+    this.editId = id; 
     console.log(this.editThisMsg);
   }
 
