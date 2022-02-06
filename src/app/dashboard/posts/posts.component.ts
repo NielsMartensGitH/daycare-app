@@ -29,6 +29,7 @@ export class PostsComponent implements OnInit {
         })
         setTimeout(() => {
           this.newPosts$ = [...this.posts$, ...this.diaries$];
+          console.log(this.newPosts$)
         }, 1000)
     
       

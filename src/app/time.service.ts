@@ -8,6 +8,8 @@ export class TimeService {
   constructor() { }
 
   timeSince(date: Date) {
+    
+    
 
     const seconds = Math.floor((+new Date() - +date) / 1000); // seconds between today and given timestamp in parameter
 

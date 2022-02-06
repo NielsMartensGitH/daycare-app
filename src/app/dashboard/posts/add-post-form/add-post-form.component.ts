@@ -27,24 +27,28 @@ export class AddPostFormComponent implements OnInit {
     })
 
     
-    this.postsForm.statusChanges.subscribe(
-      (status) => console.log(status)
-    )
+    // this.postsForm.statusChanges.subscribe(
+    //   (status) => console.log(status)
+    // )
 
   }
 
 
-  addPost(privacy: number, message: string) {
+  addPost(message: string) {
 
+  const privacy = this.postsForm.controls["privacy"].value
+
+  const privacyValue = privacy == "private" ? 1 : 0
     const newPost = {
       'id': null,
       'type_id': 1,
       'picture': "",
       'message': message,
       'daycare_id': 1,
-      'privacy': privacy
+      'privacy': privacyValue
     }
 
+    this.clearForm();
     // this.dataStorage.addPost(newPost).subscribe();
     this.onSubmitted.emit(newPost)
 

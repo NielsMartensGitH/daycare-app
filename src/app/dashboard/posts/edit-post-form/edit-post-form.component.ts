@@ -20,7 +20,6 @@ export class EditPostFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.message)
     this.postsForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
@@ -28,9 +27,9 @@ export class EditPostFormComponent implements OnInit {
     })
 
     
-    this.postsForm.statusChanges.subscribe(
-      (status) => console.log(status)
-    )
+    // this.postsForm.statusChanges.subscribe(
+    //   (status) => console.log(status)
+    // )
 
 
     this.postsForm.patchValue({

@@ -7,13 +7,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="postsForm" (ngSubmit)="addPost(+privacy.value, message.value)">
+          <form [formGroup]="postsForm" (ngSubmit)="addPost(message.value)">
             <div class="my-3">
               <input type="text" class="form-control" formControlName="title" id="titleInput" placeholder="Choose a title">
               <span *ngIf="!postsForm.get('title')?.valid && postsForm.get('title')?.touched">This field is required!</span>
             </div>
             <select formControlName="privacy" class="form-select" aria-label="Default select example" [(ngModel)]="default">
-              <option [ngValue]="null" [disabled]="true" #privacy>Choose a privacy</option>
+              <option [ngValue]="null" [disabled]="true">Choose a privacy</option>
               <option *ngFor="let privacy of privacies" [ngValue]="privacy">{{privacy}}</option>
             </select>
             <div class="my-3">
