@@ -7,7 +7,7 @@ export class DiaryDirDirective {
   @HostBinding('class.brown-poop') isBrown = false;
   constructor() { }
 
-  @HostListener("mouseover") brownThePoop(){
+  @HostListener("click") brownThePoop(){
     this.isBrown = !this.isBrown;
   }
 
