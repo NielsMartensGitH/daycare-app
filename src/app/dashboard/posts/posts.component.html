@@ -39,14 +39,31 @@
           </div>
         </div>
         <p class="card-text">{{post.message}}</p>
-        <p class="card-text">{{post.food}}</p>
-        <i class={{post.foodSmile}}></i>
-        <p class="card-text">{{post.sleep}}</p>
-        <i class={{post.sleepSmile}}></i>
-        <div>
-          <i class={{post.poop}}></i>
+        <!--     Diary template--->
+        <div class="container green-border p-3" *ngIf="post.food">
+          <div class="row">
+            <div class="col green-border m-3 p-2">
+              <span><p class="card-text kindfox-font-orange">{{post.food}}</p>
+              <i class={{post.foodSmile}}></i></span>
+            </div>
+            <div class="col green-border m-3 p-2">
+              <p class="card-text kindfox-font-orange">{{post.sleep}}</p>
+              <i class={{post.sleepSmile}}></i>
+            </div>
+          </div>
+          <div class="kindfox-green-bg m-2 p-2">
+            <h5>Pot visits</h5>
+            <i class={{post.poop}}></i>
+          </div>
+          <div class="kindfox-green-bg m-2 p-2">
+            <h5>Activities</h5>
+            {{post.activities}}
+          </div>
+          <div class="kindfox-green-bg m-2 p-2">
+            <h5>My involvement today:</h5>
+            {{post.involvement}}
+          </div>
         </div>
-        {{post.activities}}
       </div>
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">
