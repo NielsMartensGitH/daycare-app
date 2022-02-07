@@ -12,7 +12,11 @@ export class CommentsComponent implements OnInit {
   @Input() postId!: number;
   comments$!: Comments[]
   textareaHeight: string = '58px'
-  commentText: string =  ""
+  commentText: string =  "";
+  commentId!: number
+  editComment!: string
+  comment_editor!: HTMLElement
+
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
@@ -34,6 +38,11 @@ export class CommentsComponent implements OnInit {
     );   
   }
 
+  onClickEdit(id: number, comment: string) {
+    this.commentId = id;
+    this.editComment = comment;
+  }
+
 
 onAddComment(comment: string) {
   const newComment = {
@@ -50,13 +59,34 @@ onAddComment(comment: string) {
   )
 }
 
+onUpdateComment(comment: string, id: number) {
+  const editedComment = {
+    'id': id,
+    'comment': comment,
+    'post_id': this.postId,
+    'parent_id': null,
+    'daycare_id': 1
+  }
+
+  this.dataStorageService.updateComment(editedComment, id).subscribe(
+    () => this.ngOnInit()
+  )
+}
+
 autogrow(el: HTMLElement) {
   el.style.height = el.scrollHeight + 'px';
 }
 
+updateComment(e: any, el: HTMLElement) {
+  if(e.key === "Enter") {
+    const toEditId = this.commentId;
+    this.onUpdateComment(this.editComment, toEditId);
+    this.commentId = 0;    
+  }
+}
+
 triggerFunction(e: any, el: HTMLElement) {
   if(e.key === 'Enter') {
-    console.log(this.commentText)
     this.onAddComment(this.commentText)
     this.commentText = "";
     

@@ -10,13 +10,12 @@ import { TimeService } from 'src/app/time.service';
 })
 export class PostsComponent implements OnInit {
   posts$!:any[];
-  newPosts$!: any;
+  newPosts$!:any[];
   diaries$!:[];
-  array!:[];
+  array!: any[];
 
   editThisMsg!:string;
   editId!: number;
-
   msgId!: number;
   msgToggle: boolean = false;
 
@@ -35,14 +34,14 @@ export class PostsComponent implements OnInit {
           })
         })
         setTimeout(() => {
-          this.newPosts$ = [...this.posts$, ...this.diaries$];
-          this.newPosts$
-          console.log(this.newPosts$);
-          //this.newPosts$.slice().sort((a:any, b:any) => a.created_at - b.created);
-          //console.log(this.newPosts$)
-        }, 1000)
+          this.array = [...this.posts$, ...this.diaries$];
+          
+          console.log(this.array);
+          this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
+          console.log(this.newPosts$)
+        }, 2000)
     
-      
+      //<any>new Date(a.created_at) - <any>new Date(b.created_at)
     
   }
 
