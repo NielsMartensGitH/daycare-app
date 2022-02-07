@@ -75,6 +75,14 @@ button.btn.btn-kindfox-primary {
     border-radius: 15px;
 }
 
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+.help-block {
+    color: red;
+}
+
 
 
 

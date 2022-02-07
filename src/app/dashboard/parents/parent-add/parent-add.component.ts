@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Parent } from 'src/app/shared/model/parent.model';
 
@@ -10,6 +10,7 @@ import { Parent } from 'src/app/shared/model/parent.model';
 })
 export class ParentAddComponent implements OnInit {
   @Output() onSubmitted = new EventEmitter<Parent>();
+  
   newParent!:Parent;
   id:any = null;
   firstname!:string;

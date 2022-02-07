@@ -12,7 +12,7 @@ export class PostsComponent implements OnInit {
   posts$!:any[];
   newPosts$!: any;
   diaries$!:[];
-  
+
   editThisMsg!:string;
   editId!: number;
 
@@ -31,8 +31,10 @@ export class PostsComponent implements OnInit {
           this.diaries$ = diaries;
         })
         setTimeout(() => {
-          this.newPosts$ = [...this.posts$, ...this.diaries$];
-          console.log(this.newPosts$)
+          this.newPosts$ = [...this.posts$, ...this.diaries$]
+          console.log(this.newPosts$);
+          //this.newPosts$.slice().sort((a:any, b:any) => a.created_at - b.created);
+          //console.log(this.newPosts$)
         }, 1000)
     
       

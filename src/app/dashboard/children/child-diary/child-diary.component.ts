@@ -1,4 +1,5 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-child-diary',
@@ -6,8 +7,9 @@ import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@a
   styleUrls: ['./child-diary.component.css']
 })
 export class ChildDiaryComponent implements OnInit {
-  @Input() child_id!:number;
-  @Output() diaryAdded = new EventEmitter<any>();
+  @Input() child_id!:number; //child if passed from the children
+  @Output() diaryAdded = new EventEmitter<any>(); //emit a new diary to the parent via the custom event
+  childDiaryForm!:FormGroup; 
   daycare_id = 1;
   moods = ["very good", "good", "not so good", "bad"];
   involvements = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
@@ -20,6 +22,12 @@ export class ChildDiaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.childDiaryForm = new FormGroup({
+      'message_food': new FormControl(null, Validators.required),
+      'message_sleep': new FormControl(null, Validators.required),
+      'messageAct': new FormControl(null, Validators.required),
+      'extraMessage': new FormControl(null, Validators.required)
+    })
   }
 
   onSubmit(messageFood:string, messageSleep:string, messageAct:string, extraMessage:string){
