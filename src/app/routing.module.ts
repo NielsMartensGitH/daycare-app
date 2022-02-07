@@ -10,6 +10,7 @@ import { ParentAddComponent } from './dashboard/parents/parent-add/parent-add.co
 import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 import { RegisterComponent } from './register/register.component';
 import { PackagesComponent } from './home/packages/packages.component';
+import { DiariesComponent } from './dashboard/diaries/diaries.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/messageboard', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const routes: Routes = [
         ]},
         {path: 'calendar', component: CalendarComponent},
         {path: 'posts', component: PostsComponent},
+        {path: 'diaries', component: DiariesComponent}
 
     ]},
     {path: 'login', component: LoginscreenComponent},
