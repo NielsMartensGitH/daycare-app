@@ -35,15 +35,29 @@ export class LoginscreenComponent implements OnInit {
     });    
   }
   DClogin(){
-
+    console.log(this.password)
+    this.dataStorage.daycareloginsearch(this.email).subscribe(res => {
+      if(res.length == 0){
+        alert("wrong username or password")
+      }
+      else{
+        if(res[0].password == this.password){
+          sessionStorage.setItem('daycare_id',res[0].id)
+          this.router.navigate(['/dashboard'])
+        }
+        else{
+          alert("wrong username or password")
+        }
+      }
+    }); 
   }
-
+  /*
   registerP(){
     sessionStorage.setItem("isdaycare", 'false');
   }
   registerDC(){
     sessionStorage.setItem("isdaycare", 'true');
   }
-  
+  */
 }
 
