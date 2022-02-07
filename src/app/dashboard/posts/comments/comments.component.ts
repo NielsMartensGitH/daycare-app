@@ -38,7 +38,7 @@ export class CommentsComponent implements OnInit {
     );   
   }
 
-  onEdit(id: number, comment: string) {
+  onClickEdit(id: number, comment: string) {
     this.commentId = id;
     this.editComment = comment;
   }
@@ -59,13 +59,34 @@ onAddComment(comment: string) {
   )
 }
 
+onUpdateComment(comment: string, id: number) {
+  const editedComment = {
+    'id': id,
+    'comment': comment,
+    'post_id': this.postId,
+    'parent_id': null,
+    'daycare_id': 1
+  }
+
+  this.dataStorageService.updateComment(editedComment, id).subscribe(
+    () => this.ngOnInit()
+  )
+}
+
 autogrow(el: HTMLElement) {
   el.style.height = el.scrollHeight + 'px';
 }
 
+updateComment(e: any, el: HTMLElement) {
+  if(e.key === "Enter") {
+    const toEditId = this.commentId;
+    this.onUpdateComment(this.editComment, toEditId);
+    this.commentId = 0;    
+  }
+}
+
 triggerFunction(e: any, el: HTMLElement) {
   if(e.key === 'Enter') {
-    console.log(this.commentText)
     this.onAddComment(this.commentText)
     this.commentText = "";
     
