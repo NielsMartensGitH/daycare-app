@@ -51,13 +51,6 @@ export class LoginscreenComponent implements OnInit {
       }
     }); 
   }
-  /*
-  registerP(){
-    sessionStorage.setItem("isdaycare", 'false');
-  }
-  registerDC(){
-    sessionStorage.setItem("isdaycare", 'true');
-  }
-  */
+  
 }
 

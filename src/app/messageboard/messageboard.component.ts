@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-messageboard',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageboardComponent implements OnInit {
 
-  constructor() { }
+  parentid!:string;
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('parentID')===null){
+      //this.router.navigate(['/login'])
+    }
+    
   }
 
 }
