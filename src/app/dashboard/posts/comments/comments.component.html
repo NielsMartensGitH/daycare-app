@@ -14,11 +14,12 @@
             <i class="fas fa-ellipsis-h" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" (click)="onDeleteComment(comment.id)">Delete</a></li>
-              <li><a class="dropdown-item">Edit</a></li>
+              <li><a class="dropdown-item" (click)="onEdit(comment.id, comment.comment)">Edit</a></li>
             </ul>
           </div>
         </div>
-          <p>{{comment.comment}}</p>
+          <p *ngIf="commentId !== comment.id">{{comment.comment}}</p>
+          <textarea #editEl (click)="autogrow(editEl)" *ngIf="commentId == comment.id" [(ngModel)]="editComment" type="text" class="form-control editComment"></textarea>
         </div>
       </div>
     </div>
