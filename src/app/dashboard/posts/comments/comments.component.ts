@@ -34,6 +34,7 @@ export class CommentsComponent implements OnInit {
     );   
   }
 
+
 onAddComment(comment: string) {
   const newComment = {
     'id': null,
