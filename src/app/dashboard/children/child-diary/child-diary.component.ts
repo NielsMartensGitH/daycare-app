@@ -51,7 +51,9 @@ export class ChildDiaryComponent implements OnInit {
       console.log(newDiary);
 
       this.diaryAdded.emit(newDiary);
+      this.childDiaryForm.reset();
   }
 
+  
   
 }
