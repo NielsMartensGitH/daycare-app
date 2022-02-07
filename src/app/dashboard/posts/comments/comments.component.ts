@@ -12,7 +12,11 @@ export class CommentsComponent implements OnInit {
   @Input() postId!: number;
   comments$!: Comments[]
   textareaHeight: string = '58px'
-  commentText: string =  ""
+  commentText: string =  "";
+  commentId!: number
+  editComment!: string
+  comment_editor!: HTMLElement
+
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
@@ -33,6 +37,12 @@ export class CommentsComponent implements OnInit {
       () => this.ngOnInit()
     );   
   }
+
+  onEdit(id: number, comment: string) {
+    this.commentId = id;
+    this.editComment = comment;
+  }
+
 
 onAddComment(comment: string) {
   const newComment = {

@@ -57,6 +57,11 @@ export class DatastorageService {
     return this.http.delete(this.url + 'comments/' + id, {responseType: 'text'});
   }
 
+  updateComment(updatedComment: any, id: number): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.put(this.url + 'comments/' + id, updatedComment, {headers: headers});
+  }
+
   getAllParents(): Observable<Parent[]> {
     return this.http.get<Parent[]>(this.url + 'parents').pipe();
   }

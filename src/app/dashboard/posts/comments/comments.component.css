@@ -8,7 +8,7 @@
     border-radius: 25px;
 }
 
-textarea {
+textarea.commentinput {
     resize: none;
     overflow: hidden;
     min-height: 50px;
@@ -32,4 +32,13 @@ h6 {
 small {
     color: gray;
     font-size: 12px;
+}
+
+
+textarea.editComment {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 1500px;
+    width: 550px;
 }
