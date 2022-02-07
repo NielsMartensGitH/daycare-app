@@ -8,14 +8,17 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body m-2">
-            <form>
+            <form (ngSubmit)="onSubmit(message_food.value, message_sleep.value, messageAct.value, extraMessage.value)" [formGroup]="childDiaryForm">
                 <div class="mb-3 row">
                     <div class="col form-floating m-2 p-4 green-border">
                         <div class="row">
                             <p class="kindfox-font-orange">What I ate?</p>
                             <textarea name="" id="" cols="30" rows="3"
                             placeholder="Today I ate all of my broccoli soup..."
+                            formControlName="message_food"
                             #message_food></textarea>
+                            <span *ngIf="!childDiaryForm.get('message_food')?.valid && childDiaryForm.get('message_food')?.touched" 
+                            class="help-block">This field is required!</span>
                         </div>
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
@@ -36,8 +39,12 @@
                     <div class="col form-floating m-2 p-4 green-border">
                         <div class="row">
                             <p class="kindfox-font-orange">How I slept?</p>
-                            <textarea name="" id="" cols="30" rows="3" placeholder="I slept for 2 hours from..."
+                            <textarea name="" id="" cols="30" rows="3" 
+                            placeholder="I slept for 2 hours from..."
+                            formControlName="message_sleep"
                             #message_sleep></textarea>
+                            <span *ngIf="!childDiaryForm.get('message_sleep')?.valid && childDiaryForm.get('message_sleep')?.touched" 
+                            class="help-block">This field is required!</span>
                         </div>
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
@@ -81,8 +88,12 @@
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Activities</p>
-                        <textarea name="" id="" cols="80" rows="3" placeholder="Puzzles"
+                        <textarea name="" id="" cols="80" rows="3" 
+                        placeholder="Puzzles"
+                        formControlName="messageAct"
                         #messageAct></textarea>
+                        <span *ngIf="!childDiaryForm.get('messageAct')?.valid && childDiaryForm.get('messageAct')?.touched" 
+                            class="help-block">This field is required!</span>
                     </div>
                 </div>
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
@@ -100,12 +111,16 @@
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Message to the parent</p>
-                        <textarea name="" id="" cols="80" rows="3" placeholder="Write here a message to the parent"
+                        <textarea name="" id="" cols="80" rows="3" 
+                        placeholder="Write here a message to the parent"
+                        formControlName="extraMessage"
                         #extraMessage></textarea>
+                        <span *ngIf="!childDiaryForm.get('extraMessage')?.valid && childDiaryForm.get('extraMessage')?.touched" 
+                            class="help-block">This field is required!</span>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-kindfox-primary"
-                (click)="onSubmit(message_food.value, message_sleep.value, messageAct.value, extraMessage.value)">Submit</button>
+                [disabled]="!childDiaryForm.valid">Submit</button>
               </form>
         </div>
       </div>
