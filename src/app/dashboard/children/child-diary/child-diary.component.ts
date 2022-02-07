@@ -13,7 +13,8 @@ export class ChildDiaryComponent implements OnInit {
   daycare_id = 1;
   moods = ["very good", "good", "not so good", "bad"];
   involvements = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
-  poopies = ['fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo']
+  poopies = ['fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo'];
+  poopStyle = ["brown-poop","brown-poop","brown-poop","brown-poop","brown-poop"]
   smileIndFood!:string;
   smileIndSleep!:string;
   poopInd!:number;
@@ -38,8 +39,8 @@ export class ChildDiaryComponent implements OnInit {
         foodSmile: this.smileIndFood,
         sleep: messageSleep,
         sleepSmile: this.smileIndSleep,
-        //poop: this.poopies.slice(0, this.poopInd+1),
-        poop: this.poopies[this.poopInd],
+        poop: this.poopStyle.slice(0, this.poopInd+1).join("&"),
+        //poop: this.poopies[this.poopInd],
         mood: this.moods[this.moodMsg],
         activities: messageAct,
         involvement: this.involvements[this.involvementMsg],

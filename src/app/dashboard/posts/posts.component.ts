@@ -12,6 +12,7 @@ export class PostsComponent implements OnInit {
   posts$!:any[];
   newPosts$!: any;
   diaries$!:[];
+  array!:[];
 
   editThisMsg!:string;
   editId!: number;
@@ -29,9 +30,13 @@ export class PostsComponent implements OnInit {
     this.dataStorage.getAllDiaries().subscribe( 
         diaries => {
           this.diaries$ = diaries;
+          this.diaries$.map((obj:any) => {
+            obj.poop = obj.poop.split("&")
+          })
         })
         setTimeout(() => {
-          this.newPosts$ = [...this.posts$, ...this.diaries$]
+          this.newPosts$ = [...this.posts$, ...this.diaries$];
+          this.newPosts$
           console.log(this.newPosts$);
           //this.newPosts$.slice().sort((a:any, b:any) => a.created_at - b.created);
           //console.log(this.newPosts$)
