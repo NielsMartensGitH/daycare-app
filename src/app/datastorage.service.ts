@@ -116,5 +116,9 @@ export class DatastorageService {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     return this.http.post(this.url + "diaries", newDiary, {headers: headers});    
   }
+
+  daycareloginsearch(email: any): Observable<any>{
+    return this.http.get<any>(this.url + 'daycares/search/' + email);
+  }
 }
 
