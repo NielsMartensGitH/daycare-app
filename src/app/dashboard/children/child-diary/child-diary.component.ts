@@ -22,6 +22,7 @@ export class ChildDiaryComponent implements OnInit {
   moodMsg!:number;
   involvementMsg!:number;
   parsedChild!:any;
+  poos = [false, false, false,false,false];
   //childName = `${this.passed_child.child_firstname} ${this.passed_child.child_lastname}`
   constructor() { }
 
@@ -65,6 +66,14 @@ export class ChildDiaryComponent implements OnInit {
       this.childDiaryForm.reset();
   }
 
+  onPoop(ind:number){
+    console.log(ind)
+    for (let i = ind; i >= 0; i--){
+         //const newP = "poo"+i;
+         //this.poos.newP = true;
+         this.poos[i] = true;
+    }
+  }
   
   
 }
