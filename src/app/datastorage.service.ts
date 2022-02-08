@@ -122,8 +122,25 @@ export class DatastorageService {
     return this.http.post(this.url + "diaries", newDiary, {headers: headers});    
   }
 
+ addDiaryComment(newComment: any): Observable<any> {
+  const headers = new HttpHeaders().set("Content-type", "application/json");
+  return this.http.post(this.url + 'comments', newComment, {headers: headers});    
+}
+
+
   getDiaryCommentsbyDiaryId(id: number): Observable<any> {
     return this.http.get(this.url + 'diarycomments/' + id ).pipe();
+  }
+
+
+
+  deleteDiaryComment(id: number): Observable<any> {
+    return this.http.delete(this.url + 'diarycomments/' + id, {responseType: 'text'});
+  }
+
+  updateDiaryComment(updatedComment: any, id: number): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.put(this.url + 'diarycomments/' + id, updatedComment, {headers: headers});
   }
 
   daycareloginsearch(email: any): Observable<any>{

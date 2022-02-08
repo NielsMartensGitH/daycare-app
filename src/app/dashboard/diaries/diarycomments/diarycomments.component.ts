@@ -10,7 +10,9 @@ import { TimeService } from 'src/app/time.service';
 })
 export class DiarycommentsComponent implements OnInit {
   @Input() diaryId!: number;
-  diaryComments$!: Diarycomments[]
+  diaryComments$!: Diarycomments[];
+  commentId!: number
+  editComment!: string
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
@@ -23,6 +25,46 @@ export class DiarycommentsComponent implements OnInit {
     timestamp.setMinutes( timestamp.getMinutes() + 7);
    
     return this.timeService.timeSince(timestamp);
+  }
+
+  onDeleteComment(id: number) {
+    this.dataStorageService.deleteDiaryComment(id).subscribe(
+      () => this.ngOnInit()
+    );   
+  }
+
+  onClickEdit(id: number, comment: string) {
+    this.commentId = id;
+    this.editComment = comment;
+  }
+
+  onAddComment(comment: string) {
+    const newComment = {
+      'id': null,
+      'comment': comment,
+      'post_id': this.diaryId,
+      'parent_id': null,
+      'daycare_id': 1
+    }
+    this.dataStorageService.addDiaryComment(newComment).subscribe(
+      () => {
+        this.ngOnInit();
+      }
+    )
+  }
+
+  onUpdateComment(comment: string, id: number) {
+    const editedComment = {
+      'id': id,
+      'comment': comment,
+      'diary_id': this.diaryId,
+      'parent_id': null,
+      'daycare_id': 1
+    }
+  
+    this.dataStorageService.updateDiaryComment(editedComment, id).subscribe(
+      () => this.ngOnInit()
+    )
   }
 
 }
