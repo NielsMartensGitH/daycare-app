@@ -45,7 +45,8 @@ export class AddPostFormComponent implements OnInit {
       'picture': "",
       'message': message,
       'daycare_id': 1,
-      'privacy': privacyValue
+      'privacy': privacyValue,
+      'child_id': 2
     }
 
     this.clearForm();

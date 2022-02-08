@@ -124,7 +124,7 @@ export class DatastorageService {
 
  addDiaryComment(newComment: any): Observable<any> {
   const headers = new HttpHeaders().set("Content-type", "application/json");
-  return this.http.post(this.url + 'comments', newComment, {headers: headers});    
+  return this.http.post(this.url + 'diarycomments', newComment, {headers: headers});    
 }
 
 

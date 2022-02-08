@@ -11,8 +11,12 @@ import { TimeService } from 'src/app/time.service';
 export class DiarycommentsComponent implements OnInit {
   @Input() diaryId!: number;
   diaryComments$!: Diarycomments[];
-  commentId!: number
-  editComment!: string
+  commentId!: number;
+  commentText!: string;
+  editComment!: string;
+  textareaHeight: string = '58px';
+  comment_editor!: HTMLElement;
+
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
@@ -42,7 +46,7 @@ export class DiarycommentsComponent implements OnInit {
     const newComment = {
       'id': null,
       'comment': comment,
-      'post_id': this.diaryId,
+      'diary_id': this.diaryId,
       'parent_id': null,
       'daycare_id': 1
     }
@@ -61,10 +65,32 @@ export class DiarycommentsComponent implements OnInit {
       'parent_id': null,
       'daycare_id': 1
     }
-  
     this.dataStorageService.updateDiaryComment(editedComment, id).subscribe(
       () => this.ngOnInit()
     )
   }
+
+  updateComment(e: any, el: HTMLElement) {
+    if(e.key === "Enter") {
+      const toEditId = this.commentId;
+      this.onUpdateComment(this.editComment, toEditId);
+      this.commentId = 0;    
+    }
+  }
+
+    autogrow(el: HTMLElement) {
+      el.style.height = el.scrollHeight + 'px';
+    }
+
+    triggerFunction(e: any, el: HTMLElement) {
+      if(e.key === 'Enter') {
+        this.onAddComment(this.commentText)
+        this.commentText = "";
+        
+      } else {
+        this.autogrow(el)
+      }
+    }
+
 
 }
