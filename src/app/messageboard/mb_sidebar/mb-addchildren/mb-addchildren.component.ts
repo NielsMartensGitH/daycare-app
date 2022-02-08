@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DatastorageService } from 'src/app/datastorage.service';
+import { Child } from 'src/app/shared/model/child.models';
 
 @Component({
   selector: 'app-mb-addchildren',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mb-addchildren.component.css']
 })
 export class MbAddchildrenComponent implements OnInit {
-
-  constructor() { }
+  @Input() parentId!:number;
+  childparents$!:Child[];
+  constructor(private dataStorage:DatastorageService) { }
 
   ngOnInit(): void {
+    this.dataStorage.getChildParents(this.parentId).subscribe(childparents => this.childparents$ = childparents)
+  }
+  ngOnChange(){
+    this.ngOnInit();
   }
 
 }

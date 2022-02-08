@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
 })
 export class MessageboardComponent implements OnInit {
 
-  parentid!:string;
+  parent_id!:any;
   constructor(private router:Router) { }
 
   ngOnInit(): void {
     if(sessionStorage.getItem('parentID')===null){
       //this.router.navigate(['/login'])
     }
-    
+    this.parent_id = sessionStorage.getItem('parentID')
   }
 
 }

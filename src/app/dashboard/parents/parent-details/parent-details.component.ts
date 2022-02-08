@@ -9,6 +9,7 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ParentDetailsComponent implements OnInit {
   @Output() addedChild = new EventEmitter<Child>();
+  @Output() deletedChild = new EventEmitter<Child>();
   @Input() detail!: number;
   addChildClicked:boolean = false;
   childparents$:any;
@@ -19,7 +20,13 @@ export class ParentDetailsComponent implements OnInit {
   }
 
   addChild(newChild:Child){
-    this.addedChild.emit(newChild)
+    this.addedChild.emit(newChild);
+
+    this.ngOnInit();
+  }
+
+  deleteChild(child:Child){
+    this.deletedChild.emit(child)
   }
 
   ngOnChanges() {

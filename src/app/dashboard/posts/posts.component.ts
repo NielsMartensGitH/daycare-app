@@ -35,13 +35,9 @@ export class PostsComponent implements OnInit {
         })
         setTimeout(() => {
           this.array = [...this.posts$, ...this.diaries$];
-          
-          console.log(this.array);
           this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
           console.log(this.newPosts$)
-        }, 2000)
-    
-      //<any>new Date(a.created_at) - <any>new Date(b.created_at)
+        }, 1000)
     
   }
 
