@@ -152,5 +152,14 @@ export class DatastorageService {
   daycareloginsearch(email: any): Observable<any>{
     return this.http.get<any>(this.url + 'daycares/search/' + email);
   }
+
+  getAllEvents(): Observable<any> {
+    return this.http.get<any>(this.url + 'events').pipe();
+  }
+
+  addEvent(event: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + "events", event, {headers: headers});    
+  }
 }
 

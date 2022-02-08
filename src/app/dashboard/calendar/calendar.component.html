@@ -1,7 +1,7 @@
 <div class="container m-2">
     <div class="row">
-        
-            <full-calendar [options]="calendarOptions" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></full-calendar>
+           <button type="button" class="btn btn-kindfox-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add an event</button>
+            <full-calendar [options]="calendarOptions"></full-calendar>
         
         
     </div>
@@ -20,14 +20,17 @@
           <form>
             <div class="mb-3">
                 <label for="eventName" class="form-label">Enter the event name</label>
-                <input type="email" class="form-control"
+                <input type="text" class="form-control"
                 #eventName>
+                <label for="eventDate" class="form-label">Enter the date</label>
+                <input type="text" class="form-control"
+                >
               </div>
           </form>
         </div>
         <div class="d-flex d-flex justify-content-center d-row m-3 p-3">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-          (click)=onSbt(eventName.value)>Save the event</button>
+          (click)="onSbt(eventName.value)">Save the event</button>
         </div>
       </div>
     </div>

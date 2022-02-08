@@ -10,6 +10,7 @@ import { Child } from 'src/app/shared/model/child.models';
 export class ChildDiaryComponent implements OnInit {
   @Input() child_id!:number//child passed from the children
   @Output() diaryAdded = new EventEmitter<any>(); //emit a new diary to the parent via the custom event
+  @Output() btnStatusChange = new EventEmitter<number>();
   childDiaryForm!:FormGroup; 
   daycare_id = 1;
   moods = ["very good", "good", "not so good", "bad"];
@@ -27,7 +28,8 @@ export class ChildDiaryComponent implements OnInit {
   constructor() { }
 
   ngOnChanges(){
-    this.ngOnInit()
+
+    this.poos.map((el) => el = false)
   }
 
   ngOnInit(): void {
@@ -63,17 +65,27 @@ export class ChildDiaryComponent implements OnInit {
       console.log(newDiary);
 
       this.diaryAdded.emit(newDiary);
+      
+      //Set all the values of the poos to false
+      this.poos.map((el) => el = false)
+      
       this.childDiaryForm.reset();
   }
 
   onPoop(ind:number){
     console.log(ind)
     for (let i = ind; i >= 0; i--){
-         //const newP = "poo"+i;
-         //this.poos.newP = true;
          this.poos[i] = true;
     }
   }
   
+  onClose(){
+    this.poos.forEach((el) => el=false);
+    this.ngOnInit();
+  }
+
+  onStatusChange(id_child:number){
+    this.btnStatusChange.emit(id_child)
+  }
   
 }

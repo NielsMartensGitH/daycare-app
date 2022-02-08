@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
+import { DatastorageService } from 'src/app/datastorage.service';
 import { Event } from 'src/app/shared/model/event.models';
 
 @Component({
@@ -14,7 +15,15 @@ export class CalendarComponent implements OnInit{
   id!:number;
   calendarOptions!: CalendarOptions;
   
+  constructor(private dataStorage:DatastorageService){
+
+  }
+
   ngOnInit() {
+    
+     this.dataStorage.getAllEvents().subscribe((events) => this.events$ = events)
+
+
       setTimeout(() => {
         this.calendarOptions= {
           initialView: 'dayGridMonth',
@@ -34,11 +43,9 @@ export class CalendarComponent implements OnInit{
       title: event,
       date: this.eventDate
     }
-    this.events$.push(newEvent);
+    this.dataStorage.addEvent(newEvent).subscribe(() => this.ngOnInit());;
     console.log(this.events$);
-    setTimeout(() => {
-      this.ngOnInit();
-    }, 2200)
+    
     
   }
 
