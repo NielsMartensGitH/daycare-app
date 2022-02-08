@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
       posts => {
         this.posts$ = posts;
       })
-<<<<<<< HEAD
+
     this.dataStorage.getAllDiaries().subscribe( 
         diaries => {
           this.diaries$ = diaries;
@@ -39,7 +39,7 @@ export class PostsComponent implements OnInit {
           this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
           console.log(this.newPosts$)
         }, 1000)
-=======
+
 
     // this.dataStorage.getAllDiaries().subscribe( 
     //     diaries => {
@@ -57,7 +57,7 @@ export class PostsComponent implements OnInit {
         // }, 2000)
     
       //<any>new Date(a.created_at) - <any>new Date(b.created_at)
->>>>>>> b5683f1c6a3d43736b1d934af57ad6d0cc6accda
+
     
   }
 
