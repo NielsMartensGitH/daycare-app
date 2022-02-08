@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Child } from 'src/app/shared/model/child.models';
 
@@ -9,7 +9,7 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ChildrenComponent implements OnInit {
   children$!: Child[];
-  childId!: any;
+  childId!: number;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -24,14 +24,20 @@ export class ChildrenComponent implements OnInit {
      this.dataStorage.addDiary(newDiary).subscribe(() => this.ngOnInit());
   }
 
-  onDiary(child:Child){
-    this.childId = JSON.stringify(child);
-  }
+
 
   onDblClick(child:Child){
+    setTimeout(() => {
     if(child.checked_in == 0){
       child.checked_in = 1;
-      this.dataStorage.updateChildCheckedIn(child).subscribe();
+      this.dataStorage.updateChildCheckedIn(child).subscribe(() => this.ngOnInit());
+      console.log(child)
     }
+    else{
+      child.checked_in = 0;
+      this.dataStorage.updateChildCheckedIn(child).subscribe(() => this.ngOnInit());
+      console.log(child)
+    }
+    }, 500)
   }
 }
