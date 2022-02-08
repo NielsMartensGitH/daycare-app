@@ -67,5 +67,7 @@ export class ParentsComponent implements OnInit {
     this.dataStorage.updateParent(edittedPar).subscribe(() => this.ngOnInit())
   }
   
-
+  onDeleteChild(child:Child){
+    this.dataStorage.deleteChild(child).subscribe(() => this.ngOnInit())
+  }
 }

@@ -27,6 +27,20 @@ export class PostsComponent implements OnInit {
         this.posts$ = posts;
       })
 
+    this.dataStorage.getAllDiaries().subscribe( 
+        diaries => {
+          this.diaries$ = diaries;
+          this.diaries$.map((obj:any) => {
+            obj.poop = obj.poop.split("&")
+          })
+        })
+        setTimeout(() => {
+          this.array = [...this.posts$, ...this.diaries$];
+          this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
+          console.log(this.newPosts$)
+        }, 1000)
+
+
     // this.dataStorage.getAllDiaries().subscribe( 
     //     diaries => {
     //       this.diaries$ = diaries;
@@ -43,6 +57,7 @@ export class PostsComponent implements OnInit {
         // }, 2000)
     
       //<any>new Date(a.created_at) - <any>new Date(b.created_at)
+
     
   }
 
