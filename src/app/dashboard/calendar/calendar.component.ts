@@ -10,10 +10,12 @@ import { Event } from 'src/app/shared/model/event.models';
 })
 export class CalendarComponent implements OnInit{
   eventDate!:string;
+  event_date!:string;
   eventName!:string;
   events$:Event[] = [];
   id!:number;
   calendarOptions!: CalendarOptions;
+  isClicked!:boolean;
   
   constructor(private dataStorage:DatastorageService){
 
@@ -30,18 +32,19 @@ export class CalendarComponent implements OnInit{
           dateClick: this.handleDateClick.bind(this),
           events: this.events$
         };
-      }, 2500)
+      }, 1000)
       
   }
   handleDateClick(arg:any) {
+    
      this.eventDate = arg.dateStr;
-     
+    
   }
   
-  onSbt(event:string){
+  onSbt(event:string, event_date:string){
     const newEvent = {
       title: event,
-      date: this.eventDate
+      date: event_date
     }
     this.dataStorage.addEvent(newEvent).subscribe(() => this.ngOnInit());;
     console.log(this.events$);
