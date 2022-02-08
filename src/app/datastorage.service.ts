@@ -109,7 +109,7 @@ export class DatastorageService {
     return this.http.delete(url, {responseType: 'text'});
   }
 
-  //the idk section
+  //this is to search the parent through the provided email
   loginsearch(email: any):Observable<any>{
     return this.http.get<any>(this.url + 'parents/search/' + email);
   }
@@ -148,7 +148,7 @@ export class DatastorageService {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     return this.http.put(this.url + 'diarycomments/' + id, updatedComment, {headers: headers});
   }
-
+  //search for the daycare with the provided email
   daycareloginsearch(email: any): Observable<any>{
     return this.http.get<any>(this.url + 'daycares/search/' + email);
   }
