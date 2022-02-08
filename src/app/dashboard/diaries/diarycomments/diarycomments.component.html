@@ -13,20 +13,19 @@
           <div class="dropdown">
             <i class="fas fa-ellipsis-h" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <!-- <li><a class="dropdown-item" (click)="onDeleteComment(comment.id)">Delete</a></li>
-              <li><a class="dropdown-item" (click)="onClickEdit(comment.id, comment.comment)">Edit</a></li> -->
+              <li><a class="dropdown-item" (click)="onDeleteComment(comment.id)">Delete</a></li>
+              <li><a class="dropdown-item" (click)="onClickEdit(comment.id, comment.comment)">Edit</a></li>
             </ul>
           </div>
         </div>
-        <p>{{comment.comment}}</p> <!--TEMPORARY-->
-          <!-- <p *ngIf="commentId !== comment.id">{{comment.comment}}</p> -->
-          <!-- <textarea #editEl (click)="autogrow(editEl)" (keydown)="updateComment($event, editEl)" *ngIf="commentId == comment.id" [(ngModel)]="editComment" type="text" class="form-control editComment"></textarea> -->
+          <p *ngIf="commentId !== comment.id">{{comment.comment}}</p>
+          <textarea #editEl (click)="autogrow(editEl)" (keydown)="updateComment($event, editEl)" *ngIf="commentId == comment.id" [(ngModel)]="editComment" type="text" class="form-control editComment"></textarea>
         </div>
       </div>
     </div>
     <div class="form-floating m-3">
-      <!-- <textarea [(ngModel)]="commentText"  #refEl class="form-control commentinput" (keydown)="triggerFunction($event, refEl)" [style.height]="textareaHeight" placeholder="Leave a comment here" id="floatingTextarea"></textarea> -->
-      <!-- <label for="floatingTextarea">Write a comment</label> -->
+      <textarea [(ngModel)]="commentText"  #refEl class="form-control commentinput" (keydown)="triggerFunction($event, refEl)" [style.height]="textareaHeight" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      <label for="floatingTextarea">Write a comment</label>
     </div>
     <h4 *ngIf="!diaryComments$[0]">There are no comments here</h4>
   </div>

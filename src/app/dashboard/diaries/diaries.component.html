@@ -79,7 +79,6 @@
          <p class="m-0 commentbutton" (click)="messageId(diary.id)">Comments</p>
        </div> 
       </div>
-      <!-- <app-comments [postId]="diary.id" *ngIf="msgId == diary.id && msgToggle"></app-comments> -->
       <app-diarycomments [diaryId]="diary.id" *ngIf="msgId == diary.id && msgToggle"></app-diarycomments>
     </div>
   </div>

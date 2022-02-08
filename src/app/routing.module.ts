@@ -13,7 +13,7 @@ import { PackagesComponent } from './home/packages/packages.component';
 import { DiariesComponent } from './dashboard/diaries/diaries.component';
 
 const routes: Routes = [
-    {path: '', redirectTo: '/messageboard', pathMatch: 'full'},
+    {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'messageboard', component: MessageboardComponent},
     {path: 'dashboard', component: DashboardComponent, children: [
         {path: '', component: ChildrenComponent},

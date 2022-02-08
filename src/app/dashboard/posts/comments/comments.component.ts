@@ -20,7 +20,6 @@ export class CommentsComponent implements OnInit {
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
-    console.log(this.comments$)
     this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => this.comments$ = comments);
   }
 
