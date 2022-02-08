@@ -53,4 +53,10 @@ button.btn.btn-kindfox-success {
     color: white
  }
 
+ .green-border {
+   border: 5px solid #85CDCA;
+   border-radius: 15px;
+   margin: 5px;
+}
+
  

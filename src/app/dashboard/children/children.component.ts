@@ -28,4 +28,10 @@ export class ChildrenComponent implements OnInit {
     this.childId = JSON.stringify(child);
   }
 
+  onDblClick(child:Child){
+    if(child.checked_in == 0){
+      child.checked_in = 1;
+      this.dataStorage.updateChildCheckedIn(child).subscribe();
+    }
+  }
 }

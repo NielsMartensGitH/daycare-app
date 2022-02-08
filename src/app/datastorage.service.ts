@@ -88,6 +88,12 @@ export class DatastorageService {
     return this.http.post(this.url + 'children', child, {headers: headers});
   }
 
+  updateChildCheckedIn(child:Child): Observable<Child> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    const url = `${this.url}children/${child.id}`;
+    return this.http.put<Child>(url, parent, {headers: headers});
+  }
+
   updateParent(parent: Parent): Observable<Parent> {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     const url = `${this.parentUrl}/${parent.id}`;

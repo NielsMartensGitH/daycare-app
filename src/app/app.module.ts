@@ -40,6 +40,7 @@ import { DiaryDirDirective } from './dashboard/children/child-diary/diary-dir.di
 import { SmileDirective } from './dashboard/children/child-diary/smile.directive';
 import { DiariesComponent } from './dashboard/diaries/diaries.component';
 import { DiarycommentsComponent } from './dashboard/diaries/diarycomments/diarycomments.component';
+import { ImgToggleDirective } from './dashboard/children/img-toggle.directive';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -79,7 +80,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DiaryDirDirective,
     SmileDirective,
     DiariesComponent,
-    DiarycommentsComponent
+    DiarycommentsComponent,
+    ImgToggleDirective
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule

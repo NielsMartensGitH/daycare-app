@@ -16,6 +16,7 @@ export class ChildAddComponent implements OnInit {
   age!:number;
   childcode!:string;
   parent_id!:number;
+  checked_in = 0;
   constructor() { }
 
   ngOnInit(): void {
@@ -24,10 +25,12 @@ export class ChildAddComponent implements OnInit {
   onSubmit(){
    
     const newChild = new Child(
-      this.id, this.child_firstname, this.child_lastname, this.age, this.childcode, this.parentId 
+      this.id, this.child_firstname, this.child_lastname, this.age, this.childcode, this.parentId, this.checked_in 
       )
 
     this.onChildAdded.emit(newChild);
   }
+
+  
 
 }
