@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mb-content.component.css']
 })
 export class MbContentComponent implements OnInit {
-
+  curParent!: any;
   constructor() { }
 
   ngOnInit(): void {
+    this.curParent = sessionStorage.getItem('parentID');
+    console.log(this.curParent)
   }
 
 }
