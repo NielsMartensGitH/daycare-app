@@ -122,6 +122,10 @@ export class DatastorageService {
     return this.http.post(this.url + "diaries", newDiary, {headers: headers});    
   }
 
+  getDiaryCommentsbyDiaryId(id: number): Observable<any> {
+    return this.http.get(this.url + 'diarycomments/' + id ).pipe();
+  }
+
   daycareloginsearch(email: any): Observable<any>{
     return this.http.get<any>(this.url + 'daycares/search/' + email);
   }

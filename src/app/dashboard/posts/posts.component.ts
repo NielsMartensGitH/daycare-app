@@ -26,6 +26,7 @@ export class PostsComponent implements OnInit {
       posts => {
         this.posts$ = posts;
       })
+<<<<<<< HEAD
     this.dataStorage.getAllDiaries().subscribe( 
         diaries => {
           this.diaries$ = diaries;
@@ -38,6 +39,25 @@ export class PostsComponent implements OnInit {
           this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
           console.log(this.newPosts$)
         }, 1000)
+=======
+
+    // this.dataStorage.getAllDiaries().subscribe( 
+    //     diaries => {
+    //       this.diaries$ = diaries;
+    //       this.diaries$.map((obj:any) => {
+    //         obj.poop = obj.poop.split("&")
+    //       })
+    //     })
+          // setTimeout(() => {
+        //   this.array = [...this.posts$, ...this.diaries$];
+          
+        //   console.log(this.array);
+        //   this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
+        //   console.log(this.newPosts$)
+        // }, 2000)
+    
+      //<any>new Date(a.created_at) - <any>new Date(b.created_at)
+>>>>>>> b5683f1c6a3d43736b1d934af57ad6d0cc6accda
     
   }
 
@@ -76,7 +96,6 @@ export class PostsComponent implements OnInit {
   }
 
   messageId(id: number) {
-    console.log(id == this.msgId)
     if (id == this.msgId) {
       this.msgToggle = false;
       this.msgId = 0;
