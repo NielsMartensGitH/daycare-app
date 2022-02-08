@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-
+import { FileuploadService } from 'src/app/fileupload.service';
 
 @Component({
   selector: 'app-add-post-form',
@@ -15,15 +15,17 @@ export class AddPostFormComponent implements OnInit {
   privacies: string[] = ["public", "private"];
   default = null;
   $posts!: Posts[];
+  files: File[] = [];
 
-  constructor(private dataStorage: DatastorageService) { }
+  constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService) { }
 
   ngOnInit() {
 
     this.postsForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
-      'message': new FormControl(null, [Validators.required])
+      'message': new FormControl(null, [Validators.required]),
+      'photos': new FormControl(null)
     })
 
     
@@ -49,6 +51,9 @@ export class AddPostFormComponent implements OnInit {
       'child_id': 2
     }
 
+    this.uploadfile.upload(this.files);
+    
+    
     this.clearForm();
     // this.dataStorage.addPost(newPost).subscribe();
     this.onSubmitted.emit(newPost)
@@ -59,6 +64,15 @@ export class AddPostFormComponent implements OnInit {
     this.postsForm.reset();
   }
 
-
+      // On file Select
+      onChange(event: any) {
+        const files_object = event.target.files;
+        console.log(files_object)
+        Object.values(files_object).forEach(
+          (val: any) => {
+            console.log(val)
+          this.files.push(val);
+        });
+    }
   
 }

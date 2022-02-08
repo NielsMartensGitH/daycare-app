@@ -4,7 +4,7 @@ export class Posts {
         public type_id: number,
         public created_at: string,
         public child_id: number,
-        public picture: string,
+        public image_id: string,
         public message: string,
         public privacy: number,
         public daycarename: string,
