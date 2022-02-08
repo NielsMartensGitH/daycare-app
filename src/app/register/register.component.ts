@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Daycare } from 'src/app/shared/model/daycare.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -27,19 +28,12 @@ export class RegisterComponent implements OnInit {
   dcpostalcode: any = "null";
   dcavatar: any="null"
   
-
-
-  constructor(private dataStorage: DatastorageService) { }
+  constructor(private dataStorage: DatastorageService, private router:Router) { }
 
   ngOnInit(): void {
-    let tempbool = sessionStorage.getItem("isdaycare");
-    if(tempbool=== "true"){
-      this.isdaycare = true;
-    }
-    else{
-      this.isdaycare = false;
-    }
+        
   }
+
   Onsubmit(){
       if (this.pasverify == this.dcpassword){
         const newDaycare = new Daycare(
@@ -55,11 +49,32 @@ export class RegisterComponent implements OnInit {
           this.dcpostalcode,
           this.dcavatar
         )
-        console.log(newDaycare)
-        this.dataStorage.addDaycare(newDaycare).subscribe(() => this.ngOnInit());
+        this.dataStorage.daycareloginsearch(this.dcemail).subscribe(res => {
+          if(res.length==0){
+            this.dataStorage.addDaycare(newDaycare).subscribe(() => this.ngOnInit());
+        
+            setTimeout(() => {
+              this.succesfull();
+            }, 500);
+          }
+          else{
+            window.alert("Already in use!")
+          }
+        })
+        
       }
       else{
         window.alert("Incorrect password")
       }
+  }
+
+  succesfull(){ 
+    this.dataStorage.daycareloginsearch(this.dcemail).subscribe(res => {
+      console.log(res)
+      if(res.length != 0){
+        sessionStorage.setItem('daycare_id', res[0].id)
+        this.router.navigate(['/dashboard'])
+      }      
+    });
   }
 }

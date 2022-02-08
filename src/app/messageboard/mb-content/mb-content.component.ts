@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatastorageService } from 'src/app/datastorage.service';
 
 @Component({
   selector: 'app-mb-content',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mb-content.component.css']
 })
 export class MbContentComponent implements OnInit {
-
-  constructor() { }
+  curParent!: any;
+  constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
+    this.curParent = sessionStorage.getItem('parentID');
+    console.log(this.curParent);
+    if(this.curParent != null){
+      this.dataStorage.getChildParents(this.curParent).subscribe(res => {
+        console.log(res);
+      });
+    }
   }
 
 }
