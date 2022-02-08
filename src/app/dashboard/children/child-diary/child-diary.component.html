@@ -6,10 +6,12 @@
           <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
           <h5 class="modal-title" id="exampleModalLabel">Diary</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+          {{parsedChild.child_firstname}}
+       </div>
         <div class="modal-body m-2">
             <form (ngSubmit)="onSubmit(message_food.value, message_sleep.value, messageAct.value, extraMessage.value)" [formGroup]="childDiaryForm">
                 <div class="mb-3 row">
+                    
                     <div class="col form-floating m-2 p-4 green-border">
                         <div class="row">
                             <p class="kindfox-font-orange">What I ate?</p>

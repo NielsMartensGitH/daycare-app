@@ -9,7 +9,7 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ChildrenComponent implements OnInit {
   children$!: Child[];
-  childId!: number;
+  childId!: any;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -22,6 +22,10 @@ export class ChildrenComponent implements OnInit {
 
   onDiaryAdd(newDiary:any){
      this.dataStorage.addDiary(newDiary).subscribe(() => this.ngOnInit());
+  }
+
+  onDiary(child:Child){
+    this.childId = JSON.stringify(child);
   }
 
 }
