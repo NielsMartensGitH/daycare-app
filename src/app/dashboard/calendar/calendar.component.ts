@@ -36,9 +36,8 @@ export class CalendarComponent implements OnInit{
       
   }
   handleDateClick(arg:any) {
-    
-     this.eventDate = arg.dateStr;
-    
+    this.eventDate = arg.dateStr;
+
   }
   
   onSbt(event:string, event_date:string){
