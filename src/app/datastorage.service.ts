@@ -152,5 +152,9 @@ export class DatastorageService {
   daycareloginsearch(email: any): Observable<any>{
     return this.http.get<any>(this.url + 'daycares/search/' + email);
   }
+
+  getChildrenParentsV2(id:any): Observable<any>{
+    return this.http.get<any>(this.url + 'childerns/' + id);
+  }
 }
 

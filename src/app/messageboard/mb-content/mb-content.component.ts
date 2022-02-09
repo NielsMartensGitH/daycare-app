@@ -14,8 +14,9 @@ export class MbContentComponent implements OnInit {
     this.curParent = sessionStorage.getItem('parentID');
     console.log(this.curParent);
     if(this.curParent != null){
-      this.dataStorage.getChildParents(this.curParent).subscribe(res => {
+      this.dataStorage.getChildrenParentsV2(this.curParent).subscribe(res => {
         console.log(res);
+        console.log(this.curParent);
       });
     }
   }
