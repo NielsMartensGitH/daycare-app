@@ -32,7 +32,7 @@ export class DiariesComponent implements OnInit {
   }
 
   deleteDiary(id: number) {
-
+     this.dataStorage.deleteDiary(id).subscribe(() => this.ngOnInit());
   }
 
   messageId(id: number) {

@@ -128,6 +128,10 @@ export class DatastorageService {
     return this.http.post(this.url + "diaries", newDiary, {headers: headers});    
   }
 
+  deleteDiary(id: number): Observable<any> {
+    return this.http.delete(this.url + 'diaries/' + id, {responseType: 'text'});
+  }
+
  addDiaryComment(newComment: any): Observable<any> {
   const headers = new HttpHeaders().set("Content-type", "application/json");
   return this.http.post(this.url + 'diarycomments', newComment, {headers: headers});    
