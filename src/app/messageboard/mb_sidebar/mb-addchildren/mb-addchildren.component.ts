@@ -9,11 +9,12 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class MbAddchildrenComponent implements OnInit {
   @Input() parentId!:number;
+  parent_id = sessionStorage.getItem('parentID')
   childparents$!:Child[];
   constructor(private dataStorage:DatastorageService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getChildParents(this.parentId).subscribe(childparents => this.childparents$ = childparents)
+    this.dataStorage.getChildParents(this.parent_id).subscribe(childparents => this.childparents$ = childparents)
   }
   ngOnChange(){
     this.ngOnInit();
