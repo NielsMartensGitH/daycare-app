@@ -2,6 +2,18 @@
     background-color: #C38D9E
 }
 
-.btn {
-    background-color: white
-}
+
+
+button.btn-kindfox-warning {
+    background-color: #85CDCA ;
+    color: white;
+    width: 175px;
+ }
+
+ button.btn-kindfox-warning:hover {
+    background-color: #66A7A4 ;
+ }
+
+ .modal {
+     color: black;
+ }
