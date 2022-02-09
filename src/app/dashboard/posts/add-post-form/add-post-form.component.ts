@@ -67,10 +67,8 @@ export class AddPostFormComponent implements OnInit {
       // On file Select
       onChange(event: any) {
         const files_object = event.target.files;
-        console.log(files_object)
         Object.values(files_object).forEach(
           (val: any) => {
-            console.log(val)
           this.files.push(val);
         });
     }
