@@ -18,14 +18,22 @@ export class MbContentComponent implements OnInit {
     this.curDaycare = sessionStorage.getItem('linkedDaycareParent');
     
     if(this.curParent != null){
+    
+        this.dataStorage.getPostsbyParent(this.curParent, this.curDaycare).subscribe(res => {
+          this.posts = res;
+          console.log(this.posts)
+        })
+
+
+      // this.dataStorage.getChildParents(this.curParent).subscribe(res => {
+      //   console.log(res);
       
-      this.dataStorage.getChildParents(this.curParent).subscribe(res => {
-        console.log(res);
-        for(let i =0; i<res.length;i++){
-          this.childids +=(res[i].id);
-          console.log(res[i].id)
-          console.log(this.childids)
-        }
+      
+        // for(let i =0; i<res.length;i++){
+        //   this.childids +=(res[i].id);
+        //   console.log(res[i].id)
+        //   console.log(this.childids)
+        // }
         /*
         setTimeout(() => {
           console.log(this.childids)
@@ -39,7 +47,7 @@ export class MbContentComponent implements OnInit {
           }
         }, 500);
         */
-      });
+      // });
       
     }
     

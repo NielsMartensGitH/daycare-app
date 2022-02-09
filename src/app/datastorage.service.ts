@@ -174,5 +174,9 @@ export class DatastorageService {
   getMessageboardPost(childID:any, daycareID:any): Observable<any>{
     return this.http.get<any>(this.url + "posts/search/" + daycareID + "/" + childID);
   }
+
+  getPostsbyParent(parentId: number, daycareId: number): Observable<any>{
+    return this.http.get<any>(this.url + "parentposts/" + parentId + "/" + daycareId);
+  }
 }
 
