@@ -8,7 +8,61 @@
           </form>
         </div>
       </div>
-      
+<!---->
+
+<div *ngFor="let posts of posts" class="row justify-content-center my-3">
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-1">
+            <i class="border p-3 rounded-circle fas fa-user"></i>
+          </div>
+          <div class="col-sm-10">
+            <h5 class="card-title">Childcare Sunshine</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Posted 5 minutes ago</h6>
+          </div>
+        </div>
+        <p class="card-text" >{{posts.message}}</p>
+      </div>
+      <div class="card-footer text-muted">
+       <div class="privacy d-flex justify-content-between">
+         <p class="m-0">Every parent can see this message</p>
+         <p class="m-0">Comments</p>
+       </div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---->
+      <div class="row justify-content-center my-3">
+        <div class="col-sm-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-1">
+                  <i class="border p-3 rounded-circle fas fa-user"></i>
+                </div>
+                <div class="col-sm-10">
+                  <h5 class="card-title">Childcare Sunshine</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Posted 5 minutes ago</h6>
+                </div>
+              </div>
+              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium laudantium labore sed id, eaque consequuntur repudiandae quisquam sint, inventore neque temporibus! Porro mollitia dolores suscipit nisi! Aliquam sed aspernatur possimus autem, odio deleniti a illo ullam dignissimos ab ducimus molestias iste officiis quam laborum voluptatum!</p>
+            </div>
+            <div class="card-footer text-muted">
+             <div class="privacy d-flex justify-content-between">
+               <p class="m-0">Every parent can see this message</p>
+               <p class="m-0">Comments</p>
+             </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <!--
+
       <div class="row justify-content-center my-3">
         <div class="col-sm-8">
           <div class="card">
@@ -58,28 +112,4 @@
           </div>
         </div>
       </div>
-     
-      <div class="row justify-content-center my-3">
-        <div class="col-sm-8">
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-1">
-                  <i class="border p-3 rounded-circle fas fa-user"></i>
-                </div>
-                <div class="col-sm-10">
-                  <h5 class="card-title">Childcare Sunshine</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Posted 5 minutes ago</h6>
-                </div>
-              </div>
-              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium laudantium labore sed id, eaque consequuntur repudiandae quisquam sint, inventore neque temporibus! Porro mollitia dolores suscipit nisi! Aliquam sed aspernatur possimus autem, odio deleniti a illo ullam dignissimos ab ducimus molestias iste officiis quam laborum voluptatum!</p>
-            </div>
-            <div class="card-footer text-muted">
-             <div class="privacy d-flex justify-content-between">
-               <p class="m-0">Every parent can see this message</p>
-               <p class="m-0">Comments</p>
-             </div> 
-            </div>
-          </div>
-        </div>
-      </div>
+    -->

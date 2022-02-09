@@ -14,8 +14,6 @@ export class MbContentComponent implements OnInit {
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
-    this.childids =[];
-    this.posts =[];
     this.curParent = sessionStorage.getItem('parentID');
     this.curDaycare = sessionStorage.getItem('linkedDaycareParent');
     
@@ -24,18 +22,23 @@ export class MbContentComponent implements OnInit {
       this.dataStorage.getChildParents(this.curParent).subscribe(res => {
         console.log(res);
         for(let i =0; i<res.length;i++){
-          this.childids+=res[i].id;
+          this.childids +=(res[i].id);
+          console.log(res[i].id)
+          console.log(this.childids)
         }
-        console.log(this.childids[0])
-        if(this.childids.length !=0){
-          this.dataStorage.getMessageboardPost(this.childids[0],this.curDaycare).subscribe(res=>{
-            for(let i=0;i<res.length; i++){
-              this.posts.push(res[i]);
-            }
-            console.log(res)
-          })
-        }
-        
+        /*
+        setTimeout(() => {
+          console.log(this.childids)
+          if(this.childids.length !=0){
+            this.dataStorage.getMessageboardPost(this.childids[0],this.curDaycare).subscribe(res=>{
+              for(let i=0;i<res.length; i++){
+                this.posts.push(res[i]);
+              }
+              console.log(res)
+            })
+          }
+        }, 500);
+        */
       });
       
     }
