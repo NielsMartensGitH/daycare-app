@@ -10,6 +10,7 @@ import { Child } from 'src/app/shared/model/child.models';
 export class ChildrenComponent implements OnInit {
   children$!: Child[];
   childId!: number;
+  diary = "Diary"
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -39,5 +40,10 @@ export class ChildrenComponent implements OnInit {
       console.log(child)
     }
     }, 500)
+  }
+
+  onBtnChange(idChild:number){
+    if(idChild === this.childId)
+     this.diary = "Done"
   }
 }
