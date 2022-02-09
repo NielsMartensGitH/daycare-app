@@ -1,3 +1,11 @@
 .fc-daygrid-day-top a {
     color: black;
 }
+
+button.btn.btn-kindfox-success {
+    background-color: #85CDCA;
+    color: white
+ }
+ button.btn.btn-kindfox-success:hover {
+    background-color: #66A7A4;
+  }

@@ -16,7 +16,7 @@ export class CalendarComponent implements OnInit{
   id!:number;
   calendarOptions!: CalendarOptions;
   isClicked!:boolean;
-  
+  color = "#C38D9E";
   constructor(private dataStorage:DatastorageService){
 
   }
@@ -30,7 +30,8 @@ export class CalendarComponent implements OnInit{
         this.calendarOptions= {
           initialView: 'dayGridMonth',
           dateClick: this.handleDateClick.bind(this),
-          events: this.events$
+          events: this.events$,
+          eventColor : this.color,
         };
       }, 1000)
       
@@ -40,11 +41,13 @@ export class CalendarComponent implements OnInit{
 
   }
   
-  onSbt(event:string, event_date:string){
+  onSbt(event:string, event_date:string, event_color:string){
     const newEvent = {
       title: event,
-      date: event_date
+      date: event_date,
+      daycare_id: 1
     }
+    this.color = event_color;
     this.dataStorage.addEvent(newEvent).subscribe(() => this.ngOnInit());;
     console.log(this.events$);
     

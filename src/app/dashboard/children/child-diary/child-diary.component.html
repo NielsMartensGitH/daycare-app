@@ -24,17 +24,13 @@
                         </div>
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
-                                <button type="button" class="btn btn-smile"
-                                (click)="smileIndFood = 'fas fa-smile-beam'">
-                                    <i class="fas fa-smile-beam"
-                                    appSmile></i>
-                                </button>
-                            
-                                <button type="button" class="btn btn-smile"
-                                (click)="smileIndFood = 'fas fa-frown-open'">
-                                    <i class="fas fa-frown-open"
-                                    appSmile></i>
-                                </button>
+                                    <i class="fas fa-smile-beam" #food_smile
+                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-smile-beam' && food_smile}"
+                                    (click)="smileIndFood = 'fas fa-smile-beam'">
+                                    </i>
+                                    <i class="fas fa-frown-open" #food_smile
+                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-frown-open' && food_smile}"
+                                        (click)="smileIndFood = 'fas fa-frown-open'"></i>
                             </div>
                         </div>
                     </div>
@@ -50,16 +46,13 @@
                         </div>
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
-                                <button class="btn btn-smile"
-                                    (click)="smileIndSleep = 'fas fa-smile-beam'">
-                                        <i class="fas fa-smile-beam"
-                                        appSmile></i>
-                                    </button>
-                                    <button type="button" class="btn btn-smile"
-                                    (click)="smileIndSleep = 'fas fa-frown-open'">
-                                        <i class="fas fa-frown-open"
-                                        appSmile></i>
-                                    </button>
+                                <i class="fas fa-smile-beam" #sleep_smile
+                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-smile-beam' && sleep_smile}"
+                                    (click)="smileIndFood = 'fas fa-smile-beam'">
+                                    </i>
+                                    <i class="fas fa-frown-open" #sleep_smile
+                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-frown-open' && sleep_smile}"
+                                        (click)="smileIndFood = 'fas fa-frown-open'"></i>
                             </div>
                         </div>
                     </div>

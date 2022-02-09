@@ -1,6 +1,12 @@
 <div class="container m-2">
     <div class="row">
-           <button type="button" data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn btn-primary"  >Add an event</button>
+      <div class="col-xs">
+        <button type="button" data-bs-target="#staticBackdrop" data-bs-toggle="modal" class="btn btn-kindfox-success"  >Add an event</button>
+      </div>
+    </div>
+    <div class="row">
+           
+           
             <full-calendar [options]="calendarOptions"></full-calendar>
     </div>
     
@@ -12,7 +18,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Add an event for {{eventDate}}</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Add a new event</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -24,12 +30,15 @@
                 <label for="eventDate" class="form-label">Enter the date</label>
                 <input type="date" class="form-control"
                 #event_date>
+                <label for="eventColor" class="form-label">Enter the date</label>
+                <input type="color" class="form-control"
+                #event_color>
               </div>
           </form>
         </div>
         <div class="d-flex d-flex justify-content-center d-row m-3 p-3">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-          (click)="onSbt(eventName.value, event_date.value)">Save the event</button>
+          (click)="onSbt(eventName.value, event_date.value, event_color.value)">Save the event</button>
         </div>
       </div>
     </div>
