@@ -2,7 +2,10 @@
     <div class="row">
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasLabel">Parent Login</h5>
+                <div class="headofcanvas">
+                    <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
+                    <h5 class="offcanvas-title" id="offcanvasLabel">Parent Login</h5>
+                </div>
               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -16,7 +19,7 @@
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" id="PPassword" [(ngModel)]="password" name="password">
                         <br>
-                        <button type="submit" class="btn btn-primary" (click)="Plogin()">Login</button>
+                        <button type="submit" class="btn btn-kindfox-primary" (click)="Plogin()">Login</button>
                     </div>
                 </form>
             </div>
@@ -24,7 +27,8 @@
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
-              <h5 id="offcanvasRightLabel">Daycare Login</h5>
+                <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
+                <h5 id="offcanvasRightLabel">Daycare Login</h5>
               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">                
@@ -38,9 +42,9 @@
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" id="DCPassword" [(ngModel)]="password" name="password">
                         <br>
-                        <button type="submit" class="btn btn-primary" (click)="DClogin()">Login</button>
+                        <button type="submit" class="btn btn-kindfox-primary" (click)="DClogin()">Login</button>
                         <br>
-                        <button type="button" class="btn btn-primary" routerLink="../register">Register</button>
+                        <button type="button" class="btn btn-kindfox-primary" routerLink="../register">Register</button>
                         <a >here</a>
                         No account? Register here!
                     </div>

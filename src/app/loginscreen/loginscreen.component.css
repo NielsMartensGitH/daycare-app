@@ -36,4 +36,23 @@ p{
     margin-top: 50%;
     font-size: 50px;
     text-align: center;
+    color: rgba(0, 0, 0, 1);
+}
+button.btn.btn-kindfox-primary {
+    background-color: #41B3A3
+;
+    color: white
+ } button.btn.btn-kindfox-primary:hover {
+    background-color: #2B7B71
+;
+    color: white
+ }
+
+.offcanvas-header{
+    background-color: #E27D60;
+    color: white;
+    margin: 0px;
+    left: 0%;
+    right: 0%;
+    top: 0%;
 }
