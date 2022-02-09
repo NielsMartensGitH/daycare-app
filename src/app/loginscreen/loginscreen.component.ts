@@ -26,6 +26,7 @@ export class LoginscreenComponent implements OnInit {
       else{
         if(res[0].password == this.password){
           sessionStorage.setItem('parentID',res[0].id)
+          sessionStorage.setItem('linkedDaycareParent',res[0].daycare_id)
           this.router.navigate(['/messageboard'])
         }
         else{

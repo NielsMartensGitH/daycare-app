@@ -8,17 +8,38 @@ import { DatastorageService } from 'src/app/datastorage.service';
 })
 export class MbContentComponent implements OnInit {
   curParent!: any;
+  childids!: any[];
+  posts!: any[];
+  curDaycare!: any;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
+    this.childids =[];
+    this.posts =[];
     this.curParent = sessionStorage.getItem('parentID');
-    console.log(this.curParent);
+    this.curDaycare = sessionStorage.getItem('linkedDaycareParent');
+    
     if(this.curParent != null){
-      this.dataStorage.getChildrenParentsV2(this.curParent).subscribe(res => {
+      
+      this.dataStorage.getChildParents(this.curParent).subscribe(res => {
         console.log(res);
-        console.log(this.curParent);
+        for(let i =0; i<res.length;i++){
+          this.childids+=res[i].id;
+        }
+        console.log(this.childids[0])
+        if(this.childids.length !=0){
+          this.dataStorage.getMessageboardPost(this.childids[0],this.curDaycare).subscribe(res=>{
+            for(let i=0;i<res.length; i++){
+              this.posts.push(res[i]);
+            }
+            console.log(res)
+          })
+        }
+        
       });
+      
     }
+    
   }
 
 }
