@@ -29,8 +29,15 @@ export class ChildDiaryComponent implements OnInit {
 
   ngOnChanges(){
 
-    this.poos.map((el) => el = false)
+    for (let i = 0; i < this.poos.length; i++){
+      this.poos[i] = false;
+      
+    }
+    console.log(this.poos)
+    
   }
+
+  
 
   ngOnInit(): void {
     this.childDiaryForm = new FormGroup({

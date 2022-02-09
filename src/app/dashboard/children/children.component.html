@@ -15,10 +15,17 @@
             <div class="card-body d-flex justify-content-center">
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-kindfox-warning">Edit</button>
-                    <button type="button" class="btn btn-kindfox-primary"
+                    <div>
+                        <button type="button" class="btn btn-kindfox-primary"
                     data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    (click)="childId = child.id"
-                    #refEl>{{diary}}</button>
+                    *ngIf="child.id == passedID; else other_btn"
+                    >Done</button>
+                    </div>
+                    <ng-template #other_btn>
+                        <button type="button" class="btn btn-kindfox-primary"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="childId = child.id">Diary</button>
+                    </ng-template>
                     <button type="button" class="btn btn-kindfox-danger"
                     (click)="onDelete(child)">Delete</button>
                   </div>
@@ -30,3 +37,8 @@
 </div>
 
 <app-child-diary [child_id]="childId" (diaryAdded)="onDiaryAdd($event)" (btnStatusChange)="onBtnChange($event)"></app-child-diary>
+
+
+<!---
+ 
+-->
