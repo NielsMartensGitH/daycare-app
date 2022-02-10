@@ -21,17 +21,19 @@
           </div>
           <div class="col-sm-10">
             <h5 class="card-title">{{posts.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Posted 5 minutes ago</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Posted <span>{{calculateTimeSince(posts.created_at)}}</span><span> ago</span></h6>
           </div>
         </div>
         <p class="card-text" >{{posts.message}}</p>
       </div>
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">
-         <p class="m-0">Every parent can see this message</p>
-         <p class="m-0">Comments</p>
+         <p class="m-0" *ngIf="posts.privacy == 0; else private">Every parent can see this message</p>
+         <ng-template #private>Only You can see this message</ng-template>
+         <p class="m-0 commentbutton" (click)="messageId(posts.id)">Comments</p>
        </div> 
       </div>
+      <app-mb-comments [postId]="posts.id" *ngIf="msgId == posts.id && msgToggle"></app-mb-comments>
     </div>
   </div>
 </div>

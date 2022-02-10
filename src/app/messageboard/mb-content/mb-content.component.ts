@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
+import { TimeService } from 'src/app/time.service';
 
 @Component({
   selector: 'app-mb-content',
@@ -12,7 +13,9 @@ export class MbContentComponent implements OnInit {
   posts!: any[];
   curDaycare!: any;
   postCheck: boolean = false;
-  constructor(private dataStorage: DatastorageService) { }
+  msgId!: number;
+  msgToggle: boolean = false;
+  constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit(): void {
     this.curParent = sessionStorage.getItem('parentID');
@@ -57,7 +60,25 @@ export class MbContentComponent implements OnInit {
       // });
       
     }
-    
+ 
+  }
+
+  messageId(id: number) {
+    if (id == this.msgId) {
+      this.msgToggle = false;
+      this.msgId = 0;
+    } else {
+      this.msgId = id;
+      this.msgToggle = true;
+    }
+   
+  }
+
+  calculateTimeSince(timeStamp: string) {
+    const timestamp = new Date(timeStamp);
+    timestamp.setHours( timestamp.getHours() + 1 );
+    timestamp.setMinutes( timestamp.getMinutes() + 7);
+    return this.timeService.timeSince(timestamp);
   }
 
 }
