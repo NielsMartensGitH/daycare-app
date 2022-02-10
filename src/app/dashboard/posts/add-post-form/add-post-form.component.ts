@@ -16,10 +16,13 @@ export class AddPostFormComponent implements OnInit {
   default = null;
   $posts!: Posts[];
   files: File[] = [];
+  curDaycare!: any;
 
   constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService) { }
 
   ngOnInit() {
+
+    this.curDaycare = sessionStorage.getItem('daycare_id');
 
     this.postsForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
@@ -46,7 +49,7 @@ export class AddPostFormComponent implements OnInit {
       'type_id': 1,
       'picture': "",
       'message': message,
-      'daycare_id': 1,
+      'daycare_id': this.curDaycare,
       'privacy': privacyValue,
       'child_id': 2
     }

@@ -13,6 +13,7 @@ export class EditPostFormComponent implements OnInit {
   postsForm!: FormGroup;
   privacies: string[] = ["public", "private"];
   default = null;
+  curDaycare!: any;
   constructor() { }
  
   ngOnChanges() {
@@ -22,6 +23,9 @@ export class EditPostFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.curDaycare = sessionStorage.getItem('daycare_id');
+
     this.postsForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
@@ -53,7 +57,7 @@ export class EditPostFormComponent implements OnInit {
       'type_id': 1,
       'picture': "",
       'message': message,
-      'daycare_id': 1,
+      'daycare_id': this.curDaycare,
       'privacy': privacyValue
     }
 

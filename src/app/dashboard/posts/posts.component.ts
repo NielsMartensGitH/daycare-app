@@ -13,6 +13,7 @@ export class PostsComponent implements OnInit {
   newPosts$!:any[];
   diaries$!:[];
   array!: any[];
+  curDaycare!: any;
 
   editThisMsg!:string;
   editId!: number;
@@ -22,7 +23,8 @@ export class PostsComponent implements OnInit {
   constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getAllPosts().subscribe( 
+    this.curDaycare = sessionStorage.getItem('daycare_id');
+    this.dataStorage.getPostsByDayCare(this.curDaycare).subscribe( 
       posts => {
         this.posts$ = posts;
       })
