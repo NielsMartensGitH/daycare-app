@@ -1,7 +1,7 @@
 <div class="card-body">
     <div *ngFor="let comment of comments$" class="row">
       <div class="col-auto mx-3 my-1 avatarbox">
-        <img *ngIf="curParent == comment.parent_id else daycarevatar" src="{{comment.parentavatar}}" alt="" width="50px" class="rounded-pill">
+        <img *ngIf="comment.parent_id else daycarevatar" src="{{comment.parentavatar}}" alt="" width="50px" class="rounded-pill">
         <ng-template #daycarevatar>
           <img src="{{comment.avatar}}" alt="" width="50px" class="rounded-pill">
         </ng-template>
