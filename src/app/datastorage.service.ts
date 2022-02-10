@@ -29,6 +29,10 @@ export class DatastorageService {
 
   }
 
+  getPostsByDayCare(id: number): Observable<Posts[]> {
+    return this.http.get<Posts[]>(this.url + 'daycareposts/' + id)
+  }
+
   addPost(newPost: any): Observable<any> {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     return this.http.post(this.postUrl, newPost, {headers: headers});    
