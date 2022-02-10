@@ -30,10 +30,10 @@
        <div class="privacy d-flex justify-content-between">
          <p class="m-0" *ngIf="posts.privacy == 0; else private">Every parent can see this message</p>
          <ng-template #private>Only You can see this message</ng-template>
-         <p class="m-0 commentbutton" (click)="messageId(posts.id)">Comments</p>
+         <button class="btn btn-secondary m-0 commentbutton" (click)="messageId(posts.id)">Comments</button>
        </div> 
       </div>
-      <app-mb-comments [postId]="posts.id" *ngIf="msgId == posts.id && msgToggle"></app-mb-comments>
+      <app-mb-comments (commentNum)="commentNumber($event)" [postId]="posts.id" *ngIf="msgId == posts.id && msgToggle"></app-mb-comments>
     </div>
   </div>
 </div>

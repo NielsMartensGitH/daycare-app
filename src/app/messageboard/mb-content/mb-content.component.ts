@@ -15,6 +15,7 @@ export class MbContentComponent implements OnInit {
   postCheck: boolean = false;
   msgId!: number;
   msgToggle: boolean = false;
+  commentAmount!: number;
   constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class MbContentComponent implements OnInit {
             this.postCheck = true;
           }
         })
+
 
 
       // this.dataStorage.getChildParents(this.curParent).subscribe(res => {
@@ -61,6 +63,10 @@ export class MbContentComponent implements OnInit {
       
     }
  
+  }
+
+  commentNumber(e: any) {
+    this.commentAmount = e;
   }
 
   messageId(id: number) {
