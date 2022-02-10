@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Router } from '@angular/router';
+import { EncrDecrService } from '../encr-decr.service';
 
 @Component({
   selector: 'app-loginscreen',
@@ -11,7 +12,7 @@ export class LoginscreenComponent implements OnInit {
   email!:string;
   password!:string;
 
-  constructor(private dataStorage: DatastorageService, private router:Router) { 
+  constructor(private dataStorage: DatastorageService, private router:Router, private EncrDecr: EncrDecrService) { 
     
   }
 
@@ -24,7 +25,8 @@ export class LoginscreenComponent implements OnInit {
         alert("wrong username or password")
       }
       else{
-        if(res[0].password == this.password){
+        let decrPW = this.EncrDecr.get(res[0].password);
+        if(decrPW == this.password){
           sessionStorage.setItem('parentID',res[0].id)
           sessionStorage.setItem('linkedDaycareParent',res[0].daycare_id)
           this.router.navigate(['/messageboard'])
@@ -42,7 +44,9 @@ export class LoginscreenComponent implements OnInit {
         alert("wrong username or password")
       }
       else{
-        if(res[0].password == this.password){
+        let decrPW = this.EncrDecr.get(res[0].password);
+
+        if(decrPW == this.password){
           sessionStorage.setItem('daycare_id',res[0].id)
           this.router.navigate(['/dashboard'])
         }

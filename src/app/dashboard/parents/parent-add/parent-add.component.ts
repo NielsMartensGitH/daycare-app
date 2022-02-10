@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Parent } from 'src/app/shared/model/parent.model';
+import { EncrDecrService } from 'src/app/encr-decr.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ParentAddComponent implements OnInit {
   password!:string;
   parentAddForm!: FormGroup;
 
-  constructor() { }
+  constructor(private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
     this.parentAddForm = new FormGroup({
@@ -36,7 +37,7 @@ export class ParentAddComponent implements OnInit {
 
   onSubmit() {
 
-
+    this.password = this.EncrDecr.set(this.password);
     const newParent = new Parent(
       this.id, this.firstname, this.lastname, this.email, this.phone, this.password
      )

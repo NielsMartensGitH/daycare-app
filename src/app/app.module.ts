@@ -41,6 +41,7 @@ import { SmileDirective } from './dashboard/children/child-diary/smile.directive
 import { DiariesComponent } from './dashboard/diaries/diaries.component';
 import { DiarycommentsComponent } from './dashboard/diaries/diarycomments/diarycomments.component';
 import { ImgToggleDirective } from './dashboard/children/img-toggle.directive';
+import { EncrDecrService } from '../app/encr-decr.service';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -86,7 +87,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule
   ],
-  providers: [],
+  providers: [EncrDecrService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

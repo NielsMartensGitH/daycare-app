@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Daycare } from 'src/app/shared/model/daycare.model'
 import { Router } from '@angular/router';
+import { EncrDecrService } from '../encr-decr.service';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   dcpostalcode: any = "null";
   dcavatar: any="null"
   
-  constructor(private dataStorage: DatastorageService, private router:Router) { }
+  constructor(private dataStorage: DatastorageService, private router:Router, private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
         
@@ -36,6 +37,8 @@ export class RegisterComponent implements OnInit {
 
   Onsubmit(){
       if (this.pasverify == this.dcpassword){
+        this.dcpassword = this.EncrDecr.set(this.pasverify);
+        console.log(this.dcpassword);
         const newDaycare = new Daycare(
           this.did, 
           this.companyname, 
@@ -49,6 +52,7 @@ export class RegisterComponent implements OnInit {
           this.dcpostalcode,
           this.dcavatar
         )
+        
         this.dataStorage.daycareloginsearch(this.dcemail).subscribe(res => {
           if(res.length==0){
             this.dataStorage.addDaycare(newDaycare).subscribe(() => this.ngOnInit());

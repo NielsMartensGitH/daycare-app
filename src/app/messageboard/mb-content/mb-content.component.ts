@@ -11,6 +11,7 @@ export class MbContentComponent implements OnInit {
   childids!: any[];
   posts!: any[];
   curDaycare!: any;
+  postCheck: boolean = false;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,12 @@ export class MbContentComponent implements OnInit {
         this.dataStorage.getPostsbyParent(this.curParent, this.curDaycare).subscribe(res => {
           this.posts = res;
           console.log(this.posts)
+          if(this.posts.length == 0){
+            this.postCheck = false;
+          }
+          else{
+            this.postCheck = true;
+          }
         })
 
 
