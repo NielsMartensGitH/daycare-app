@@ -5,7 +5,9 @@ export class Parent {
         public lastname: string,
         public email: string,
         public phone: number,
-        public password: string
+        public password: string,
+        public daycare_id: number,
+        public avatar: string
          
     ) {}
 }

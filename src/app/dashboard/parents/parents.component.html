@@ -3,7 +3,8 @@
         <h1>Parents</h1>
         <a class="nav-link" routerLink="parent-add"
         (click)=onClick()>
-          <button type="button" class="btn btn-kindfox-success">
+          <button type="button" class="btn btn-kindfox-success"
+          >
             <span *ngIf="!isclicked"><i class="fa fa-plus-circle"></i> Add </span>
             <span *ngIf="isclicked"><i class="fa fa-times-circle"></i> Close </span>
           </button>
@@ -16,7 +17,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <table class="table">
+        <table class="table" [@listAnimation]="parents$.length">
             <thead>
               <tr>
                 <th scope="col">#</th>

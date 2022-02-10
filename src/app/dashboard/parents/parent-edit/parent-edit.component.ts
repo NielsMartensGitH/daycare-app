@@ -12,6 +12,8 @@ export class ParentEditComponent implements OnInit {
   @Output() edittedParent = new EventEmitter<Parent>();
   parentEditForm!:FormGroup;
   id:any;
+  daycare_id = 1;
+  avatar = "/assets/img/defaultavatar.png";
   constructor() { }
 
   ngOnChanges() {
@@ -43,7 +45,7 @@ export class ParentEditComponent implements OnInit {
 
 
     const newParent = new Parent(
-      this.parentToEdit.id, firstname, lastname, email, phone, password
+      this.parentToEdit.id, firstname, lastname, email, phone, password, this.daycare_id, this.avatar
      )
     
     this.edittedParent.emit(newParent);

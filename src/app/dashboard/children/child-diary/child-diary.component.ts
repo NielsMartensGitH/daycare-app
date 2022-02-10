@@ -23,6 +23,7 @@ export class ChildDiaryComponent implements OnInit {
   moodMsg!:number;
   involvementMsg!:number;
   parsedChild!:any;
+  yellowFace = false;
   poos = [false, false, false,false,false];
   //childName = `${this.passed_child.child_firstname} ${this.passed_child.child_lastname}`
   constructor() { }

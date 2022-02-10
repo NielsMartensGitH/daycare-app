@@ -20,6 +20,8 @@ export class ParentAddComponent implements OnInit {
   phone!:number;
   password!:string;
   parentAddForm!: FormGroup;
+  avatar = "/assets/img/defaultavatar.png";
+  daycare_id = 1;
 
   constructor(private EncrDecr: EncrDecrService) { }
 
@@ -39,7 +41,7 @@ export class ParentAddComponent implements OnInit {
 
     this.password = this.EncrDecr.set(this.password);
     const newParent = new Parent(
-      this.id, this.firstname, this.lastname, this.email, this.phone, this.password
+      this.id, this.firstname, this.lastname, this.email, this.phone, this.password, this.daycare_id, this.avatar
      )
 
     this.onSubmitted.emit(newParent);

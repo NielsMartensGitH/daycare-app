@@ -6,7 +6,6 @@
       <h4 class="my-2">Calendar</h4>
     </div>
     <div *ngFor="let event of filteredEvents; let i = index">
-      
       <p
       [ngClass]="{'red-date': i == 0}">{{event.date}} <br>
       <span class="text-muted">{{event.title}}</span>
