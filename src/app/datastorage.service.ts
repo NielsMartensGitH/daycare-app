@@ -161,6 +161,10 @@ export class DatastorageService {
     return this.http.get<any>(this.url + 'events').pipe();
   }
 
+  getEventsByDaycareId(daycare_id:number): Observable<any> {
+    return this.http.get<any>(this.url + 'events/' + daycare_id)
+  }
+
   addEvent(event: any): Observable<any> {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     return this.http.post(this.url + "events", event, {headers: headers});    

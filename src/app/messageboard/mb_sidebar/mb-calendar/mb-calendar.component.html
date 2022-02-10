@@ -3,26 +3,11 @@
 
 <div class="row mx-1">
     <div class="col-sm-12">
-      <h4 class="my-2">calendar</h4>
+      <h4 class="my-2">Calendar</h4>
     </div>
-    <p>Monday 1 Jan 2021 <br>
-    <span class="text-muted">Event name</span>
-    </p>
-    <p>Tuesday 2 Jan 2021 <br>
-    <span class="text-muted">Event name</span>
-    </p>
-    <p>Wednesday 3 Jan 2021 <br>
-    <span class="text-muted">Event name</span>
-    </p>
-    <p>Thursday 4 Jan 2021 <br>
-    <span class="text-muted">Event name</span>
-    </p>
-    <p>Friday 5 Jan 2021 <br>
-    <span class="text-muted">Event name</span>
-    </p>
-    <p>Saturday 6 Jan 2021 <br>
-    <span class="text-muted">Event name</span>
-    </p>
-    <p>Sunday 7 Jan 2021 <br>
-    <span class="text-muted">Event name</span>
-    </p>
+    <div *ngFor="let event of events$">
+      <p>{{event.date}} <br>
+      <span class="text-muted">{{event.title}}</span>
+      </p>
+    </div>
+    
