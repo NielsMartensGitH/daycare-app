@@ -35,10 +35,8 @@
               "src/assets/startbootstrap-sb-admin-gh-pages/js/scripts.js",
               "src/assets/startbootstrap-sb-admin-gh-pages/assets/demo/chart-area-demo.js",
               "src/assets/startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js",
-              
               "./node_modules/crypto-js/crypto-js.js"
-
-            ]
+]
           },
           "configurations": {
             "production": {
