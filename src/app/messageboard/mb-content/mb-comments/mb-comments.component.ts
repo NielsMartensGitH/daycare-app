@@ -10,18 +10,31 @@ import { TimeService } from 'src/app/time.service';
 })
 export class MbCommentsComponent implements OnInit {
   @Input() postId!: number;
+
+  curDaycare!: any;
+  curParent!: any;
+
   comments$!: Comments[]
   textareaHeight: string = '58px'
   commentText: string =  "";
-  commentId!: number
+  commentId!: number ;
   editComment!: string
   comment_editor!: HTMLElement
 
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
-    this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => this.comments$ = comments);
+
+    this.curParent = sessionStorage.getItem('parentID');
+    this.curDaycare = sessionStorage.getItem('linkedDaycareParent');
+
+    this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => {
+      this.comments$ = comments
+      console.log(this.comments$)
+      console.log(this.commentId + "ID")
+    });
   }
+  
 
   calculateTimeSince(timeStamp: string) {
     const timestamp = new Date(timeStamp);
