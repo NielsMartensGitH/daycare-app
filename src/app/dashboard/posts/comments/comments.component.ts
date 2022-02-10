@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
-import { Comments } from 'src/app/shared/model/comments.model';
+import { MbComments } from 'src/app/shared/model/comments.model';
 import { TimeService } from 'src/app/time.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { TimeService } from 'src/app/time.service';
 })
 export class CommentsComponent implements OnInit {
   @Input() postId!: number;
-  comments$!: Comments[]
+  curDaycare!: any;
+  comments$!: MbComments[]
   textareaHeight: string = '58px'
   commentText: string =  "";
   commentId!: number
@@ -20,6 +21,7 @@ export class CommentsComponent implements OnInit {
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
+    this.curDaycare = sessionStorage.getItem('daycare_id');
     this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => this.comments$ = comments);
   }
 
@@ -49,7 +51,7 @@ onAddComment(comment: string) {
     'comment': comment,
     'post_id': this.postId,
     'parent_id': null,
-    'daycare_id': 1
+    'daycare_id': this.curDaycare
   }
   this.dataStorageService.addComment(newComment).subscribe(
     () => {
@@ -64,7 +66,7 @@ onUpdateComment(comment: string, id: number) {
     'comment': comment,
     'post_id': this.postId,
     'parent_id': null,
-    'daycare_id': 1
+    'daycare_id': this.curDaycare
   }
 
   this.dataStorageService.updateComment(editedComment, id).subscribe(

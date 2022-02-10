@@ -1,13 +1,19 @@
 <div class="card-body">
     <div *ngFor="let comment of comments$" class="row">
-      <div class="col-auto mx-2 avatarbox">
-        <img src="../../../assets/img/person-icon.png" alt="" width="50px" class="rounded-pill">
+      <div class="col-auto mx-3 my-1 avatarbox">
+        <img *ngIf="comment.parent_id else daycarevatar" src="{{comment.parentavatar}}" alt="" width="50px" class="rounded-pill">
+        <ng-template #daycarevatar>
+          <img src="{{comment.avatar}}" alt="" width="50px" class="rounded-pill">
+        </ng-template>
       </div>
       <div class="col-auto message">
         <div class="card-text px-3 py-2 my-1">
           <div class="d-flex justify-content-between">
           <div class="commenthead">
-            <h6>Daycare Sunshine</h6>
+            <h6 *ngIf="comment.daycare_id else parentname">{{comment.name}}</h6>
+            <ng-template #parentname>
+                <h6>{{comment.firstname}} {{comment.lastname}}</h6>
+            </ng-template>
             <small>{{calculateTimeSince(comment.created_at)}}<span> ago</span></small>
           </div>
           <div class="dropdown">
