@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
-import { Comments } from 'src/app/shared/model/comments.model';
+import { MbComments } from 'src/app/shared/model/mbcomments.model';
 import { TimeService } from 'src/app/time.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class MbCommentsComponent implements OnInit {
   curDaycare!: any;
   curParent!: any;
 
-  comments$!: Comments[]
+  comments$!: MbComments[]
   textareaHeight: string = '58px'
   commentText: string =  "";
   commentId!: number ;
@@ -61,8 +61,8 @@ onAddComment(comment: string) {
     'id': null,
     'comment': comment,
     'post_id': this.postId,
-    'parent_id': null,
-    'daycare_id': 1
+    'parent_id': this.curParent,
+    'daycare_id': null
   }
   this.dataStorageService.addComment(newComment).subscribe(
     () => {
@@ -76,8 +76,8 @@ onUpdateComment(comment: string, id: number) {
     'id': id,
     'comment': comment,
     'post_id': this.postId,
-    'parent_id': null,
-    'daycare_id': 1
+    'parent_id': this.curParent,
+    'daycare_id': null
   }
 
   this.dataStorageService.updateComment(editedComment, id).subscribe(
