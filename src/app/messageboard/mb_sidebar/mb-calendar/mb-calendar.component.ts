@@ -10,15 +10,25 @@ import { Event } from 'src/app/shared/model/event.models';
 export class MbCalendarComponent implements OnInit {
   daycare_id!: number; 
   events$!:Event[];
+  filteredEvents!:Event[];
   constructor(private dataStorage:DatastorageService) { }
 
   ngOnInit(): void {
 
 
     this.daycare_id = JSON.parse(sessionStorage.getItem("linkedDaycareParent") || '{}')
-
-     this.dataStorage.getEventsByDaycareId(this.daycare_id).subscribe(events => this.events$ = events)
-     }
+     
+     this.dataStorage.getEventsByDaycareId(this.daycare_id).subscribe(
+       events => 
+       this.events$ = events
+       )
+       setTimeout(() => {
+       const currentdate = new Date();
+       ///filter out only the upcoming events and reverse to show the closest date on top
+           this.filteredEvents = this.events$.reverse().filter(ev => <any>new Date(ev.date) >= currentdate.setDate(currentdate.getDate() - 1))
+        
+          }, 500)
+    }
      
   }
 
