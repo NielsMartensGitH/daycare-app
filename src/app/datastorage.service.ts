@@ -86,6 +86,10 @@ export class DatastorageService {
     return this.http.get<any>(this.url + 'children/' + id).pipe()
   }
 
+  getAllChildrenByDaycare(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'daycarechildren/' + id).pipe();
+  }
+
   addChild(child: any): Observable<any> {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     return this.http.post(this.url + 'children', child, {headers: headers});

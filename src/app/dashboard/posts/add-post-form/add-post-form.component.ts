@@ -3,6 +3,7 @@ import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { FileuploadService } from 'src/app/fileupload.service';
+import { Child } from 'src/app/shared/model/child.models';
 
 @Component({
   selector: 'app-add-post-form',
@@ -17,12 +18,17 @@ export class AddPostFormComponent implements OnInit {
   $posts!: Posts[];
   files: File[] = [];
   curDaycare!: any;
+  children$!: Child[];
 
   constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService) { }
 
   ngOnInit() {
 
     this.curDaycare = sessionStorage.getItem('daycare_id');
+
+    this.dataStorage.getAllChildrenByDaycare(this.curDaycare).subscribe(data => {
+      this.children$ = data;
+    })
 
     this.postsForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
