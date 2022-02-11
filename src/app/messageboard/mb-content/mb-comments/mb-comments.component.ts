@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { MbComments } from 'src/app/shared/model/mbcomments.model';
 import { TimeService } from 'src/app/time.service';
@@ -10,9 +10,11 @@ import { TimeService } from 'src/app/time.service';
 })
 export class MbCommentsComponent implements OnInit {
   @Input() postId!: number;
+  @Output() commentNum = new EventEmitter;
 
   curDaycare!: any;
   curParent!: any;
+  commentAmount!: number;
 
   comments$!: MbComments[]
   textareaHeight: string = '58px'
@@ -30,6 +32,8 @@ export class MbCommentsComponent implements OnInit {
 
     this.dataStorageService.getCommentsbyPostId(this.postId).subscribe(comments => {
       this.comments$ = comments
+      this.commentAmount = this.comments$.length
+      this.commentNum.emit(this.commentAmount)
       console.log(this.comments$)
       console.log(this.commentId + "ID")
     });

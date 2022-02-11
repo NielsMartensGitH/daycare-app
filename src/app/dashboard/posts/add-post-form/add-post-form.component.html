@@ -12,9 +12,13 @@
               <input type="text" class="form-control" formControlName="title" id="titleInput" placeholder="Choose a title">
               <span *ngIf="!postsForm.get('title')?.valid && postsForm.get('title')?.touched">This field is required!</span>
             </div>
-            <select formControlName="privacy" class="form-select" aria-label="Default select example" [(ngModel)]="default">
+            <select formControlName="privacy" class="form-select my-2" aria-label="Default select example" [(ngModel)]="default">
               <option [ngValue]="null" [disabled]="true">Choose a privacy</option>
               <option *ngFor="let privacy of privacies" [ngValue]="privacy">{{privacy}}</option>
+            </select>
+            <select formControlName="child" class="form-select" aria-label="Default">
+              <option [ngValue]="null" [disabled]="true">Choose a child</option>
+              <option *ngFor="let child of children$" [ngValue]="child.id">{{child.child_firstname}}</option>
             </select>
             <div class="my-3">
               <label class=""form-label>Add pictures</label>

@@ -6,10 +6,9 @@
 <div class="row">
   <div class="col-sm-12">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addmessage">
+    <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addmessage">
   Add message
-    </button> |
-    <button class="btn btn-danger">Delete selected messages</button>
+    </button>
   </div>
 </div>
 <div *ngFor="let post of posts$" class="row justify-content-center my-3">
@@ -26,7 +25,7 @@
           </div>
           <div class="col-sm-1">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-action dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Actions
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -86,7 +85,7 @@
        <div class="privacy d-flex justify-content-between">
          <p class="m-0" *ngIf="post.privacy == 0; else private">Every parent can see this message</p>
          <ng-template #private>Only You can see this message</ng-template>
-         <p class="m-0 commentbutton" (click)="messageId(post.id)">Comments</p>
+         <button class="btn btn-secondary m-0 commentbutton" (click)="messageId(post.id)">Comments</button>
        </div> 
       </div>
       <app-comments [postId]="post.id" *ngIf="msgId == post.id && msgToggle"></app-comments>

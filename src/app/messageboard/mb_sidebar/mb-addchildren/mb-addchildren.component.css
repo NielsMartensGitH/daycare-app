@@ -1,0 +1,17 @@
+.modal-content{
+    color: black;
+}
+.yesdot{
+    height: 15px;
+    width: 15px;
+    background-color: rgb(0, 255, 0);
+    border-radius: 50%;
+    display: inline-block;
+}
+.nodot{
+    height: 25px;
+    width: 25px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    display: inline-block;
+}
