@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatastorageService } from 'src/app/datastorage.service';
 
 @Component({
   selector: 'app-sidenavbar',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavbarComponent implements OnInit {
 
-  constructor() { }
+  curDaycare!: any;
+  daycareName!: string;
 
-  ngOnInit(): void {
+  constructor(private dataStorage: DatastorageService) { }
+
+  ngOnInit()  {
+    this.curDaycare = sessionStorage.getItem('daycare_id');
+    this.dataStorage.getDaycareName(this.curDaycare).subscribe(
+      data => {
+        this.daycareName = data[0].name;
+      }
+    )
   }
 
 }
