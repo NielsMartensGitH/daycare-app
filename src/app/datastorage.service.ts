@@ -186,5 +186,9 @@ export class DatastorageService {
   getPostsbyParent(parentId: number, daycareId: number): Observable<any>{
     return this.http.get<any>(this.url + "parentposts/" + parentId + "/" + daycareId);
   }
+
+  getChildById(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'children/child/' + id)
+  }
 }
 

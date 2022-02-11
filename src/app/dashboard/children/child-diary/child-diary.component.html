@@ -5,10 +5,12 @@
         <div class="modal-header kindfox-green-bg">
           <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
           <h5 class="modal-title" id="exampleModalLabel">Diary</h5>
+          {{passedInChild.id}}
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
           (click)=onClose()></button>
-          
        </div>
+
+       
         <div class="modal-body m-2">
             <form (ngSubmit)="onSubmit(message_food.value, message_sleep.value, messageAct.value, extraMessage.value)" [formGroup]="childDiaryForm">
                 <div class="mb-3 row">
@@ -18,7 +20,8 @@
                             <textarea name="" id="" cols="30" rows="3"
                             placeholder="Today I ate all of my broccoli soup..."
                             formControlName="message_food"
-                            #message_food></textarea>
+                            #message_food>
+                            </textarea>
                             <span *ngIf="!childDiaryForm.get('message_food')?.valid && childDiaryForm.get('message_food')?.touched" 
                             class="help-block">This field is required!</span>
                         </div>

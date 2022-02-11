@@ -25,9 +25,8 @@ export class MbCalendarComponent implements OnInit {
        setTimeout(() => {
        const currentdate = new Date();
        ///filter out only the upcoming events and reverse to show the closest date on top
-           this.filteredEvents = this.events$.reverse().filter(ev => <any>new Date(ev.date) >= currentdate.setDate(currentdate.getDate() - 1))
-        
-          }, 500)
+           this.filteredEvents = this.events$.filter(ev => <any>new Date(ev.date) >= currentdate.setDate(currentdate.getDate() - 1)).reverse()
+          },1000)
     }
      
   }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatastorageService } from 'src/app/datastorage.service';
 import { Child } from 'src/app/shared/model/child.models';
 
 @Component({
@@ -8,7 +9,7 @@ import { Child } from 'src/app/shared/model/child.models';
   styleUrls: ['./child-diary.component.css']
 })
 export class ChildDiaryComponent implements OnInit {
-  @Input() child_id!:number//child passed from the children
+  @Input() child_id!:number //child passed from the children
   @Output() diaryAdded = new EventEmitter<any>(); //emit a new diary to the parent via the custom event
   @Output() btnStatusChange = new EventEmitter<number>();
   childDiaryForm!:FormGroup; 
@@ -25,8 +26,11 @@ export class ChildDiaryComponent implements OnInit {
   parsedChild!:any;
   yellowFace = false;
   poos = [false, false, false,false,false];
+  passedInChild!:Child;
   //childName = `${this.passed_child.child_firstname} ${this.passed_child.child_lastname}`
-  constructor() { }
+  constructor(private dataStorage:DatastorageService) { }
+
+
 
   ngOnChanges(){
 
@@ -35,7 +39,7 @@ export class ChildDiaryComponent implements OnInit {
       
     }
     console.log(this.poos)
-    
+    this.ngOnInit()
   }
 
   
@@ -48,6 +52,7 @@ export class ChildDiaryComponent implements OnInit {
       'extraMessage': new FormControl(null, Validators.required)
     })
     
+    this.dataStorage.getChildById(this.child_id).subscribe(child => this.passedInChild = child)
     
   }
   
