@@ -75,7 +75,6 @@ export class DatastorageService {
     return this.http.post(this.parentUrl, parent, {headers: headers});
   }
 
-  
 
   deleteParent(parent: Parent): Observable<any> {
 
@@ -159,6 +158,10 @@ export class DatastorageService {
   //search for the daycare with the provided email
   daycareloginsearch(email: any): Observable<any>{
     return this.http.get<any>(this.url + 'daycares/search/' + email);
+  }
+
+  getDaycareName(id: number) {
+    return this.http.get<any>(this.url + 'daycarename/' + id);
   }
 
   getAllEvents(): Observable<any> {
