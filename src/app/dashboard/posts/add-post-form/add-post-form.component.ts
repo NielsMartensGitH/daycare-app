@@ -27,6 +27,7 @@ export class AddPostFormComponent implements OnInit {
     this.postsForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
+      'child': new FormControl(null, [Validators.required]),
       'message': new FormControl(null, [Validators.required]),
       'photos': new FormControl(null)
     })
@@ -41,7 +42,8 @@ export class AddPostFormComponent implements OnInit {
 
   addPost(message: string) {
 
-  const privacy = this.postsForm.controls["privacy"].value
+  const privacy = this.postsForm.controls["privacy"].value;
+  const child = this.postsForm.controls["child"].value;
 
   const privacyValue = privacy == "private" ? 1 : 0
     const newPost = {
@@ -51,7 +53,7 @@ export class AddPostFormComponent implements OnInit {
       'message': message,
       'daycare_id': this.curDaycare,
       'privacy': privacyValue,
-      'child_id': 2
+      'child_id': child
     }
 
     this.uploadfile.upload(this.files);
