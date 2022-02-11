@@ -11,13 +11,21 @@ export class MbAddchildrenComponent implements OnInit {
   @Input() parentId!:number;
   parent_id = sessionStorage.getItem('parentID')
   childparents$!:Child[];
+  curchild!: any;
   constructor(private dataStorage:DatastorageService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getChildParents(this.parent_id).subscribe(childparents => this.childparents$ = childparents)
+    this.dataStorage.getChildParents(this.parent_id).subscribe(childparents => {this.childparents$ = childparents
+      this.curchild = childparents[0];
+    })
   }
   ngOnChange(){
     this.ngOnInit();
+  }
+
+  showInfochild(selectedchild:any){
+    this.curchild = selectedchild;
+    console.log(this.curchild);
   }
 
 }

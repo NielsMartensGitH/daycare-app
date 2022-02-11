@@ -3,7 +3,26 @@
 <div class="col-sm-12">
     <h4 class="my-2">my children</h4>
     <div class="container" *ngFor="let child of childparents$">
-    <a><i class="fas fa-baby border rounded-circle p-2"></i><span class="mx-2">{{child.child_firstname}}</span></a><br>
+    <a><i class="fas fa-baby border rounded-circle p-2"></i><span class="mx-2" data-bs-toggle="modal" data-bs-target="#kiddo" (click)="showInfochild(child)">{{child.child_firstname}}</span></a><br>
     <a class="mx-4 text-light"><i class="fas fa-plus"></i><span class="mx-1">Add child</span></a>
   </div>
+</div>
+
+<div class="modal fade" id="kiddo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{curchild.child_firstname}} {{curchild.child_lastname}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Age: {{curchild.age}}</p>
+        <p *ngIf="curchild.checked_in === 1">Checked in: <span class="yesdot"></span></p>
+        <p *ngIf="curchild.checked_in === 0">Checked in: <span class="nodot"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
+</div>
