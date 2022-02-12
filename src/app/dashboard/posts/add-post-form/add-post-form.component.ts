@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { FileuploadService } from 'src/app/fileupload.service';
 import { Child } from 'src/app/shared/model/child.models';
 
@@ -20,7 +20,10 @@ export class AddPostFormComponent implements OnInit {
   curDaycare!: any;
   children$!: Child[];
 
-  constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService) { }
+  constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService, private fb: FormBuilder) {
+
+    
+   }
 
   ngOnInit() {
 
@@ -30,13 +33,19 @@ export class AddPostFormComponent implements OnInit {
       this.children$ = data;
     })
 
-    this.postsForm = new FormGroup({
+    this.postsForm = this.fb.group({
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
-      'child': new FormControl(null, [Validators.required]),
+      'child': new FormControl(""),
       'message': new FormControl(null, [Validators.required]),
       'photos': new FormControl(null)
     })
+
+    this.postsForm.get("privacy")?.valueChanges.subscribe(data => {
+      this.setvalidator()
+    })
+
+    
 
     
     // this.postsForm.statusChanges.subscribe(
@@ -83,5 +92,17 @@ export class AddPostFormComponent implements OnInit {
           this.files.push(val);
         });
     }
-  
+
+    setvalidator() {
+
+      if (this.postsForm.controls["privacy"].value == "private") {
+        this.postsForm.controls['child'].setValidators([Validators.required]);
+        console.log(this.postsForm)
+      } else {
+        this.postsForm.controls['child'].clearValidators();
+        console.log(this.postsForm)
+      }
+      this.postsForm.get('child')?.updateValueAndValidity()
+    }
+
 }
