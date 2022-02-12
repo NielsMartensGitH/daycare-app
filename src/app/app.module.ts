@@ -43,6 +43,7 @@ import { DiarycommentsComponent } from './dashboard/diaries/diarycomments/diaryc
 import { ImgToggleDirective } from './dashboard/children/img-toggle.directive';
 import { EncrDecrService } from '../app/encr-decr.service';
 import { MbCommentsComponent } from './messageboard/mb-content/mb-comments/mb-comments.component';
+import { ChildEditComponent } from './dashboard/children/child-edit/child-edit.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -84,7 +85,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DiariesComponent,
     DiarycommentsComponent,
     ImgToggleDirective,
-    MbCommentsComponent
+    MbCommentsComponent,
+    ChildEditComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule
