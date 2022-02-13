@@ -27,5 +27,11 @@ body{
     height: 100%;
 }
 
-
-  
+.about-us{
+    background-color: #E27D60;
+    text-align: center;
+    margin: 0%;
+    padding: 15%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
