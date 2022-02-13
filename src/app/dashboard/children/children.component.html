@@ -41,7 +41,7 @@
 </div>
 
 <app-child-diary [child_id]="childId" (diaryAdded)="onDiaryAdd($event)" (btnStatusChange)="onBtnChange($event)"></app-child-diary>
-<app-child-edit [child_id]="passedChild"></app-child-edit>
+<app-child-edit [childToEdit]="passedChild"></app-child-edit>
 
 
 <!---

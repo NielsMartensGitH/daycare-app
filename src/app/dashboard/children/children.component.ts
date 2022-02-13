@@ -10,7 +10,7 @@ import { Child } from 'src/app/shared/model/child.models';
 export class ChildrenComponent implements OnInit {
   children$!: Child[];
   childId = 18;
-  passedChild!:Child;
+  passedChild!:any;
   diary = "Diary";
   passedID = 0;
   constructor(private dataStorage: DatastorageService) { }
