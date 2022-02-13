@@ -17,11 +17,14 @@
               <option [ngValue]="null" [disabled]="true">Choose a privacy</option>
               <option *ngFor="let privacy of privacies" [ngValue]="privacy">{{privacy}}</option>
             </select>
-
-            <select *ngIf="default == 'private'" formControlName="child" class="form-select" aria-label="Default">
-              <option [ngValue]="null" [disabled]="true">Choose a child</option>
-              <option *ngFor="let child of children$" [ngValue]="child.id">{{child.child_firstname}}</option>
-            </select>
+            <div *ngIf="default == 'private'">
+              <label><b>Select a child</b></label>
+              <select  formControlName="child" class="form-select" aria-label="Default select example">
+                <option [ngValue]="null" [disabled]="true">Choose a child</option>
+                <option *ngFor="let child of children$" [ngValue]="child.id">{{child.child_firstname}}</option>
+              </select>
+            </div>
+            
             <div class="my-3">
               <label class=""form-label>Add pictures</label>
               <input formControlName="photos" type="file" multiple class="form-control" accept="image/png, image/jpeg" (change)="onChange($event)">

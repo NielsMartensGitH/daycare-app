@@ -71,6 +71,8 @@ export class AddPostFormComponent implements OnInit {
       'child_id': child
     }
 
+    console.log(newPost)
+
     this.uploadfile.upload(this.files);
     
     
