@@ -9,16 +9,15 @@ import { TimeService } from 'src/app/time.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts$!:any[];
-  newPosts$!:any[];
-  diaries$!:[];
-  array!: any[];
-  curDaycare!: any;
+  posts$!:any[];  // fetch of all the posts by one specific daycare
+  curDaycare!: any; // daycare id a stored in the sessionStorage
 
-  editThisMsg!:string;
-  editId!: number;
-  msgId!: number;
-  msgToggle: boolean = false;
+
+  editThisMsg!:string;  // the message we want to edit which we will send to childcomponent EditPostFormComponent
+  editId!: number; // the id of the post which we want to edit which we will send to childcomponent EditPostFormComponent
+
+  msgId!: number; // for showing ONLY comments of 
+  msgToggle: boolean = false; // FALSE IS NOT SHOWING COMMENTS , TRUE IS SHOWING COMMENTS
 
   constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
@@ -28,40 +27,10 @@ export class PostsComponent implements OnInit {
       posts => {
         this.posts$ = posts;
       })
-
-    this.dataStorage.getAllDiaries().subscribe( 
-        diaries => {
-          this.diaries$ = diaries;
-          this.diaries$.map((obj:any) => {
-            obj.poop = obj.poop.split("&")
-          })
-        })
-        setTimeout(() => {
-          this.array = [...this.posts$, ...this.diaries$];
-          this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
-          console.log(this.newPosts$)
-        }, 1000)
-
-
-    // this.dataStorage.getAllDiaries().subscribe( 
-    //     diaries => {
-    //       this.diaries$ = diaries;
-    //       this.diaries$.map((obj:any) => {
-    //         obj.poop = obj.poop.split("&")
-    //       })
-    //     })
-          // setTimeout(() => {
-        //   this.array = [...this.posts$, ...this.diaries$];
-          
-        //   console.log(this.array);
-        //   this.newPosts$ = this.array.sort((a:any, b:any) => <any>new Date(b.created_at) - <any>new Date(a.created_at));
-        //   console.log(this.newPosts$)
-        // }, 2000)
-    
-      //<any>new Date(a.created_at) - <any>new Date(b.created_at)
-
-    
   }
+
+  
+// METHOD WHICH SENDS A TIMESTAMP TO OUR TimeService
 
   calculateTimeSince(timeStamp: string) {
     const timestamp = new Date(timeStamp);
@@ -69,6 +38,8 @@ export class PostsComponent implements OnInit {
     timestamp.setMinutes( timestamp.getMinutes() + 7);
     return this.timeService.timeSince(timestamp);
   }
+
+  // ADD POST
 
   onAddPost(posts: Posts[]) {
     this.dataStorage.addPost(posts).subscribe(
@@ -78,6 +49,8 @@ export class PostsComponent implements OnInit {
       
   }
 
+  // EDIT POST , this posts argument comes from the child via EventEmitter!!
+
   onEditPost(posts: any) {
 
     this.dataStorage.updatePost(posts, posts.id).subscribe(
@@ -85,23 +58,31 @@ export class PostsComponent implements OnInit {
     )
   }
 
+  // DELETE POST
+
   deletePost(postId: number) {
    this.dataStorage.deletePost(postId).subscribe(
      () => this.ngOnInit()
    );   
   }
-  
+
+
+  // WHEN EDITING WE NEED TO SEND current message and the ID of the post TO OUR CHILD COMPONENT EditPostFormComponent 
+
   onEdit(sendMsg:string, id: number){
     this.editThisMsg = sendMsg;
     this.editId = id; 
     console.log(this.editThisMsg);
   }
 
+
+  // 
+
   messageId(id: number) {
-    if (id == this.msgId) {
+    if (id == this.msgId) { // When we already opened the comments of this posts (when msgID is already known) it will close again
       this.msgToggle = false;
       this.msgId = 0;
-    } else {
+    } else { // else comments will be shown
       this.msgId = id;
       this.msgToggle = true;
     }
