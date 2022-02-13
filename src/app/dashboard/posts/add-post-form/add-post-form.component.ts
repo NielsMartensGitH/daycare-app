@@ -11,19 +11,16 @@ import { Child } from 'src/app/shared/model/child.models';
   styleUrls: ['./add-post-form.component.css']
 })
 export class AddPostFormComponent implements OnInit {
-  @Output() onSubmitted = new EventEmitter();
-  postsForm!: FormGroup;
-  privacies: string[] = ["public", "private"];
+  @Output() onSubmitted = new EventEmitter();  // sends new message to method onSubmitted 
+  postsForm!: FormGroup; // Here we instantiate our postsForm for our formcontrol
+  privacies: string[] = ["public", "private"]; // Possitble values for our select element where we choouse message privacy
   default = null;
-  $posts!: Posts[];
+  $posts!: Posts[]; 
   files: File[] = [];
-  curDaycare!: any;
-  children$!: Child[];
+  curDaycare!: any;  // Currentdaycare id from our sessionstorage
+  children$!: Child[]; // Here we will put all the children of the daycare which we can chose from in select element when adding private posts
 
-  constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService, private fb: FormBuilder) {
-
-    
-   }
+  constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService, private fb: FormBuilder) {}
 
   ngOnInit() {
 
@@ -33,6 +30,7 @@ export class AddPostFormComponent implements OnInit {
       this.children$ = data;
     })
 
+      // make input of our forms required !! PHOTOS is NOT required , child is ONLY REQUIRED WHEN CHOOSING PRIVACY "PRIVATE" in select element
     this.postsForm = this.fb.group({
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
@@ -41,26 +39,22 @@ export class AddPostFormComponent implements OnInit {
       'photos': new FormControl(null)
     })
 
+    // we set the validator to required if privacy is private in the 'setValidator' method!
     this.postsForm.get("privacy")?.valueChanges.subscribe(data => {
       this.setvalidator()
     })
 
-    
-
-    
-    // this.postsForm.statusChanges.subscribe(
-    //   (status) => console.log(status)
-    // )
-
   }
 
 
+  // ADD POST
+
   addPost(message: string) {
 
-  const privacy = this.postsForm.controls["privacy"].value;
-  const child = this.postsForm.controls["child"].value;
+  const privacy = this.postsForm.controls["privacy"].value; // we store the selected value of our 'privacy' select element here in a variable
+  const child = this.postsForm.controls["child"].value; // we store the selected value of our 'child' select element here in a variable
 
-  const privacyValue = privacy == "private" ? 1 : 0
+  const privacyValue = privacy == "private" ? 1 : 0 // we want to change the value private to 1 or when public to 0
     const newPost = {
       'id': null,
       'type_id': 1,
@@ -73,20 +67,23 @@ export class AddPostFormComponent implements OnInit {
 
     console.log(newPost)
 
+    // for uploading our photos in the fileUploadService
     this.uploadfile.upload(this.files);
     
-    
+    // when post is added all form values should be made empty with 'clearForm'     
     this.clearForm();
-    // this.dataStorage.addPost(newPost).subscribe();
+
+    // we send the newPost to our parent component 'PostsComponent' via the EventEmitter
     this.onSubmitted.emit(newPost)
 
   }
 
+  // for clearing our form values
   clearForm() {
     this.postsForm.reset();
   }
 
-      // On file Select
+      // On file Select they will be pushed to our files array for uploading multiple files
       onChange(event: any) {
         const files_object = event.target.files;
         Object.values(files_object).forEach(
@@ -95,6 +92,8 @@ export class AddPostFormComponent implements OnInit {
         });
     }
 
+
+    // this method will set validator of child to required if in select element of 'privacy' the selected value is 'private' 
     setvalidator() {
 
       if (this.postsForm.controls["privacy"].value == "private") {
