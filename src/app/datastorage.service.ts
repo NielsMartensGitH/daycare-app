@@ -23,7 +23,33 @@ export class DatastorageService {
   constructor(private http: HttpClient) { 
     this.postUrl = "http://gameofcones.be/api/posts";
   }
+
+
+  // ===================== ALL METHODS WITH DAYCARE ENDPOINTS ====================
+
+  getDaycareById(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'daycares/' + id)
+  }
+
   
+  getDaycareName(id: number) {
+    return this.http.get<any>(this.url + 'daycarename/' + id);
+  }
+
+  addDaycare(newDaycare: any) :Observable<any>{
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + 'daycares', newDaycare, {headers: headers});
+  }
+
+  // ============= METHOD FOR SHOWING CHILDREN OF PARENTS ====================
+
+  getChildParents(id:any): Observable<any> {
+    return this.http.get<any>(this.url + 'children/' + id).pipe()
+  }
+
+  
+  // ============== ALL METHODS FOR POSTS =================
+
   getAllPosts(): Observable<Posts[]> {
     return this.http.get<Posts[]>(this.url + 'posts').pipe()
 
@@ -33,9 +59,16 @@ export class DatastorageService {
     return this.http.get<Posts[]>(this.url + 'daycareposts/' + id)
   }
 
+
   addPost(newPost: any): Observable<any> {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     return this.http.post(this.postUrl, newPost, {headers: headers});    
+  }
+
+ 
+  deletePost(id: number): Observable<any> {
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.delete(this.postUrl + '/' + id, {responseType: 'text'});
   }
 
   updatePost(updatedPost: any, id: number): Observable<any> {
@@ -43,18 +76,19 @@ export class DatastorageService {
     return this.http.put(this.url + 'posts/' + id, updatedPost, {headers: headers});
   }
 
-  addComment(newComment: any): Observable<any> {
-    const headers = new HttpHeaders().set("Content-type", "application/json");
-    return this.http.post(this.url + 'comments', newComment, {headers: headers});    
+  getMessageboardPost(childID:any, daycareID:any): Observable<any>{
+    return this.http.get<any>(this.url + "posts/search/" + daycareID + "/" + childID);
   }
 
-  deletePost(id: number): Observable<any> {
-    const headers = new HttpHeaders().set("Content-Type", "application/json");
-    return this.http.delete(this.postUrl + '/' + id, {responseType: 'text'});
-  }
+  // ============= ALL METHODS FOR POSTCOMMENTS ================
 
   getCommentsbyPostId(id: number): Observable<any> {
     return this.http.get(this.url + 'comments/' + id ).pipe();
+  }
+
+  addComment(newComment: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + 'comments', newComment, {headers: headers});    
   }
 
   deleteComment(id: number): Observable<any> {
@@ -65,6 +99,8 @@ export class DatastorageService {
     const headers = new HttpHeaders().set("Content-type", "application/json");
     return this.http.put(this.url + 'comments/' + id, updatedComment, {headers: headers});
   }
+
+  // ++++++++++ ALL METHODS FOR PARENTS ================
 
   getAllParents(): Observable<Parent[]> {
     return this.http.get<Parent[]>(this.url + 'parents').pipe();
@@ -82,12 +118,21 @@ export class DatastorageService {
     return this.http.delete(url, {responseType: 'text'});
   }
 
-  getChildParents(id:any): Observable<any> {
-    return this.http.get<any>(this.url + 'children/' + id).pipe()
+  updateParent(parent: Parent): Observable<Parent> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    const url = `${this.parentUrl}/${parent.id}`;
+    return this.http.put<Parent>(url, parent, {headers: headers});
   }
 
-  getAllChildrenByDaycare(id: number): Observable<any> {
-    return this.http.get<any>(this.url + 'daycarechildren/' + id).pipe();
+  getPostsbyParent(parentId: number, daycareId: number): Observable<any>{
+    return this.http.get<any>(this.url + "parentposts/" + parentId + "/" + daycareId);
+  }
+
+  // =============== ALL METHODS FOR CHILDREN ===================
+
+
+  getAllChildren(): Observable<Child[]> {
+    return this.http.get<Child[]>(this.url + 'children').pipe();
   }
 
   addChild(child: any): Observable<any> {
@@ -95,20 +140,12 @@ export class DatastorageService {
     return this.http.post(this.url + 'children', child, {headers: headers});
   }
 
-  updateChildCheckedIn(child:Child): Observable<Child> {
-    const headers = new HttpHeaders().set("Content-type", "application/json");
-    const url = `${this.url}children/${child.id}`;
-    return this.http.put<Child>(url, child, {headers: headers});
+  getAllChildrenByDaycare(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'daycarechildren/' + id).pipe();
   }
 
-  updateParent(parent: Parent): Observable<Parent> {
-    const headers = new HttpHeaders().set("Content-type", "application/json");
-    const url = `${this.parentUrl}/${parent.id}`;
-    return this.http.put<Parent>(url, parent, {headers: headers});
-  }
-
-  getAllChildren(): Observable<Child[]> {
-    return this.http.get<Child[]>(this.url + 'children').pipe();
+  getChildById(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'children/child/' + id)
   }
 
   deleteChild(child: Child): Observable<any> {
@@ -116,18 +153,22 @@ export class DatastorageService {
     return this.http.delete(url, {responseType: 'text'});
   }
 
-  //this is to search the parent through the provided email
-  loginsearch(email: any):Observable<any>{
-    return this.http.get<any>(this.url + 'parents/search/' + email);
-  }
 
-  addDaycare(newDaycare: any) :Observable<any>{
+  updateChildCheckedIn(child:Child): Observable<Child> {
     const headers = new HttpHeaders().set("Content-type", "application/json");
-    return this.http.post(this.url + 'daycares', newDaycare, {headers: headers});
+    const url = `${this.url}children/${child.id}`;
+    return this.http.put<Child>(url, child, {headers: headers});
   }
 
+
+  // =============== ALL METHODS FOR DIARIES ===================
+  
   getAllDiaries(): Observable<any> {
     return this.http.get<any>(this.url + 'diaries').pipe();
+  }
+
+  deleteDiary(id: number): Observable<any> {
+    return this.http.delete(this.url + 'diaries/' + id, {responseType: 'text'});
   }
 
   addDiary(newDiary: any): Observable<any> {
@@ -135,67 +176,71 @@ export class DatastorageService {
     return this.http.post(this.url + "diaries", newDiary, {headers: headers});    
   }
 
-  deleteDiary(id: number): Observable<any> {
-    return this.http.delete(this.url + 'diaries/' + id, {responseType: 'text'});
-  }
 
- addDiaryComment(newComment: any): Observable<any> {
+// ================ ALL METHODS FOR DIARYCOMMENTS ===============
+
+getDiaryCommentsbyDiaryId(id: number): Observable<any> {
+  return this.http.get(this.url + 'diarycomments/' + id ).pipe();
+}
+
+deleteDiaryComment(id: number): Observable<any> {
+  return this.http.delete(this.url + 'diarycomments/' + id, {responseType: 'text'});
+}
+
+
+updateDiaryComment(updatedComment: any, id: number): Observable<any> {
+  const headers = new HttpHeaders().set("Content-type", "application/json");
+  return this.http.put(this.url + 'diarycomments/' + id, updatedComment, {headers: headers});
+}
+
+
+addDiaryComment(newComment: any): Observable<any> {
   const headers = new HttpHeaders().set("Content-type", "application/json");
   return this.http.post(this.url + 'diarycomments', newComment, {headers: headers});    
 }
 
+// =============== ALL METHODS FOR EVENTS =====================
 
-  getDiaryCommentsbyDiaryId(id: number): Observable<any> {
-    return this.http.get(this.url + 'diarycomments/' + id ).pipe();
+getAllEvents(): Observable<any> {
+  return this.http.get<any>(this.url + 'events').pipe();
+}
+
+
+addEvent(event: any): Observable<any> {
+  const headers = new HttpHeaders().set("Content-type", "application/json");
+  return this.http.post(this.url + "events", event, {headers: headers});    
+
+}
+
+getEventsByDaycareId(daycare_id:number): Observable<any> {
+  return this.http.get<any>(this.url + 'events/' + daycare_id)
+}
+
+// ====================== ALL METHODS FOR AUTHORIZATION ========================
+
+  //this is to search the parent through the provided email
+  loginsearch(email: any):Observable<any>{
+    return this.http.get<any>(this.url + 'parents/search/' + email);
   }
 
 
-
-  deleteDiaryComment(id: number): Observable<any> {
-    return this.http.delete(this.url + 'diarycomments/' + id, {responseType: 'text'});
-  }
-
-  updateDiaryComment(updatedComment: any, id: number): Observable<any> {
-    const headers = new HttpHeaders().set("Content-type", "application/json");
-    return this.http.put(this.url + 'diarycomments/' + id, updatedComment, {headers: headers});
-  }
   //search for the daycare with the provided email
   daycareloginsearch(email: any): Observable<any>{
     return this.http.get<any>(this.url + 'daycares/search/' + email);
   }
 
-  getDaycareName(id: number) {
-    return this.http.get<any>(this.url + 'daycarename/' + id);
-  }
+ 
 
-  getAllEvents(): Observable<any> {
-    return this.http.get<any>(this.url + 'events').pipe();
-  }
+ 
+  
 
-  getEventsByDaycareId(daycare_id:number): Observable<any> {
-    return this.http.get<any>(this.url + 'events/' + daycare_id)
-  }
 
-  addEvent(event: any): Observable<any> {
-    const headers = new HttpHeaders().set("Content-type", "application/json");
-    return this.http.post(this.url + "events", event, {headers: headers});    
 
-  }
 
-  getDaycareById(id: number): Observable<any> {
-    return this.http.get<any>(this.url + 'daycares/' + id)
-  }
+ 
 
-  getMessageboardPost(childID:any, daycareID:any): Observable<any>{
-    return this.http.get<any>(this.url + "posts/search/" + daycareID + "/" + childID);
-  }
+ 
 
-  getPostsbyParent(parentId: number, daycareId: number): Observable<any>{
-    return this.http.get<any>(this.url + "parentposts/" + parentId + "/" + daycareId);
-  }
-
-  getChildById(id: number): Observable<any> {
-    return this.http.get<any>(this.url + 'children/child/' + id)
-  }
+ 
 }
 
