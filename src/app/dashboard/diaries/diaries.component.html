@@ -1,22 +1,32 @@
+<!-- DIARIES MESSAGEBOARD IN DASHBOARD -->
+
+<!-- title -->
 <div class="row">
     <div class="col-sm-12">
         <h1>Diaries</h1>
     </div>
 </div>
+
+
+<!-- Loop of diaries data -->
 <div *ngFor="let diary of diaries$" class="row justify-content-center my-3">
   <div class="col-sm-12">
     <div class="card">
       <div class="card-body">
         <div class="row">
           <div class="col-auto">
+
             <img src="{{diary.daycareavatar}}" class="img-responsive rounded-circle" width="50px" alt="">
-            <!-- <i class="border p-3 rounded-circle fas fa-user"></i> -->
           </div>
           <div class="col-sm-10">
             <h5 class="card-title">{{diary.daycarename}}</h5>
+
+            <!-- TIME SINCE POSTED -->
             <h6 class="card-subtitle mb-2 text-muted">Posted <span>{{calculateTimeSince(diary.created_at)}}</span><span> ago</span></h6>
           </div>
           <div class="col-sm-1">
+
+            <!-- EDITING OR DELETE DROPDOWN -->
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Actions
@@ -25,32 +35,48 @@
                 <li><a class="dropdown-item" (click)="deleteDiary(diary.id)">Delete</a></li>
               </ul>
             </div>
+
           </div>
         </div>
         <p class="card-text">{{diary.message}}</p>
-        <!----    Diary template--->
+
+        
+        <!----    DIARY TEMPLATE--->
         <div class="container green-border p-3 m-2" *ngIf="diary.child_firstname">
+
+          <!-- NAME OF CHILD -->
           <div class="row">
             <div class="col green-border m-3 p-2">
               {{diary.child_firstname}} {{diary.child_lastname}}
             </div>
           </div>
+
+
           <div class="row">
+
+            <!-- FOOD -->
             <div class="col green-border m-3 p-2">
               <span><p class="card-text kindfox-font-orange">{{diary.food}}</p>
               <i class={{diary.foodSmile}}></i></span>
             </div>
+
+            <!-- SLEEP -->
             <div class="col green-border m-3 p-2">
               <p class="card-text kindfox-font-orange">{{diary.sleep}}</p>
               <i class={{diary.sleepSmile}}></i>
             </div>
+
           </div>
+
+          <!-- POT VISITS -->
           <div class="kindfox-green-bg m-2 p-2">
             <h5>Pot visits</h5>
             <div>
               <i class="fas fa-poo {{diary.poop[0]}}"></i><i class="fas fa-poo {{diary.poop[1]}}"></i><i class="fas fa-poo {{diary.poop[2]}}"></i><i class="fas fa-poo {{diary.poop[3]}}"></i><i class="fas fa-poo {{diary.poop[4]}}"></i>
             </div>
           </div>
+
+          <!-- ACTIVITIES -->
           <div class="green-border m-2 p-2 kindfox-font-orange">
             <h5>Activities</h5>
             {{diary.activities}}
@@ -71,6 +97,8 @@
           </div>
         </div>
         <!---Diary template ends here-->
+
+        <!-- FOOTER OF POST -->
       </div>
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">
@@ -83,6 +111,4 @@
     </div>
   </div>
 </div>
-
-  <!-- <app-add-post-form (onSubmitted)="onAddPost($event)"></app-add-post-form> -->
   
