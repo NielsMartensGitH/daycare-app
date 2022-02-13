@@ -16,7 +16,7 @@ export class PostsComponent implements OnInit {
   editThisMsg!:string;  // the message we want to edit which we will send to childcomponent EditPostFormComponent
   editId!: number; // the id of the post which we want to edit which we will send to childcomponent EditPostFormComponent
 
-  msgId!: number; // for showing ONLY comments of 
+  msgId!: number; // for showing ONLY comments of this id
   msgToggle: boolean = false; // FALSE IS NOT SHOWING COMMENTS , TRUE IS SHOWING COMMENTS
 
   constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
