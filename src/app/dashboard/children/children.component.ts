@@ -51,4 +51,9 @@ export class ChildrenComponent implements OnInit {
     // this.diary = "Done"
   //
    }
+
+   editChild(child:any){
+     this.dataStorage.editChild(child).subscribe(() => this.ngOnInit());
+     console.log(child)
+   }
 }
