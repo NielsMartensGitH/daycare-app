@@ -2,16 +2,16 @@
 
 <div class="col-sm-12">
     <h4 class="my-2">my children</h4>
-    <div class="container" *ngFor="let child of childparents$">
+    <div class="container my-2" *ngFor="let child of childparents$">
 
-    <a><i class="fas fa-baby border rounded-circle p-2"></i><span class="mx-2" data-bs-toggle="modal" data-bs-target="#kiddo" (click)="showInfochild(child)">{{child.child_firstname}}</span></a><br>
-
-    <a><i class="fas fa-baby border rounded-circle p-2"></i><span class="mx-2">{{child.child_firstname}}</span></a><br>
-
+    <a class="kiddo noselect" (click)="addChildId(child.id)" routerLink="childdiaries"><i class="fas fa-baby border rounded-circle p-2"></i><span class="mx-2">{{child.child_firstname}}</span></a>
+      
+        <span *ngIf="curchild.checked_in === 1" class="yesdot"></span>
+        <span *ngIf="curchild.checked_in === 0" class="nodot"></span>
   </div>
 </div>
 
-<div class="modal fade" id="kiddo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="kiddo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -28,4 +28,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

@@ -17,15 +17,21 @@ export class MbAddchildrenComponent implements OnInit {
   ngOnInit(): void {
     this.dataStorage.getChildParents(this.parent_id).subscribe(childparents => {this.childparents$ = childparents
       this.curchild = childparents[0];
+      console.log(childparents)
     })
   }
   ngOnChange(){
     this.ngOnInit();
   }
 
-  showInfochild(selectedchild:any){
-    this.curchild = selectedchild;
-    console.log(this.curchild);
+  addChildId(child: any) {
+    sessionStorage.setItem('ChildId', child);
+
   }
+
+  // showInfochild(selectedchild:any){
+  //   this.curchild = selectedchild;
+  //   console.log(this.curchild);
+  // }
 
 }

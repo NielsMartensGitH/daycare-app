@@ -9,12 +9,13 @@ import { TimeService } from 'src/app/time.service';
   styleUrls: ['./diarycomments.component.css']
 })
 export class DiarycommentsComponent implements OnInit {
-  @Input() diaryId!: number;
-  diaryComments$!: Diarycomments[];
-  commentId!: number;
-  commentText!: string;
-  editComment!: string;
-  textareaHeight: string = '58px';
+  @Input() diaryId!: number // we get this from our parent 'diariesComponent'; 
+  diaryComments$!: Diarycomments[]; //  get the comments of a specific diary
+
+  commentId!: number; // will be given when editing comment to only edit the comment with this id
+  commentText!: string; // ngModel will have the typed value of the textarea
+  editComment!: string;  // will be the original comment we want to edit to be filled in in our editField
+  textareaHeight: string = '58px'; // this value is dynamic and changes when the inputtext of textarea gets bigger
   comment_editor!: HTMLElement;
 
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
@@ -22,6 +23,8 @@ export class DiarycommentsComponent implements OnInit {
   ngOnInit() {
     this.dataStorageService.getDiaryCommentsbyDiaryId(this.diaryId).subscribe(comments => this.diaryComments$ = comments);
   }
+
+   // METHOD WHICH SENDS A TIMESTAMP TO OUR TimeService
 
   calculateTimeSince(timeStamp: string) {
     const timestamp = new Date(timeStamp);
@@ -31,16 +34,22 @@ export class DiarycommentsComponent implements OnInit {
     return this.timeService.timeSince(timestamp);
   }
 
+  // DELETES COMMENT
+
   onDeleteComment(id: number) {
     this.dataStorageService.deleteDiaryComment(id).subscribe(
       () => this.ngOnInit()
     );   
   }
 
+  // FOR EDITING ONLY A SPECIFIC COMMENT
+
   onClickEdit(id: number, comment: string) {
     this.commentId = id;
     this.editComment = comment;
   }
+
+  // WE CREATE A NEW COMMENT WHICH WILL BE LINKED WITH A DAIRY BY ADDING DIARY_ID
 
   onAddComment(comment: string) {
     const newComment = {
@@ -57,6 +66,9 @@ export class DiarycommentsComponent implements OnInit {
     )
   }
 
+  
+// WHEN WE WANT TO UPDATE A COMMENT
+
   onUpdateComment(comment: string, id: number) {
     const editedComment = {
       'id': id,
@@ -70,6 +82,9 @@ export class DiarycommentsComponent implements OnInit {
     )
   }
 
+
+  // WE WANT TO UPDATE OUR COMMENT BY PRESSING ENTER IN OUR TEXTAREA , THIS METHOD WILL TRIGGER WHEN KEY IS PRESSED
+
   updateComment(e: any, el: HTMLElement) {
     if(e.key === "Enter") {
       const toEditId = this.commentId;
@@ -78,9 +93,13 @@ export class DiarycommentsComponent implements OnInit {
     }
   }
 
+    // this method will make the height of our textarea element grow equally with the scrollheight (scrollheight grows when more text is inputed)
+
     autogrow(el: HTMLElement) {
       el.style.height = el.scrollHeight + 'px';
     }
+
+    // WE WANT TO ADD OUR COMMENT BY PRESSING ENTER IN OUR TEXTAREA , THIS METHOD WILL TRIGGER WHEN KEY IS PRESSED
 
     triggerFunction(e: any, el: HTMLElement) {
       if(e.key === 'Enter') {

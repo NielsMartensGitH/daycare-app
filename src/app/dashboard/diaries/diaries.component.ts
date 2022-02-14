@@ -8,9 +8,10 @@ import { TimeService } from 'src/app/time.service';
   styleUrls: ['./diaries.component.css']
 })
 export class DiariesComponent implements OnInit {
-  diaries$!: any[];
-  msgId!: number;
-  msgToggle: boolean = false;
+  diaries$!: any[]; // fetch of all the diaries by one specific daycare
+
+  msgId!: number; // for showing ONLY comments of this id 
+  msgToggle: boolean = false; // FALSE IS NOT SHOWING COMMENTS , TRUE IS SHOWING COMMENTS
 
   constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
@@ -24,6 +25,8 @@ export class DiariesComponent implements OnInit {
         })
   }
 
+  // METHOD WHICH SENDS A TIMESTAMP TO OUR TimeService
+
   calculateTimeSince(timeStamp: string) {
     const timestamp = new Date(timeStamp);
     timestamp.setHours( timestamp.getHours() + 1 );
@@ -31,15 +34,19 @@ export class DiariesComponent implements OnInit {
     return this.timeService.timeSince(timestamp);
   }
 
+  // DELETE DIARY
+
   deleteDiary(id: number) {
      this.dataStorage.deleteDiary(id).subscribe(() => this.ngOnInit());
   }
 
+
+
   messageId(id: number) {
-    if (id == this.msgId) {
+    if (id == this.msgId) { // When we already opened the comments of this posts (when msgID is already known) it will close again
       this.msgToggle = false;
       this.msgId = 0;
-    } else {
+    } else { // else comments will be shown
       this.msgId = id;
       this.msgToggle = true;
     }

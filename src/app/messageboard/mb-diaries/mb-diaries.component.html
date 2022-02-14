@@ -1,10 +1,6 @@
-<!-- DIARIES MESSAGEBOARD IN DASHBOARD -->
-
-<!-- title -->
-<div class="row">
-    <div class="col-sm-12">
-        <h1>Diaries</h1>
-    </div>
+<!-- DIARIES MESSAGEBOARD  -->
+<div class="d-flex justify-content-end">
+    <button class="btn  btn-secondary my-2" routerLink="../">Back to Posts</button>
 </div>
 
 
@@ -25,16 +21,6 @@
             <h6 class="card-subtitle mb-2 text-muted">Posted <span>{{calculateTimeSince(diary.created_at)}}</span><span> ago</span></h6>
           </div>
           <div class="col-sm-1">
-
-            <!-- EDITING OR DELETE DROPDOWN -->
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Actions
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" (click)="deleteDiary(diary.id)">Delete</a></li>
-              </ul>
-            </div>
 
           </div>
         </div>

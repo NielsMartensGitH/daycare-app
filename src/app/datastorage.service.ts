@@ -226,6 +226,13 @@ addDiaryComment(newComment: any): Observable<any> {
   return this.http.post(this.url + 'diarycomments', newComment, {headers: headers});    
 }
 
+  // GET DIARIES OF SPECIFIC CHILDREN
+
+getChildDiaries(id: number): Observable<any> {
+  return this.http.get(this.url + 'diaries/' + id ).pipe();
+
+}
+ 
 
 // =============== ALL METHODS FOR EVENTS =====================
 

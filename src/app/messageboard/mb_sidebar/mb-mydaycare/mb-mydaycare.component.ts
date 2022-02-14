@@ -10,16 +10,20 @@ import { Daycare } from 'src/app/shared/model/daycare.model';
 export class MbMydaycareComponent implements OnInit {
 
 
-  daycareId!: number
+  daycareId!: any
   daycareInfo$!: Daycare[]
 
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit() {
-    this.daycareId = JSON.parse(sessionStorage.getItem("linkedDaycareParent") || '{}');
-    this.dataStorage.getDaycareById(this.daycareId).subscribe(data => {
-      this.daycareInfo$ = data;
-    })
+    this.daycareId = sessionStorage.getItem("linkedDaycareParent");
+
+  
+      this.dataStorage.getDaycareById(this.daycareId).subscribe(data => {
+        this.daycareInfo$ = data;
+      })
+    
+    
   }
 
 }

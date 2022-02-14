@@ -8,8 +8,8 @@ import { DatastorageService } from 'src/app/datastorage.service';
 })
 export class SidenavbarComponent implements OnInit {
 
-  curDaycare!: any;
-  daycareName!: string;
+  curDaycare!: any; // id of logged in daycare which we find in our sessionstorage
+  daycareName!: string; // the name of the daycare which we get from our API
 
   constructor(private dataStorage: DatastorageService) { }
 
