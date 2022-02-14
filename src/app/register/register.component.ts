@@ -3,6 +3,7 @@ import { DatastorageService } from 'src/app/datastorage.service';
 import { Daycare } from 'src/app/shared/model/daycare.model'
 import { Router } from '@angular/router';
 import { EncrDecrService } from '../encr-decr.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -12,52 +13,66 @@ import { EncrDecrService } from '../encr-decr.service';
 export class RegisterComponent implements OnInit {
   @Output() onSubmitted = new EventEmitter <Daycare>();
   
+  newDayCareForm!: FormGroup;
+
   //depricated check if registery for daycare or parent
   isdaycare = true;
 
   pasverify!: string;
-  
+  /*
   newDaycare!: Daycare;
-  did:any = null;
+  
   companyname!:string;
   dcadress!: string;
   dcemail!: string;
   dcphone!: number;
   dcpassword!: string;
   dcbtw!: string;
+  */
+  did:any = null;
   dccountry: any = "null";
   dccity: any = "null";
   dcpostalcode: any = "null";
-  dcavatar: any="null"
-  
+  dcavatar: any="null";
   constructor(private dataStorage: DatastorageService, private router:Router, private EncrDecr: EncrDecrService) { }
 
-  ngOnInit(): void {
-        
+  ngOnChanges(){
+    this.ngOnInit();
   }
 
-  Onsubmit(){
+  ngOnInit(): void {
+    this.newDayCareForm = new FormGroup({
+      'companyname': new FormControl(null, Validators.required),
+      'dcadress': new FormControl(null, Validators.required),
+      'dcemail': new FormControl(null, Validators.required),
+      'dcphone': new FormControl('1', Validators.pattern('(04)[0-9 ]{8}')),
+      'dcpassword': new FormControl(null, Validators.required),
+      'dcbtw': new FormControl(null, Validators.required)
+    })
+  }
+
+  Onsubmit(companyname:any, dcadress: any, dcemail: any, dcphone: any, dcpassword: any, dcbtw: any){
     //here we check if the passwor is the same as the second time it has
-      if (this.pasverify == this.dcpassword){
+      if (this.pasverify == dcpassword){
         //here we encrypt the password before we send it to the database
-        this.dcpassword = this.EncrDecr.set(this.pasverify);
+        dcpassword = this.EncrDecr.set(this.pasverify);
         //console.log(this.dcpassword);
         //daycare model that we send to the daycare table in the database
         const newDaycare = new Daycare(
           this.did, 
-          this.companyname, 
-          this.dcadress,
-          this.dcemail,
-          this.dcphone, 
-          this.dcpassword,
-          this.dcbtw,
+          companyname, 
+          dcadress,
+          dcemail,
+          dcphone, 
+          dcpassword,
+          dcbtw,
           this.dccountry,
           this.dccity,
           this.dcpostalcode,
           this.dcavatar
         )
         //here we do a check to see if the email is already in use
-        this.dataStorage.daycareloginsearch(this.dcemail).subscribe(res => {
+        this.dataStorage.daycareloginsearch(dcemail).subscribe(res => {
           if(res.length==0){
             //we add daycare if email is not use
             this.dataStorage.addDaycare(newDaycare).subscribe(() => this.ngOnInit());
@@ -65,7 +80,7 @@ export class RegisterComponent implements OnInit {
             //daycare (yes this can be done with the return function when making a new daycare but i haven't figured
             //it out yet) and then we redirect
             setTimeout(() => {
-              this.succesfull();
+              this.succesfull(dcemail);
             }, 500);
           }
           else{
@@ -79,8 +94,8 @@ export class RegisterComponent implements OnInit {
       }
   }
 
-  succesfull(){ 
-    this.dataStorage.daycareloginsearch(this.dcemail).subscribe(res => {
+  succesfull(dcemail:any){ 
+    this.dataStorage.daycareloginsearch(dcemail).subscribe(res => {
       console.log(res)
       if(res.length != 0){
         sessionStorage.setItem('daycare_id', res[0].id)

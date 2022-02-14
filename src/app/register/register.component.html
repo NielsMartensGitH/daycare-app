@@ -17,72 +17,88 @@
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                           <form class="row gx-2 gy-2 align-items-center">
                             <div class="col">
-                              <form (ngSubmit)="Onsubmit()">
-                                
-                                <div  *ngIf="isdaycare">
-
-                                  <div class="input-group-icon mb-3">
+                              <form (ngSubmit)="Onsubmit(companyname, dcadress, dcemail, dcphone, dcpassword, dcbtw)" [formGroup]="newDayCareForm">
+                                <div class="input-group-icon mb-3">
                                   <input 
                                   class="form-control input-box form-foodwagon-control" 
                                   id="companyname" 
                                   type="text" 
                                   placeholder="Company Name" 
-                                  [(ngModel)]=companyname 
-                                  name="firstname">
+                                  formControlName="companyname"
+                                  #companyname
+                                  >
+                                  <span *ngIf="!newDayCareForm.get('companyname')?.valid && newDayCareForm.get('companyname')?.touched" 
+                                  class="help-block">Please enter a name!</span>
 
-                                  </div>
+                                </div>
                                   <div class="input-group-icon mb-3">
 
                                     <input 
                                     class="form-control input-box form-foodwagon-control" 
-                                    id="dcEmail" type="email" 
+                                    id="dcEmail" 
+                                    type="email" 
                                     placeholder="E-mail address" 
-                                    [(ngModel)]=dcemail 
-                                    name="dcemail">
-
-                                  </div>
-                                  <div class="input-group-icon mb-3">
+                                    formControlName="dcemail"
+                                    #dcemail
+                                    >
+                                    <span *ngIf="!newDayCareForm.get('dcemail')?.valid && newDayCareForm.get('dcemail')?.touched" 
+                                    class="help-block">Please enter an email address!</span>
+                                </div>
+                                <div class="input-group-icon mb-3">
 
                                     <input class="form-control input-box form-foodwagon-control" 
                                     id="dcadress" 
                                     type="text" 
                                     placeholder="address" 
-                                    [(ngModel)]=dcadress 
-                                    name="dcadress">
-                                  
-                                  </div>
-                                  <div class="input-group-icon mb-3">
+                                    formControlName="dcadress"
+                                    #dcadress
+                                    >
+                                    <span *ngIf="!newDayCareForm.get('dcadress')?.valid && newDayCareForm.get('dcadress')?.touched" 
+                                    class="help-block">Please enter an address!</span>
+
+                                </div>
+                                <div class="input-group-icon mb-3">
                                     
                                     <input class="form-control input-box form-foodwagon-control" 
                                     id="BTW" 
                                     type="text" 
                                     placeholder="BTW" 
-                                    [(ngModel)]=dcbtw 
-                                    name="dcbtw">
+                                    formControlName="dcbtw"
+                                    #dcbtw
+                                    >
+                                    <span *ngIf="!newDayCareForm.get('dcbtw')?.valid && newDayCareForm.get('dcbtw')?.touched" 
+                                    class="help-block">Please enter your btw!</span>
                                   
-                                  </div>
-                                  <div class="input-group-icon mb-3">
+                                </div>
+                                <div class="input-group-icon mb-3">
                                     
                                     <input class="form-control input-box form-foodwagon-control" 
                                     id="dcphone" 
-                                    type="number" 
+                                    type="text" 
                                     placeholder="phone" 
-                                    [(ngModel)]=dcphone 
-                                    name="dcphone">
+                                    formControlName="dcphone"
+                                    #dcphone
+                                    >
+                                    <span *ngIf="!newDayCareForm.get('dcphone')?.valid && newDayCareForm.get('dcphone')?.touched" 
+                                    class="help-block">Phone number should start with 04 and have 10 digits</span>
                                   
-                                  </div>
-                                  <div class="input-group-icon mb-3">
+                                </div>
+                                <div class="input-group-icon mb-3">
 
                                     <input class="form-control input-box form-foodwagon-control" 
                                     id="dcpassword" 
                                     type="password" 
                                     placeholder="Password" 
-                                    [(ngModel)]=dcpassword 
-                                    name="dcpassword">
+                                    formControlName="dcpassword"
+                                    #dcpassword
+                                    >
+                                    <span *ngIf="!newDayCareForm.get('dcpassword')?.valid && newDayCareForm.get('dcpassword')?.touched" 
+                                    class="help-block">Please enter a password!</span>
                                   
-                                  </div>
+                                </div>
 
-                                    <div class="input-group-icon mb-3">
+                                <div class="input-group-icon mb-3">
+
                                     <input class="form-control input-box form-foodwagon-control" 
                                     id="pasverify" 
                                     type="password" 
@@ -90,8 +106,8 @@
                                     [(ngModel)]=pasverify 
                                     name="pasverify">
                                   
-                                  </div>                
-                                </div>
+                                </div>                
+                                
                                 <!--
                                 <div *ngIf="!isdaycare">
                                   <div class="input-group-icon mb-3">
@@ -116,8 +132,11 @@
                                 </div>
                               -->
 
-                                <button class="btn btn-danger" id="submit" type="submit">Sign up</button>
-                                </form>
+                                <button type="submit" [disabled]="newDayCareForm.invalid" class="btn btn-success">Sign up</button>
+                              </form>
+                                
+
+                                  
                             </div>
                             
                             <!--<div class="d-grid gap-3 col-sm-auto">-->
