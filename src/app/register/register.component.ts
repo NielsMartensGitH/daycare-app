@@ -19,16 +19,9 @@ export class RegisterComponent implements OnInit {
   isdaycare = true;
 
   pasverify!: string;
-  /*
-  newDaycare!: Daycare;
   
-  companyname!:string;
-  dcadress!: string;
-  dcemail!: string;
-  dcphone!: number;
-  dcpassword!: string;
-  dcbtw!: string;
-  */
+  maySubmit: boolean = false;
+
   did:any = null;
   dccountry: any = "null";
   dccity: any = "null";
@@ -37,6 +30,7 @@ export class RegisterComponent implements OnInit {
   constructor(private dataStorage: DatastorageService, private router:Router, private EncrDecr: EncrDecrService) { }
 
   ngOnChanges(){
+    //with every change in the form it will check the if it's valid 
     this.ngOnInit();
   }
 
@@ -49,10 +43,12 @@ export class RegisterComponent implements OnInit {
       'dcpassword': new FormControl(null, Validators.required),
       'dcbtw': new FormControl(null, Validators.required)
     })
+    console.log(this.newDayCareForm.valid)
   }
 
   Onsubmit(companyname:any, dcadress: any, dcemail: any, dcphone: any, dcpassword: any, dcbtw: any){
-    //here we check if the passwor is the same as the second time it has
+    //here we check if the password is the same as the second time it has
+    if(this.newDayCareForm.valid){
       if (this.pasverify == dcpassword){
         //here we encrypt the password before we send it to the database
         dcpassword = this.EncrDecr.set(this.pasverify);
@@ -92,6 +88,10 @@ export class RegisterComponent implements OnInit {
       else{
         window.alert("Incorrect password")
       }
+    }
+    else{
+      window.alert("Fill in the form please")
+    }
   }
 
   succesfull(dcemail:any){ 

@@ -29,7 +29,7 @@ export class LoginscreenComponent implements OnInit {
       else{
         //here we decrypt the password that is linked to the users email
         let decrPW = this.EncrDecr.get(res[0].password);
-        //here we check if the decrypted password abd tge guveb password are the same
+        //here we check if the decrypted password and the given password are the same
         if(decrPW == this.password){
           //we set the parents id and and the daycare they are linked to in the sessionstorage for later use
           //and redirect to the messageboard
