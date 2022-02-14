@@ -12,6 +12,8 @@ export class MessageboardComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    //here we check if the person has logged in as a parent
+    //if not then they will be send back to the loginscreen
     if(sessionStorage.getItem('parentID')===null){
       //this.router.navigate(['/login'])
     }

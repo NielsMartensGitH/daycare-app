@@ -12,6 +12,7 @@ import { EncrDecrService } from '../encr-decr.service';
 export class RegisterComponent implements OnInit {
   @Output() onSubmitted = new EventEmitter <Daycare>();
   
+  //depricated check if registery for daycare or parent
   isdaycare = true;
 
   pasverify!: string;
@@ -36,9 +37,12 @@ export class RegisterComponent implements OnInit {
   }
 
   Onsubmit(){
+    //here we check if the passwor is the same as the second time it has
       if (this.pasverify == this.dcpassword){
+        //here we encrypt the password before we send it to the database
         this.dcpassword = this.EncrDecr.set(this.pasverify);
-        console.log(this.dcpassword);
+        //console.log(this.dcpassword);
+        //daycare model that we send to the daycare table in the database
         const newDaycare = new Daycare(
           this.did, 
           this.companyname, 
@@ -52,11 +56,14 @@ export class RegisterComponent implements OnInit {
           this.dcpostalcode,
           this.dcavatar
         )
-        
+        //here we do a check to see if the email is already in use
         this.dataStorage.daycareloginsearch(this.dcemail).subscribe(res => {
           if(res.length==0){
+            //we add daycare if email is not use
             this.dataStorage.addDaycare(newDaycare).subscribe(() => this.ngOnInit());
-        
+            //we use a timeout in order to be able to pull the id of the newly created
+            //daycare (yes this can be done with the return function when making a new daycare but i haven't figured
+            //it out yet) and then we redirect
             setTimeout(() => {
               this.succesfull();
             }, 500);

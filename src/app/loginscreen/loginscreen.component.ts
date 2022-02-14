@@ -20,13 +20,19 @@ export class LoginscreenComponent implements OnInit {
   }
 
   Plogin(){
+    //here we search the database for the given email
     this.dataStorage.loginsearch(this.email).subscribe(res => {
       if(res.length == 0){
+        //if there is no result with the given email we get this warning
         alert("wrong username or password")
       }
       else{
+        //here we decrypt the password that is linked to the users email
         let decrPW = this.EncrDecr.get(res[0].password);
+        //here we check if the decrypted password abd tge guveb password are the same
         if(decrPW == this.password){
+          //we set the parents id and and the daycare they are linked to in the sessionstorage for later use
+          //and redirect to the messageboard
           sessionStorage.setItem('parentID',res[0].id)
           sessionStorage.setItem('linkedDaycareParent',res[0].daycare_id)
           this.router.navigate(['/messageboard'])
@@ -38,15 +44,20 @@ export class LoginscreenComponent implements OnInit {
     });    
   }
   DClogin(){
-    console.log(this.password)
+    //console.log(this.password)
+    //here we search the database for the given email
     this.dataStorage.daycareloginsearch(this.email).subscribe(res => {
       if(res.length == 0){
+        //if there is no result with the given email we get this warning
         alert("wrong username or password")
       }
       else{
+        //here we decrypt the password that is linked to the users email
         let decrPW = this.EncrDecr.get(res[0].password);
-
+        //here we check if the decrypted password abd tge guveb password are the same
         if(decrPW == this.password){
+          //we setthe daycare gets linked to in the sessionstorage for later use
+          //and redirect to the dashboard
           sessionStorage.setItem('daycare_id',res[0].id)
           this.router.navigate(['/dashboard'])
         }
