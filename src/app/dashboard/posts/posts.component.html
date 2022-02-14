@@ -53,7 +53,7 @@
        <div class="privacy d-flex justify-content-between">
          <p class="m-0" *ngIf="post.privacy == 0; else private">Every parent can see this message</p>
          <ng-template #private>Only You can see this message</ng-template>
-         <button class="btn btn-secondary m-0 commentbutton" (click)="messageId(post.id)">Comments</button>
+         <button class="btn btn-secondary commentbutton" (click)="messageId(post.id)">Comments</button>
        </div> 
       </div>
 

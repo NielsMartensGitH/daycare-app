@@ -62,6 +62,7 @@ button.btn-add {
 button.btn-action {
     background-color: #E27D60;
     color: white;
+    margin-left: 15px;
 }
 
 .green-border {

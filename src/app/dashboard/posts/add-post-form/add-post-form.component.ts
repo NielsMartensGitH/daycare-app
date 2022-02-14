@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ComponentFactoryResolver } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { FileuploadService } from 'src/app/fileupload.service';
 import { Child } from 'src/app/shared/model/child.models';
+import { Image } from 'src/app/shared/model/image.model';
 
 @Component({
   selector: 'app-add-post-form',
@@ -17,8 +18,14 @@ export class AddPostFormComponent implements OnInit {
   default = null;
   $posts!: Posts[]; 
   files: File[] = [];
+  formdata = new FormData();
+  images: Image[] = [];
+  ImagesId: number[] = [] // postID of our newly created post which we will give to our EventEmitter
+
+  
   curDaycare!: any;  // Currentdaycare id from our sessionstorage
   children$!: Child[]; // Here we will put all the children of the daycare which we can chose from in select element when adding private posts
+
 
   constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService, private fb: FormBuilder) {}
 
@@ -54,27 +61,61 @@ export class AddPostFormComponent implements OnInit {
   const privacy = this.postsForm.controls["privacy"].value; // we store the selected value of our 'privacy' select element here in a variable
   const child = this.postsForm.controls["child"].value; // we store the selected value of our 'child' select element here in a variable
 
-  const privacyValue = privacy == "private" ? 1 : 0 // we want to change the value private to 1 or when public to 0
-    const newPost = {
-      'id': null,
-      'type_id': 1,
-      'picture': "",
-      'message': message,
-      'daycare_id': this.curDaycare,
-      'privacy': privacyValue,
-      'child_id': child
-    }
 
-    console.log(newPost)
+  // UPLOADS EACH FILE
+  for (let index = 0; index < this.files.length; index++) {
+    const element = this.files[index];
+    const imageObj = {
+      "id": null,
+      "imagepath": element.name
+    }
+    // STORE FILENAME IN IMAGES FOLDER
+    this.dataStorage.postImageName(imageObj).subscribe(
+      (data) => {
+        this.ImagesId.push(data); 
+        console.log(data)
+        // const pivotObj = {
+        //   "id": null,
+        //   "post_id": "",
+        //   "image_id": data
+        // }
+    });    
+
+
+    // this.postImages.push(imageObj);  
+    this.formdata.append('files', element);
+   
+  }
+
+
+
+  this.uploadfile.uploadMultiple(this.formdata).subscribe(
+    (d) => {
+      console.log(d);
+    },
+    (error) => {
+      console.log(error)
+    })
 
     // for uploading our photos in the fileUploadService
-    this.uploadfile.upload(this.files);
+    // this.uploadfile.upload(this.files);
     
+    const privacyValue = privacy == "private" ? 1 : 0 // we want to change the value private to 1 or when public to 0
+  const newPost = {
+    'id': null,
+    'type_id': 1,
+    'picture': "",
+    'message': message,
+    'daycare_id': this.curDaycare,
+    'privacy': privacyValue,
+    'child_id': !child ? null : child
+  }
     // when post is added all form values should be made empty with 'clearForm'     
     this.clearForm();
 
     // we send the newPost to our parent component 'PostsComponent' via the EventEmitter
-    this.onSubmitted.emit(newPost)
+
+    this.onSubmitted.emit({newPost: newPost, imagesId: this.ImagesId})
 
   }
 
@@ -84,14 +125,10 @@ export class AddPostFormComponent implements OnInit {
   }
 
       // On file Select they will be pushed to our files array for uploading multiple files
-      onChange(event: any) {
-        const files_object = event.target.files;
-        Object.values(files_object).forEach(
-          (val: any) => {
-          this.files.push(val);
-        });
+    onChange(event: any) {
+      this.files = event.target.files;
+       
     }
-
 
     // this method will set validator of child to required if in select element of 'privacy' the selected value is 'private' 
     setvalidator() {

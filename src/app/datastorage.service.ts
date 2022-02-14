@@ -19,9 +19,11 @@ export class DatastorageService {
   url: string = "http://gameofcones.be/api/";
   parentUrl: string = "http://gameofcones.be/api/parents";
   postUrl: string = "";
+  nodeUrl: string = "http://nodegameofcones.be/uploads/";
 
   constructor(private http: HttpClient) { 
     this.postUrl = "http://gameofcones.be/api/posts";
+    
   }
 
 
@@ -273,18 +275,18 @@ getEventsByDaycareId(daycare_id:number): Observable<any> {
     return this.http.get<any>(this.url + 'daycares/search/' + email);
   }
 
- 
+  // ======================== METHODS FOR IMAGES ==============================
 
- 
-  
+  postImageName(image: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + "images", image, {headers: headers});    
+  }
 
+  postImagePivotTable(postimage: any): Observable<any> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + "postsimages", postimage, {headers: headers});    
 
-
-
- 
-
- 
-
- 
+  }
+    
 }
 

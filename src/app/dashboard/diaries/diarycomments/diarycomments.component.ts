@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
-import { Diarycomments } from 'src/app/shared/model/diarycomments.model';
+import { MbComments } from 'src/app/shared/model/mbcomments.model';
 import { TimeService } from 'src/app/time.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { TimeService } from 'src/app/time.service';
 })
 export class DiarycommentsComponent implements OnInit {
   @Input() diaryId!: number // we get this from our parent 'diariesComponent'; 
-  diaryComments$!: Diarycomments[]; //  get the comments of a specific diary
+  diaryComments$!: MbComments[]; //  get the comments of a specific diary
 
   commentId!: number; // will be given when editing comment to only edit the comment with this id
   commentText!: string; // ngModel will have the typed value of the textarea
@@ -21,7 +21,10 @@ export class DiarycommentsComponent implements OnInit {
   constructor(private dataStorageService: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
-    this.dataStorageService.getDiaryCommentsbyDiaryId(this.diaryId).subscribe(comments => this.diaryComments$ = comments);
+    this.dataStorageService.getDiaryCommentsbyDiaryId(this.diaryId).subscribe(comments => {
+      this.diaryComments$ = comments
+      console.log(this.diaryComments$)
+    } );
   }
 
    // METHOD WHICH SENDS A TIMESTAMP TO OUR TimeService
@@ -56,7 +59,7 @@ export class DiarycommentsComponent implements OnInit {
       'id': null,
       'comment': comment,
       'diary_id': this.diaryId,
-      'parent_id': null,
+      'parent_id': null, // KEEPS NULL BECAUSE IT WILL BE POSTED BY A DAYCARE
       'daycare_id': 1
     }
     this.dataStorageService.addDiaryComment(newComment).subscribe(
@@ -74,7 +77,7 @@ export class DiarycommentsComponent implements OnInit {
       'id': id,
       'comment': comment,
       'diary_id': this.diaryId,
-      'parent_id': null,
+      'parent_id': null, // KEEPS NULL BECAUSE IT WILL BE UPDATED BY A DAYCARE
       'daycare_id': 1
     }
     this.dataStorageService.updateDiaryComment(editedComment, id).subscribe(

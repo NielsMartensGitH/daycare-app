@@ -1,38 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root' 
 })
 export class FileuploadService {
 
-  base64textString: string[] = [];
-
   constructor(private http: HttpClient) { }
 
+  uploadMultiple(formData: any): Observable<any> {
 
-  upload(files: any) {
-
-    if(files) {
-
-      files.forEach(
-        (file: any) => {
-        var reader = new FileReader();
-
-        reader.onload =this._handleReaderLoaded.bind(this);
-
-        reader.readAsBinaryString(file);
-
-      })
-
-    }
-  
+    return this.http.post('http://nodegameofcones.be:4000/multiplefiles', formData)
+      
   }
 
-  _handleReaderLoaded(readerEvt: any) {
-    var binaryString = readerEvt.target.result;
-           this.base64textString.push(btoa(binaryString))
-           console.log(btoa(binaryString));
-   }
+
+
 
 }

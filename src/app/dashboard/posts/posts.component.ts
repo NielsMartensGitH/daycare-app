@@ -11,6 +11,7 @@ import { TimeService } from 'src/app/time.service';
 export class PostsComponent implements OnInit {
   posts$!:any[];  // fetch of all the posts by one specific daycare
   curDaycare!: any; // daycare id a stored in the sessionStorage
+  imageToShow!: any;
 
 
   editThisMsg!:string;  // the message we want to edit which we will send to childcomponent EditPostFormComponent
@@ -27,6 +28,8 @@ export class PostsComponent implements OnInit {
       posts => {
         this.posts$ = posts;
       })
+
+
   }
 
   
@@ -41,9 +44,37 @@ export class PostsComponent implements OnInit {
 
   // ADD POST
 
-  onAddPost(posts: Posts[]) {
-    this.dataStorage.addPost(posts).subscribe(
-      () => {
+  onAddPost(posts: any) {
+    const post = posts.newPost;
+    const imageIds: number[] = posts.imagesId
+      console.log(imageIds)
+
+    for (let i = 0; i < imageIds.length; i++) {
+      console.log("hello")
+      console.log(imageIds[i])
+      let pivotObj = {
+        "id": null,
+        "post_id": posts.id,
+        "image_id": imageIds[i]
+      }
+      this.dataStorage.postImagePivotTable(pivotObj).subscribe()
+
+    }
+
+    // imageIds.forEach(image_id => {
+    //   let pivotObj = {
+    //     "id": null,
+    //     "post_id": posts.id,
+    //     "image_id": image_id
+    //   }
+
+      // console.log("test")
+      // console.log(pivotObj)
+      // this.dataStorage.postImagePivotTable(pivotObj).subscribe();
+    // })
+    this.dataStorage.addPost(post).subscribe(
+      (data) => {
+        console.log(data)
         this.ngOnInit();
       })
       

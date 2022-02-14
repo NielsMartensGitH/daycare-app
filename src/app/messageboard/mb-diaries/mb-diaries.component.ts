@@ -21,6 +21,7 @@ export class MbDiariesComponent implements OnInit {
     this.childId = sessionStorage.getItem('ChildId');
 
     console.log(this.childId)
+    
     this.dataStorage.getChildDiaries(this.childId).subscribe( 
       diaries => {
         this.diaries$ = diaries;
