@@ -13,22 +13,27 @@ export class MbDiariesComponent implements OnInit {
   msgId!: number; // for showing ONLY comments of this id 
   msgToggle: boolean = false; // FALSE IS NOT SHOWING COMMENTS , TRUE IS SHOWING COMMENTS
   childId!: any;
-  
+
 
   constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.childId = sessionStorage.getItem('ChildId');
 
-    this.childId = sessionStorage.getItem('childId');
+    console.log(this.childId)
     this.dataStorage.getChildDiaries(this.childId).subscribe( 
       diaries => {
         this.diaries$ = diaries;
         this.diaries$.map((obj:any) => {
           obj.poop = obj.poop.split("&")
         })
+        console.log(this.diaries$)
       })
+
+      
   }
 
+ 
     // METHOD WHICH SENDS A TIMESTAMP TO OUR TimeService
 
     calculateTimeSince(timeStamp: string) {

@@ -92,7 +92,7 @@
          <button class="btn btn-secondary m-0 commentbutton" (click)="messageId(diary.id)">Comments</button>
        </div> 
       </div>
-      <app-diarycomments [diaryId]="diary.id" *ngIf="msgId == diary.id && msgToggle"></app-diarycomments>
+      <app-mb-diarycomments [diaryId]="diary.id" *ngIf="msgId == diary.id && msgToggle"></app-mb-diarycomments>
     </div>
   </div>
 </div>
