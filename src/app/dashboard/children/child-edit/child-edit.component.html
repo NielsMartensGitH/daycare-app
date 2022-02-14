@@ -16,13 +16,15 @@
                             placeholder="First name" name="name"
                             formControlName="child_firstname"
                             #child_firstname>
+                            <span *ngIf="!childEditForm.get('child_firstname')?.valid && childEditForm.get('child_firstname')?.touched" 
+                            class="help-block">Please enter a name!</span>
                         </div>
-                        <span *ngIf="!childEditForm.get('child_firstname')?.valid && childEditForm.get('child_firstname')?.touched" 
-                        class="help-block">Please enter a name!</span>
                         <div class="col m-1">
                             <input type="text" class="form-control" id="lastname" placeholder="Last name" name="lastname"
                             formControlName="child_lastname"
                             #child_lastname>
+                            <span *ngIf="!childEditForm.get('child_lastname')?.valid && childEditForm.get('child_lastname')?.touched" 
+                            class="help-block">Please enter a name!</span>
                         </div>
                         </div>
                         <div class="row">
@@ -30,11 +32,15 @@
                                 <input type="number" class="form-control" id="age" placeholder="Age" name="age"
                                 formControlName="age"
                                 #age>
+                                <span *ngIf="!childEditForm.get('age')?.valid && childEditForm.get('age')?.touched" 
+                            class="help-block">Please enter the age!</span>
                             </div>
                             <div class="col m-1">
                                 <input type="text" class="form-control" id="childCode" placeholder="Enter a code" name="code"
                                 formControlName="childcode"
                                 #childcode>
+                                <span *ngIf="!childEditForm.get('childcode')?.valid && childEditForm.get('childcode')?.touched" 
+                            class="help-block">Please enter a valid child code!</span>
                             </div>
                         </div>
                         <div class="row">
