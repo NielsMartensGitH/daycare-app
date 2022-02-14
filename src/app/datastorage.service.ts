@@ -181,6 +181,13 @@ export class DatastorageService {
     return this.http.put<Child>(url, child, {headers: headers});
   }
 
+  // EDIT CHILD
+  editChild(child:Child): Observable<Child> {
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    const url = `${this.url}children/${child.id}`;
+    return this.http.put<Child>(url, child, {headers: headers});
+  }
+
 
   // =============== ALL METHODS FOR DIARIES ===================
   

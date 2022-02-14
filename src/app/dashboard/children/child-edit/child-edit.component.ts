@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Child } from 'src/app/shared/model/child.models';
@@ -10,6 +10,7 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ChildEditComponent implements OnInit {
   @Input() childToEdit!:any;
+  @Output() onChildEdit = new EventEmitter<Child>();
   childEditForm!:FormGroup;
   child$!:Child;
   constructor(private dataStorage:DatastorageService) { }
@@ -39,7 +40,9 @@ export class ChildEditComponent implements OnInit {
   }
 
   onSubmit(child_firstname:any, child_lastname:any, age:any, childcode:any){
-    console.log(child_firstname, child_lastname, age, childcode)
+    const edittedChild = new Child(this.childToEdit.id, child_firstname, child_lastname, age, childcode, this.childToEdit.parent_id, this.childToEdit.checked_in)
+
+    this.onChildEdit.emit(edittedChild);
   }
 
 }

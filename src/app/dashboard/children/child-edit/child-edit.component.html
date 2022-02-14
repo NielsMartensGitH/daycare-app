@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit child</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -16,13 +16,15 @@
                             placeholder="First name" name="name"
                             formControlName="child_firstname"
                             #child_firstname>
+                            <span *ngIf="!childEditForm.get('child_firstname')?.valid && childEditForm.get('child_firstname')?.touched" 
+                            class="help-block">Please enter a name!</span>
                         </div>
-                        <span *ngIf="!childEditForm.get('child_firstname')?.valid && childEditForm.get('child_firstname')?.touched" 
-                        class="help-block">Please enter a name!</span>
                         <div class="col m-1">
                             <input type="text" class="form-control" id="lastname" placeholder="Last name" name="lastname"
                             formControlName="child_lastname"
                             #child_lastname>
+                            <span *ngIf="!childEditForm.get('child_lastname')?.valid && childEditForm.get('child_lastname')?.touched" 
+                            class="help-block">Please enter a name!</span>
                         </div>
                         </div>
                         <div class="row">
@@ -30,27 +32,28 @@
                                 <input type="number" class="form-control" id="age" placeholder="Age" name="age"
                                 formControlName="age"
                                 #age>
+                                <span *ngIf="!childEditForm.get('age')?.valid && childEditForm.get('age')?.touched" 
+                            class="help-block">Please enter the age!</span>
                             </div>
                             <div class="col m-1">
                                 <input type="text" class="form-control" id="childCode" placeholder="Enter a code" name="code"
                                 formControlName="childcode"
                                 #childcode>
+                                <span *ngIf="!childEditForm.get('childcode')?.valid && childEditForm.get('childcode')?.touched" 
+                            class="help-block">Please enter a valid child code!</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col m-1">
                                 <button type="submit" class="btn btn-success"
-                                [disabled]="!childEditForm.valid" data-bs-dismiss="modal"
+                                
                                 >Submit</button>
                             </div>
                         </div>
                     </div>
                   </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        
       </div>
     </div>
   </div>
