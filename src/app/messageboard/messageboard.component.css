@@ -1,4 +1,10 @@
 .side-nav {
+    padding-top: 7%;
     background-color: #85CDCA;
     color: white;
+}
+@media (min-width: 768px){
+    .sidenav{
+        padding-top: 90%;
+    }
 }

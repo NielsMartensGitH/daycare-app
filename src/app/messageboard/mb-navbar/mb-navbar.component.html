@@ -1,6 +1,6 @@
 <!-- our messaboard navbar with link to the dashboard, notifications and user settings -->
 
-<nav class="top-nav navbar navbar-light">
+<nav class="top-nav navbar navbar-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand">
         <img src="../../assets/img/Kindfoxlogowhite.png" width="100px">
@@ -9,8 +9,19 @@
         <!--
         <a class="nav-link" routerLink="../dashboard">Dashboard</a>
         -->
-        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+        <a class="nav-link"><i class="fas fa-bell"></i></a>
         <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+        <!--
+          ngIf="!isMobileSize" 
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">   
+              <li><a class="dropdown-item" href="#!" (click)="logOut()">Logout</a></li>
+              
+          </ul>
+      </li>
+        -->
+        
       </div>
     </div>
   </nav>

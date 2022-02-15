@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mb-navbar',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mb-navbar.component.css']
 })
 export class MbNavbarComponent implements OnInit {
-
-  constructor() { }
+  @Input() isMobileSize = false;
+  
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+    console.log(this.isMobileSize)
   }
+  logOut(){
+    //here we clear the whole storage and go back to login
+    sessionStorage.clear();
+    this.router.navigate(['/login'])
+  }
+  sideBar(){
 
+  }
 }

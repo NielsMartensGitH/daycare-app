@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 export class MessageboardComponent implements OnInit {
 
   parent_id!:any;
+  isMobileSize:boolean = false;
+  screenWidthCheck!:any;
+
   constructor(private router:Router) { }
 
   ngOnInit(): void {
@@ -18,6 +21,14 @@ export class MessageboardComponent implements OnInit {
       //this.router.navigate(['/login'])
     }
     this.parent_id = sessionStorage.getItem('parentID')
+
+    this.screenWidthCheck = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if(this.screenWidthCheck <= 768){
+      this.isMobileSize= true;
+    }
+    else{
+      this.isMobileSize = false;
+    }
   }
 
 }
