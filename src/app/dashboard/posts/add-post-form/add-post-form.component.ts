@@ -92,6 +92,7 @@ export class AddPostFormComponent implements OnInit {
       // On file Select they will be pushed to our files array for uploading multiple files
     onChange(event: any) {
       const files = event.target.files;
+      console.log(files)
       this.addFiles.emit(files)
       
     }

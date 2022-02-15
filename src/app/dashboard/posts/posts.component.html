@@ -50,15 +50,9 @@
           <div class="col-sm-12 d-flex justify-content-center">
             <div id="carouselExampleControls" class="carousel slide carousel-dark slide" data-bs-ride="carousel">
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="../../../assets/img/happyfamily.webp" class="carouselimage d-block w-100" alt="">
-                </div>
-                <div class="carousel-item">
-                  <img src="../../../assets/img/Kindfoxlogowhite.png" class="carouselimage d-block w-100" alt="">
-                </div>
-                <div class="carousel-item">
-                  <img src="../../../assets/img/daycaresunshine_avatar.jpg" class="carouselimage d-block w-100" alt="">
-                </div>
+                  <div *ngFor="let image of postImages$; let i = index" [ngClass]="(i == 0) ? 'carousel-item active' : 'carousel-item'">
+                        <img *ngIf="post.id == image.post_id" src="http://nodegameofcones.be/uploads/{{image.imagepath}}" alt="" class="d-block w-100">
+                  </div>
               </div>
               <button class="arrow carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="arrow carousel-control-prev-icon" aria-hidden="true"></span>
@@ -72,11 +66,7 @@
           </div>
         </div>
 
-        <!-- <div *ngFor="let image of postImages$">
-          <div class="carousel-item">
-            <img src="http://nodegameofcones.be/uploads/{{image.imagepath}}" alt="" class="d-block w-100">
-          </div>
-        </div> -->
+        
         
 
       </div>
@@ -85,6 +75,7 @@
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">
          <p class="m-0" *ngIf="post.privacy == 0; else private">Every parent can see this message</p>
+         <p>POSTID: {{post.id}}</p>
          <ng-template #private>Only You can see this message</ng-template>
          <button class="btn btn-secondary commentbutton" (click)="messageId(post.id)">Comments</button>
        </div> 
