@@ -109,5 +109,15 @@ button.btn.btn-kindfox-primary {
  }
 
 
+.carousel {
+    width: 950px;
+}
 
+.carouselimage {
+    object-fit: cover;
+    object-position: center;
+    width: 550px;
+    height: 550px;
+    overflow: hidden;
+}
 

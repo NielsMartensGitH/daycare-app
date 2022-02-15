@@ -287,6 +287,10 @@ getEventsByDaycareId(daycare_id:number): Observable<any> {
     return this.http.post(this.url + "postsimages", postimage, {headers: headers});    
 
   }
+
+  getImagesByPostId(id: number): Observable<any> {
+    return this.http.get(this.url + "postsimages/" + id);
+  }
     
 }
 

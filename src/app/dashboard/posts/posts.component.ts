@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { TimeService } from 'src/app/time.service';
+import { FileuploadService } from 'src/app/fileupload.service';
 
 @Component({
   selector: 'app-posts',
@@ -10,9 +11,13 @@ import { TimeService } from 'src/app/time.service';
 })
 export class PostsComponent implements OnInit {
   posts$!:any[];  // fetch of all the posts by one specific daycare
+  postImages$!: any
   curDaycare!: any; // daycare id a stored in the sessionStorage
   imageToShow!: any;
+  files!: any;
+  formdata = new FormData();
 
+  pivotPostId!: number
 
   editThisMsg!:string;  // the message we want to edit which we will send to childcomponent EditPostFormComponent
   editId!: number; // the id of the post which we want to edit which we will send to childcomponent EditPostFormComponent
@@ -20,7 +25,7 @@ export class PostsComponent implements OnInit {
   msgId!: number; // for showing ONLY comments of this id
   msgToggle: boolean = false; // FALSE IS NOT SHOWING COMMENTS , TRUE IS SHOWING COMMENTS
 
-  constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
+  constructor(private dataStorage: DatastorageService, private timeService: TimeService, private uploadfile: FileuploadService) { }
 
   ngOnInit(): void {
     this.curDaycare = sessionStorage.getItem('daycare_id');
@@ -29,8 +34,14 @@ export class PostsComponent implements OnInit {
         this.posts$ = posts;
       })
 
-
+      this.dataStorage.getImagesByPostId(191).subscribe(data => {
+        this.postImages$ = data
+      })
   }
+
+
+
+  
 
   
 // METHOD WHICH SENDS A TIMESTAMP TO OUR TimeService
@@ -45,39 +56,49 @@ export class PostsComponent implements OnInit {
   // ADD POST
 
   onAddPost(posts: any) {
-    const post = posts.newPost;
-    const imageIds: number[] = posts.imagesId
-      console.log(imageIds)
 
-    for (let i = 0; i < imageIds.length; i++) {
-      console.log("hello")
-      console.log(imageIds[i])
-      let pivotObj = {
-        "id": null,
-        "post_id": posts.id,
-        "image_id": imageIds[i]
-      }
-      this.dataStorage.postImagePivotTable(pivotObj).subscribe()
-
-    }
-
-    // imageIds.forEach(image_id => {
-    //   let pivotObj = {
-    //     "id": null,
-    //     "post_id": posts.id,
-    //     "image_id": image_id
-    //   }
-
-      // console.log("test")
-      // console.log(pivotObj)
-      // this.dataStorage.postImagePivotTable(pivotObj).subscribe();
-    // })
-    this.dataStorage.addPost(post).subscribe(
+    this.dataStorage.addPost(posts).subscribe(
       (data) => {
         console.log(data)
+        this.pivotPostId = data;
         this.ngOnInit();
       })
-      
+
+console.log(this.files)
+
+  // UPLOADS EACH FILE
+  for (let index = 0; index < this.files.length; index++) {
+    const element = this.files[index];
+    console.log("element")
+    console.log(element)
+    const imageObj = {
+      "id": null,
+      "imagepath": element.name
+    }
+    // STORE FILENAME IN IMAGES FOLDER
+    this.dataStorage.postImageName(imageObj).subscribe(
+      (data) => {
+        console.log(data)    
+        const pivotObj = {
+          "id": null,
+          "post_id": this.pivotPostId,
+          "image_id": data
+        }
+        console.log(pivotObj)
+        this.dataStorage.postImagePivotTable(pivotObj).subscribe()
+    });    
+
+    this.formdata.append('files', element);
+   
+  }
+
+  this.uploadfile.uploadMultiple(this.formdata).subscribe(
+    (d) => {
+      console.log(d);
+    },
+    (error) => {
+      console.log(error)
+    })
   }
 
   // EDIT POST , this posts argument comes from the child via EventEmitter!!
@@ -118,6 +139,10 @@ export class PostsComponent implements OnInit {
       this.msgToggle = true;
     }
    
+  }
+
+  addFiles(files: any) {
+    this.files = files;   
   }
 
 }
