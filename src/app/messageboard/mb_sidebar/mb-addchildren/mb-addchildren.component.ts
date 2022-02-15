@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { Child } from 'src/app/shared/model/child.models';
+import { MbDiariesComponent } from'src/app/messageboard/mb-diaries/mb-diaries.component';
 
 @Component({
   selector: 'app-mb-addchildren',
@@ -12,7 +13,7 @@ export class MbAddchildrenComponent implements OnInit {
   parent_id = sessionStorage.getItem('parentID')
   childparents$!:Child[];
   curchild!: any;
-  constructor(private dataStorage:DatastorageService) { }
+  constructor(private dataStorage:DatastorageService, private changechild: MbDiariesComponent) { }
 
   ngOnInit(): void {
     this.dataStorage.getChildParents(this.parent_id).subscribe(childparents => {this.childparents$ = childparents
@@ -26,7 +27,8 @@ export class MbAddchildrenComponent implements OnInit {
 
   addChildId(child: any) {
     sessionStorage.setItem('ChildId', child);
-
+    this.changechild.setchild(child);
+    console.log("send" + child)
   }
 
   // showInfochild(selectedchild:any){
