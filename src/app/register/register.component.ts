@@ -17,8 +17,6 @@ export class RegisterComponent implements OnInit {
 
   //depricated check if registery for daycare or parent
   isdaycare = true;
-
-  pasverify!: string;
   
   maySubmit: boolean = false;
 
@@ -41,43 +39,43 @@ export class RegisterComponent implements OnInit {
       'dcemail': new FormControl(null, Validators.required),
       'dcphone': new FormControl('1', Validators.pattern('(04)[0-9 ]{8}')),
       'dcpassword': new FormControl(null, Validators.required),
-      'dcbtw': new FormControl(null, Validators.required)
+      'dcbtw': new FormControl(null, Validators.required),
+      'pasverify': new FormControl(null, Validators.required)
     })
     console.log(this.newDayCareForm.valid)
   }
 
-  Onsubmit(companyname:any, dcadress: any, dcemail: any, dcphone: any, dcpassword: any, dcbtw: any){
+  Onsubmit(companyname:any, dcadress: any, dcemail: any, dcphone: any, dcpassword: any, dcbtw: any ,pasverify: any){
     //here we check if the password is the same as the second time it has
     if(this.newDayCareForm.valid){
-      if (this.pasverify == dcpassword){
+      if (pasverify.value == dcpassword.value){
         //here we encrypt the password before we send it to the database
-        dcpassword = this.EncrDecr.set(this.pasverify);
-        //console.log(this.dcpassword);
+        dcpassword = this.EncrDecr.set(pasverify.value);
+        console.log(dcpassword);
         //daycare model that we send to the daycare table in the database
         const newDaycare = new Daycare(
           this.did, 
-          companyname, 
-          dcadress,
-          dcemail,
-          dcphone, 
+          companyname.value, 
+          dcadress.value,
+          dcemail.value,
+          dcphone.value,
           dcpassword,
-          dcbtw,
+          dcbtw.value,
           this.dccountry,
           this.dccity,
           this.dcpostalcode,
           this.dcavatar
         )
+        console.log(newDaycare)
         //here we do a check to see if the email is already in use
-        this.dataStorage.daycareloginsearch(dcemail).subscribe(res => {
+        this.dataStorage.daycareloginsearch(dcemail.value).subscribe(res => {
           if(res.length==0){
             //we add daycare if email is not use
-            this.dataStorage.addDaycare(newDaycare).subscribe(() => this.ngOnInit());
-            //we use a timeout in order to be able to pull the id of the newly created
-            //daycare (yes this can be done with the return function when making a new daycare but i haven't figured
-            //it out yet) and then we redirect
-            setTimeout(() => {
-              this.succesfull(dcemail);
-            }, 500);
+            this.dataStorage.addDaycare(newDaycare).subscribe((data) => {
+              console.log(data);
+              sessionStorage.setItem('daycare_id', data)
+              this.router.navigate(['/dashboard'])
+            });
           }
           else{
             window.alert("Already in use!")
@@ -92,15 +90,5 @@ export class RegisterComponent implements OnInit {
     else{
       window.alert("Fill in the form please")
     }
-  }
-
-  succesfull(dcemail:any){ 
-    this.dataStorage.daycareloginsearch(dcemail).subscribe(res => {
-      console.log(res)
-      if(res.length != 0){
-        sessionStorage.setItem('daycare_id', res[0].id)
-        this.router.navigate(['/dashboard'])
-      }      
-    });
   }
 }
