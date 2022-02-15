@@ -60,4 +60,8 @@ button.btn.btn-kindfox-success {
    padding: -15px;
 }
 
+button.btn.btn-kindfox-done {
+   background-color: #A9EED1;
+   color: white;
+}
  
