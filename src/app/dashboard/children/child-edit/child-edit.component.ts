@@ -40,7 +40,7 @@ export class ChildEditComponent implements OnInit {
   }
 
   onSubmit(child_firstname:any, child_lastname:any, age:any, childcode:any){
-    const edittedChild = new Child(this.childToEdit.id, child_firstname, child_lastname, age, childcode, this.childToEdit.parent_id, this.childToEdit.checked_in)
+    const edittedChild = new Child(this.childToEdit.id, child_firstname, child_lastname, age, childcode, this.childToEdit.parent_id, this.childToEdit.checked_in, this.childToEdit.diary_sent)
 
     this.onChildEdit.emit(edittedChild);
   }

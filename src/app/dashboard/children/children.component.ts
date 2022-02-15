@@ -9,10 +9,11 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ChildrenComponent implements OnInit {
   children$!: Child[];
-  childId = 18;
+  childToDiary!:Child;
   passedChild!:any;
   diary = "Diary";
   passedID = 0;
+  diary_sent!:number;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -44,12 +45,10 @@ export class ChildrenComponent implements OnInit {
     }, 500)
   }
 
-  onBtnChange(idChild:number){
-
-    this.passedID = idChild;
-    //if(idChild === this.childId)
-    // this.diary = "Done"
-  //
+  onBtnChange(child:Child){
+   
+      this.dataStorage.editChild(child).subscribe(() => this.ngOnInit())
+      
    }
 
    editChild(child:any){

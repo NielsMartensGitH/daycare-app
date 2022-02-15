@@ -5,7 +5,7 @@
         <div class="modal-header kindfox-green-bg">
           <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
           <h5 class="modal-title" id="exampleModalLabel">Diary</h5>
-          {{passedInChild.id}}
+          {{passedInChild}}
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
           (click)=onClose()></button>
        </div>
@@ -132,7 +132,7 @@
                 </div>
                 <button type="submit" class="btn btn-kindfox-primary"
                 [disabled]="!childDiaryForm.valid"
-                (click)="onStatusChange(child_id)">Submit</button>
+                (click)="onStatusChange(child)">Submit</button>
               </form>
         </div>
       </div>

@@ -9,9 +9,9 @@ import { Child } from 'src/app/shared/model/child.models';
   styleUrls: ['./child-diary.component.css']
 })
 export class ChildDiaryComponent implements OnInit {
-  @Input() child_id!:number //child passed from the children
+  @Input() child!:Child //child passed from the children
   @Output() diaryAdded = new EventEmitter<any>(); //emit a new diary to the parent via the custom event
-  @Output() btnStatusChange = new EventEmitter<number>();
+  @Output() btnStatusChange = new EventEmitter<Child>();
   childDiaryForm!:FormGroup; 
   daycare_id = 1;
   moods = ["very good", "good", "not so good", "bad"];
@@ -52,7 +52,7 @@ export class ChildDiaryComponent implements OnInit {
       'extraMessage': new FormControl(null, Validators.required)
     })
     
-    this.dataStorage.getChildById(this.child_id).subscribe(child => this.passedInChild = child)
+    //this.dataStorage.getChildById(this.child_id).subscribe(child => this.passedInChild = child)
     
   }
   
@@ -61,7 +61,7 @@ export class ChildDiaryComponent implements OnInit {
   onSubmit(messageFood:string, messageSleep:string, messageAct:string, extraMessage:string){
       const newDiary = {
         type_id: 1,
-        child_id: this.child_id,
+        child_id: this.child.id,
         food: messageFood,
         foodSmile: this.smileIndFood,
         sleep: messageSleep,
@@ -97,8 +97,9 @@ export class ChildDiaryComponent implements OnInit {
     this.ngOnInit();
   }
 
-  onStatusChange(id_child:number){
-    this.btnStatusChange.emit(id_child)
+  onStatusChange(child:Child){
+    child.diary_sent = 1;
+    this.btnStatusChange.emit(child)
   }
   
 }

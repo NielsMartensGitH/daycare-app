@@ -22,13 +22,13 @@
                     <div>
                         <button type="button" class="btn btn-kindfox-primary"
                     data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    *ngIf="child.id == passedID; else other_btn"
+                    *ngIf="child.diary_sent == 1; else other_btn"
                     >Done</button>
                     </div>
                     <ng-template #other_btn>
                         <button type="button" class="btn btn-kindfox-primary"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    (click)="childId = child.id">Diary</button>
+                    (click)="childToDiary = child">Diary</button>
                     </ng-template>
                     <button type="button" class="btn btn-kindfox-danger"
                     (click)="onDelete(child)">Delete</button>
@@ -40,7 +40,7 @@
 </div>
 </div>
 
-<app-child-diary [child_id]="childId" (diaryAdded)="onDiaryAdd($event)" (btnStatusChange)="onBtnChange($event)"></app-child-diary>
+<app-child-diary [child]="childToDiary" (diaryAdded)="onDiaryAdd($event)" (btnStatusChange)="onBtnChange($event)"></app-child-diary>
 <app-child-edit [childToEdit]="passedChild" (onChildEdit)="editChild($event)"></app-child-edit>
 
 
