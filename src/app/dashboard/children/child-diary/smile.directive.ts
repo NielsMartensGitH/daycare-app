@@ -8,6 +8,7 @@ export class SmileDirective {
   constructor() { }
 
   @HostListener("click") brownThePoop(){
+   
     this.isYellow = !this.isYellow;
   }
 

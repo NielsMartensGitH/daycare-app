@@ -17,7 +17,8 @@ export class ChildrenComponent implements OnInit {
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getAllChildren().subscribe(children => this.children$ = children)
+    this.dataStorage.getAllChildren().subscribe(children => this.children$ = children);
+    
   }
 
   onDelete(child:Child){
@@ -55,4 +56,14 @@ export class ChildrenComponent implements OnInit {
      this.dataStorage.editChild(child).subscribe(() => this.ngOnInit());
      console.log(child)
    }
+
+  //  setInterval(() => {
+  //   this.dataStorage.getAllChildren().subscribe((children) => {
+  //     for (let child of children){
+  //       child.diary_sent = 0;
+  //       this.dataStorage.editChild(child).subscribe(() => this.ngOnInit());
+  //     }
+  //   })
+  // }, 20000)
+   
 }
