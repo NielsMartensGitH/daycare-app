@@ -11,3 +11,7 @@
 .fc-daygrid-day-frame {
     cursor: pointer;
 }
+
+body {
+    overflow-x: hidden;
+}
