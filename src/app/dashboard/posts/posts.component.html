@@ -46,7 +46,7 @@
           </div>
         </div>
         <p class="card-text">{{post.message}}</p>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-sm-12 d-flex justify-content-center">
             <div id="carouselExampleControls" class="carousel slide carousel-dark slide" data-bs-ride="carousel">
               <div class="carousel-inner">
@@ -64,7 +64,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
 
         
         
@@ -75,7 +75,7 @@
       <div class="card-footer text-muted">
        <div class="privacy d-flex justify-content-between">
          <p class="m-0" *ngIf="post.privacy == 0; else private">Every parent can see this message</p>
-         <p>POSTID: {{post.id}}</p>
+         <!-- <p>POSTID: {{post.id}}</p> -->
          <ng-template #private>Only You can see this message</ng-template>
          <button class="btn btn-secondary commentbutton" (click)="messageId(post.id)">Comments</button>
        </div> 

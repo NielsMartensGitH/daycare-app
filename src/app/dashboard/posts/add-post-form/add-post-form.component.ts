@@ -1,10 +1,12 @@
-import { Component, OnInit, EventEmitter, Output, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { FileuploadService } from 'src/app/fileupload.service';
 import { Child } from 'src/app/shared/model/child.models';
 import { Image } from 'src/app/shared/model/image.model';
+
+
 
 @Component({
   selector: 'app-add-post-form',
@@ -57,6 +59,9 @@ export class AddPostFormComponent implements OnInit {
   }
 
 
+
+
+
   // ADD POST
 
   addPost(message: string) {
@@ -92,7 +97,6 @@ export class AddPostFormComponent implements OnInit {
       // On file Select they will be pushed to our files array for uploading multiple files
     onChange(event: any) {
       const files = event.target.files;
-      console.log(files)
       this.addFiles.emit(files)
       
     }
@@ -102,10 +106,8 @@ export class AddPostFormComponent implements OnInit {
 
       if (this.postsForm.controls["privacy"].value == "private") {
         this.postsForm.controls['child'].setValidators([Validators.required]);
-        console.log(this.postsForm)
       } else {
         this.postsForm.controls['child'].clearValidators();
-        console.log(this.postsForm)
       }
       this.postsForm.get('child')?.updateValueAndValidity()
     }
