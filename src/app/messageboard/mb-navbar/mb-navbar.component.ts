@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./mb-navbar.component.css']
 })
 export class MbNavbarComponent implements OnInit {
+  @Output() onToggle = new EventEmitter();
   @Input() isMobileSize = false;
+  toggleValue: boolean = true;
   
   constructor(private router:Router) { }
 
@@ -21,5 +23,14 @@ export class MbNavbarComponent implements OnInit {
   }
   sideBar(){
 
+  }
+
+  toggleSideNav() {
+    this.toggleValue =! this.toggleValue;
+    if (this.toggleValue) {
+      this.onToggle.emit(this.toggleValue)
+    } else {
+      this.onToggle.emit(this.toggleValue)
+    }
   }
 }

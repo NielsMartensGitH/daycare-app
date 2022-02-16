@@ -1,5 +1,5 @@
 <!-- this is the navbar of the messageboard -->
-<app-mb-navbar [isMobileSize]="isMobileSize"></app-mb-navbar>
+<app-mb-navbar (onToggle)="toggleSideBar($event)" [isMobileSize]="isMobileSize"></app-mb-navbar>
 
 <!-- everything below the navbar -->
   <div class="container-fluid">
@@ -9,7 +9,7 @@
         <router-outlet></router-outlet>
     <!-- <app-mb-content></app-mb-content> -->
       </div>
-        <div class="side-nav col-sm-2" *ngIf="!isMobileSize">
+        <div class="{{className}}" *ngIf="!isMobileSize">
           <div class="row mx-1">
           <!-- our sidebar on the right of the page -->
           <app-mb-sidebar [parentId]="parent_id"></app-mb-sidebar>

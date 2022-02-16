@@ -3,6 +3,21 @@
     background-color: #85CDCA;
     color: white;
 }
+
+.sidebar {
+    position: absolute;
+    right: -350px;
+    top: 0;
+    transition: 0.4s; 
+}
+
+.sidebar-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 0.4s; 
+}
+
 @media (min-width: 768px){
     .sidenav{
         padding-top: 90%;
