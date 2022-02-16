@@ -14,10 +14,12 @@ export class ChildrenComponent implements OnInit {
   diary = "Diary";
   passedID = 0;
   diary_sent!:number;
+  daycareId!: any;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getAllChildren().subscribe(children => this.children$ = children);
+    this.daycareId = sessionStorage.getItem('daycare_id');
+    this.dataStorage.getAllChildrenByDaycare(this.daycareId).subscribe(children => this.children$ = children);
     
   }
 

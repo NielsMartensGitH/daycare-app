@@ -87,6 +87,10 @@ textarea.ng-invalid.ng-touched {
     color: red;
 }
 
+textarea.text-style {
+    width: 95%
+}
+
 
 
 

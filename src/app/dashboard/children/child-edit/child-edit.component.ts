@@ -13,6 +13,7 @@ export class ChildEditComponent implements OnInit {
   @Output() onChildEdit = new EventEmitter<Child>();
   childEditForm!:FormGroup;
   child$!:Child;
+  daycare_id = 1;
   constructor(private dataStorage:DatastorageService) { }
 
 
@@ -40,7 +41,7 @@ export class ChildEditComponent implements OnInit {
   }
 
   onSubmit(child_firstname:any, child_lastname:any, age:any, childcode:any){
-    const edittedChild = new Child(this.childToEdit.id, child_firstname, child_lastname, age, childcode, this.childToEdit.parent_id, this.childToEdit.checked_in, this.childToEdit.diary_sent)
+    const edittedChild = new Child(this.childToEdit.id, child_firstname, child_lastname, age, childcode, this.childToEdit.parent_id, this.childToEdit.checked_in, this.childToEdit.daycare_id, this.childToEdit.diary_sent)
 
     this.onChildEdit.emit(edittedChild);
   }

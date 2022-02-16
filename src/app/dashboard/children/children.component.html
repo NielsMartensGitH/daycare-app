@@ -20,17 +20,10 @@
                     (click)="passedChild = child">
                     Edit</button>
                     <div>
-                        <button type="button" class="btn btn-kindfox-done"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    *ngIf="child.diary_sent == 1; else other_btn"
-                    [disabled]="child.diary_sent == 1"
-                    ><i class="fas fa-check"></i></button>
-                    </div>
-                    <ng-template #other_btn>
                         <button type="button" class="btn btn-kindfox-primary"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                     (click)="childToDiary = child">Diary</button>
-                    </ng-template>
+                    
                     <button type="button" class="btn btn-kindfox-danger"
                     (click)="onDelete(child)">Delete</button>
                   </div>

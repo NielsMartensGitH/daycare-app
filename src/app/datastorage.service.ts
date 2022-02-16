@@ -26,6 +26,13 @@ export class DatastorageService {
     
   }
 
+  // METHOD FOR POSTING CHILDREN and PARENTS
+
+  addParentAndChild(newObj: any) :Observable<any>{
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + 'childrenparents', newObj, {headers: headers});
+  }
+
 
   // ===================== ALL METHODS WITH DAYCARE ENDPOINTS ====================
 
@@ -119,6 +126,11 @@ export class DatastorageService {
     // SHOWS EVERY PARENT
   getAllParents(): Observable<Parent[]> {
     return this.http.get<Parent[]>(this.url + 'parents').pipe();
+  }
+
+  // GET ALL THE PARENTS OF A SPECIFIC DAYCARE
+  getAllParentsByDaycare(daycare_id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'daycareparents/' + daycare_id).pipe();
   }
 
      // ADDS A PARENT
