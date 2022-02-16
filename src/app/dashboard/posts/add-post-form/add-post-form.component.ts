@@ -5,6 +5,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { FileuploadService } from 'src/app/fileupload.service';
 import { Child } from 'src/app/shared/model/child.models';
 import { Image } from 'src/app/shared/model/image.model';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 
@@ -19,7 +20,11 @@ export class AddPostFormComponent implements OnInit {
   postsForm!: FormGroup; // Here we instantiate our postsForm for our formcontrol
   privacies: string[] = ["public", "private"]; // Possitble values for our select element where we choouse message privacy
   default = null;
-  $posts!: Posts[]; 
+  $posts!: Posts[];
+  public Editor = ClassicEditor;
+  public model = {
+    editorData: '<p>Hello, world!</p>'
+}; 
 
   images: Image[] = [];
   ImagesId: number[] = [] // postID of our newly created post which we will give to our EventEmitter
@@ -33,6 +38,8 @@ export class AddPostFormComponent implements OnInit {
   constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService, private fb: FormBuilder) {}
 
   ngOnInit() {
+
+   
 
     this.curDaycare = sessionStorage.getItem('daycare_id');
 

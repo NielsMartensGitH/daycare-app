@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { TimeService } from 'src/app/time.service';
-import { FileuploadService } from 'src/app/fileupload.service';;
+import { FileuploadService } from 'src/app/fileupload.service';
+
+
 
 @Component({
   selector: 'app-posts',
@@ -10,6 +12,7 @@ import { FileuploadService } from 'src/app/fileupload.service';;
 })
 export class PostsComponent implements OnInit {
 
+  
   postId!: number;
 
   posts$!:any[];  // fetch of all the posts by one specific daycare
@@ -43,8 +46,6 @@ export class PostsComponent implements OnInit {
         data => {
           console.log("ALL IMAGES")
           this.postImages$ = data;
-          // const emptyVessel = this.postImages$;
-          // console.log('vessel: '+JSON.stringify(emptyVessel));
         }
       )
      
@@ -63,26 +64,40 @@ export class PostsComponent implements OnInit {
 
   onAddPost(posts: any) {
 
-    console.log("FILES OUTSIDE SERVICE")
-    console.log(this.files)
-
     this.dataStorage.addPost(posts).subscribe(
       (data) => {
         console.log("FILES INSIDE SERVICE, waarom is dit plots een leeg object?")
-        console.log(this.files)
+ 
         this.PostId = data; // PUT ID IN PostId variable
         
         this.uploadEachFile(data)
         this.ngOnInit();
       })
       
-    }
+// fetch('http://gameofcones.be/api/posts', {
+//   method: 'POST',
+//   headers: {
+//     'Accept': 'application/json, text/plain, */*',
+//     'Content-Type': 'application/json'
+//   },
+//   body:JSON.stringify(posts)
+// }).then(res => res.json())
+// .then(res => {
+//   this.postId = parseInt(JSON.stringify(res))
+// })
+
+  }
+
+  
+
+    // PROMISE
 
 
   // UPLOADS EACH FILE
 
   uploadEachFile(data: any) {
     console.log("DATA POSTID")
+    console.log(this.files)
     console.log(data)
     if(this.files != undefined) {
       for (let index = 0; index < this.files.length; index++) {
@@ -173,8 +188,7 @@ export class PostsComponent implements OnInit {
     }
 
   addFiles(files: any) {
-    this.files = files;   
-    console.log("NOW")
+    this.files = files;
   }
 
 }

@@ -47,11 +47,15 @@ import { ChildEditComponent } from './dashboard/children/child-edit/child-edit.c
 import { MbDiariesComponent } from './messageboard/mb-diaries/mb-diaries.component';
 import { MbDiarycommentsComponent } from './messageboard/mb-diaries/mb-diarycomments/mb-diarycomments.component';
 
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   timeGridPlugin,
   interactionPlugin
 ]);
+
+
 
 
 @NgModule({
@@ -93,7 +97,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MbDiarycommentsComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule
+    BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule, CKEditorModule
   ],
   providers: [EncrDecrService],
   bootstrap: [AppComponent],

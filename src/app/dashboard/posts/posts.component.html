@@ -6,6 +6,8 @@
     </div>
 </div>
 
+
+
 <!-- ADD MESSAGE -->
 <div class="row">
   <div class="col-sm-12">
@@ -45,7 +47,7 @@
             </div>
           </div>
         </div>
-        <p class="card-text">{{post.message}}</p>
+        <p class="card-text" [innerHTML]="post.message"></p>
         <!-- <div class="row">
           <div class="col-sm-12 d-flex justify-content-center">
             <div id="carouselExampleControls" class="carousel slide carousel-dark slide" data-bs-ride="carousel">
