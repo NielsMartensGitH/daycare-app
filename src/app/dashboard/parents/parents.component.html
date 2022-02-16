@@ -17,7 +17,34 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <table class="table" [@listAnimation]="parents$.length">
+
+        <div *ngIf="screenWidthCheck">
+          <div *ngFor="let parent of parents$">
+            <div class="card" style="width: 18rem;">
+              <img src="{{parent.avatar}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{parent.firstname}}  {{parent.lastname}}</h5>
+                <p class="card-text">
+                  Email:{{parent.email}}
+                  <br>
+                  phone:{{parent.phone}}
+                </p>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                  <button type="button" class="btn btn-kindfox-success m-1" data-bs-toggle="modal" data-bs-target="#detailModal"
+                  (click)="parentId = parent.id"><i class="fas fa-info-circle"></i> Details</button>
+                  <button type="button" class="btn btn-kindfox-warning m-1"
+                  data-bs-toggle="modal" data-bs-target="#editParent"
+                  (click)="editThisParent = parent"><i class="fas fa-edit"></i> Edit</button>
+                  <button type="button" class="btn btn-kindfox-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                  (click)="onDelete(parent)"><i class="far fa-trash-alt"></i> Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!screenWidthCheck">
+          <table class="table" [@listAnimation]="parents$.length">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -47,9 +74,9 @@
                       </div>
                 </td>
               </tr>
-              
             </tbody>
           </table>
+        </div>
     </div>
 </div>
 

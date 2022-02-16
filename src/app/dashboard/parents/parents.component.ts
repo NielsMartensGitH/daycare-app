@@ -33,12 +33,21 @@ export class ParentsComponent implements OnInit {
   parentId: number = 1;
   editThisParent!: any;
   daycare_id!:any
+  isSmallScreen: boolean = false;
+  screenWidthCheck!:any;
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
     this.daycare_id = sessionStorage.getItem('daycare_id')
     this.dataStorage.getAllParentsByDaycare(this.daycare_id).subscribe(parents => this.parents$ = parents);
     
+    this.screenWidthCheck = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if(this.screenWidthCheck <= 768){
+      this.screenWidthCheck= true;
+    }
+    else{
+      this.screenWidthCheck = false;
+    }
   }
 
   onClick() {

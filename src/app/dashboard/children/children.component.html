@@ -6,7 +6,7 @@
 </div>
 <div class="container">
 <div class="row" >
-    <div class="col-sm-3 p-0 m-0" *ngFor="let child of children$">
+    <div class="col-md-3 p-0 m-0 card-group" *ngFor="let child of children$">
         <div class="card" style="width: 18rem;">
             <img src="../../../assets/img/profielfotoRoos.jpg" class="card-img-top" alt="..."
             [ngClass]="{'green-border': child.checked_in === 1}"
