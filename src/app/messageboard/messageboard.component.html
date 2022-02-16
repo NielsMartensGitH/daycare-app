@@ -4,7 +4,7 @@
 <!-- everything below the navbar -->
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-10">
+      <div class="col-sm-10 contentarea">
         <!-- our main component with the posts  -->
         <router-outlet></router-outlet>
     <!-- <app-mb-content></app-mb-content> -->
@@ -15,7 +15,7 @@
           <app-mb-sidebar [parentId]="parent_id"></app-mb-sidebar>
           </div>
           <div *ngIf="isMobileSize">
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarshow" aria-labelledby="sidebarshow">
               <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>

@@ -8,9 +8,10 @@
       <div class="nav-links d-flex">
         <!--
         <a class="nav-link" routerLink="../dashboard">Dashboard</a>
-        -->
         <a class="nav-link"><i class="fas fa-bell"></i></a>
-        <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+        -->
+        <a class="nav-link"><i class="fas fa-user hoverme" (click)="logOut()">Logout</i></a>
+        <a class="nav-link"><i class="fas fa-bars fa-fw sidemenu" data-bs-toggle="offcanvas" data-bs-target="#sidebarshow"></i></a>
         <!--
           ngIf="!isMobileSize" 
           <li class="nav-item dropdown">

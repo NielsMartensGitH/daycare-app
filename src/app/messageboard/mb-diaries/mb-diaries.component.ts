@@ -27,21 +27,21 @@ export class MbDiariesComponent implements OnInit {
     
     if(this.childId == undefined){
       this.childId = sessionStorage.getItem('ChildId');
-      console.log('defined it')
+      //console.log('defined it')
     }
-    console.log(this.childId + ' im doing it')
+    //console.log(this.childId + ' im doing it')
     
     this.dataStorage.getChildDiaries(this.childId).subscribe( 
       diaries => {
-        console.log("hey uh het zit erin " + this.childId)
+        //console.log("hey uh het zit erin " + this.childId)
         this.diaries$ = diaries;
         this.diaries$.map((obj:any) => {
           obj.poop = obj.poop.split("&")
         })
-        console.log(this.diaries$)
+        //console.log(this.diaries$)
       })
 
-      
+      //console.log(this.router.url)
   }
 
  
@@ -74,14 +74,17 @@ export class MbDiariesComponent implements OnInit {
   }
   setchild(newchildid:any){
     this.childId = newchildid;
-    console.log(this.childId);
+    //console.log(this.childId);
     //this.ngOnInit();
     this.reloadComponent();
   }
+  //refoad the page when another child is selected 
   reloadComponent() {
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([currentUrl]);
+    if(this.router.url == '/messageboard/childdiaries'){
+      let currentUrl = this.router.url;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([currentUrl]);
+    }
   }
 }
