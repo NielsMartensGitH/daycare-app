@@ -9,47 +9,55 @@ import { Event } from 'src/app/shared/model/event.models';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit{
-  eventDate!:string;
-  event_date!:string;
-  eventName!:string;
   events$:Event[] = [];
-  id!:number;
   calendarOptions!: CalendarOptions;
-  isClicked!:boolean;
-  color = "#C38D9E";
+  color = "#C38D9E"; //color of the event
+  daycare_id!:any; //var to store the id from the sessionStorage
   constructor(private dataStorage:DatastorageService){
 
   }
 
   ngOnInit() {
+    //get the id from the session storage
+     this.daycare_id = JSON.parse(sessionStorage.getItem('daycare_id')|| '{}');
+     
+    //fetch the events only by daycare id 
+     this.dataStorage.getEventsByDaycareId(this.daycare_id).subscribe((events) => this.events$ = events)
+   
+     //console.log(this.events$)
     
-     this.dataStorage.getAllEvents().subscribe((events) => this.events$ = events)
-
+     //DELAYING THE CALENDAROPTIONS ASSIGNING BC I NEED TO FETCH THE EVENTS FIRST///
 
       setTimeout(() => {
         this.calendarOptions= {
           initialView: 'dayGridMonth',
-          dateClick: this.handleDateClick.bind(this),
+          //dateClick: this.handleDateClick.bind(this), //commented out, but can useful in future
           events: this.events$,
           eventColor : this.color,
         };
-      }, 1000)
+      }, 1500)
       
   }
-  handleDateClick(arg:any) {
-    this.eventDate = arg.dateStr;
 
-  }
+  //LEAVING THE CODE BELOW FOR FUTURE
+  // handleDateClick(arg:any) {
+  //   this.eventDate = arg.dateStr;
+
+  // }
   
-  onSbt(event:string, event_date:string, event_color:string){
+  // ADD A NEW EVENT
+  onSbt(event:string, event_date:string){
+
+    //CREATE A NEW EVENT
     const newEvent = {
       title: event,
       date: event_date,
-      daycare_id: 1
+      daycare_id: this.daycare_id
     }
-    this.color = event_color;
+    
+  
     this.dataStorage.addEvent(newEvent).subscribe(() => this.ngOnInit());;
-    console.log(this.events$);
+    //console.log(this.events$);
     
     
   }
