@@ -62,7 +62,7 @@
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
                     <div class="col d-flex d-row">
                         <h5 class="mr-3">Pot visits</h5>
-                        <!--<div *ngFor="let poop of poopies; let i = index">-->
+                        
                             <div class="col-auto">
                                 <i class='fas fa-poo'
                                 [ngClass]="{'brown-poop': poos[0] == true}" 
@@ -90,7 +90,7 @@
                             <label class="form-check-label" for="flexCheckDefault">
                                 {{mood}}
                               </label>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                            <input class="form-check-input" type="radio" name="mood" id="flexCheckDefault"
                             (click)="moodMsg = i">
                         </div>
                     </div>
@@ -98,13 +98,13 @@
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Activities</p>
-                        <textarea name="" id="" cols="80" rows="3" 
+                        <textarea class="text-style p-2" rows="3" 
                         placeholder="Puzzles"
                         formControlName="messageAct"
                         #messageAct></textarea>
-                        <span *ngIf="!childDiaryForm.get('messageAct')?.valid && childDiaryForm.get('messageAct')?.touched" 
-                            class="help-block">This field is required!</span>
                     </div>
+                    <span *ngIf="!childDiaryForm.get('messageAct')?.valid && childDiaryForm.get('messageAct')?.touched" 
+                            class="help-block">This field is required!</span>
                 </div>
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
                     <div class="col">
@@ -113,7 +113,7 @@
                             <label class="form-check-label" for="flexCheckDefault">
                                 {{inv}}
                               </label>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                            <input class="form-check-input" type="radio" name="inv" id="flexCheckDefault"
                             (click)="involvementMsg = i">
                         </div>
                     </div>
@@ -121,15 +121,15 @@
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Message to the parent</p>
-                        <textarea name="" id="" cols="80" rows="3" 
+                        <textarea class="text-style p-2" id="" rows="3" 
                         placeholder="Write here a message to the parent"
                         formControlName="extraMessage"
                         #extraMessage></textarea>
-                        <span *ngIf="!childDiaryForm.get('extraMessage')?.valid && childDiaryForm.get('extraMessage')?.touched" 
-                            class="help-block">This field is required!</span>
                     </div>
+                    <span *ngIf="!childDiaryForm.get('extraMessage')?.valid && childDiaryForm.get('extraMessage')?.touched" 
+                            class="help-block">This field is required!</span>
                 </div>
-                <button type="submit" class="btn btn-kindfox-primary"
+                <button type="submit" class="btn btn-kindfox-primary m-3"
                 [disabled]="!childDiaryForm.valid"
                 (click)="onStatusChange(child)">Submit</button>
               </form>

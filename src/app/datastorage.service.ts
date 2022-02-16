@@ -121,6 +121,11 @@ export class DatastorageService {
     return this.http.get<Parent[]>(this.url + 'parents').pipe();
   }
 
+  // GET ALL THE PARENTS OF A SPECIFIC DAYCARE
+  getAllParentsByDaycare(daycare_id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'daycareparents/' + daycare_id).pipe();
+  }
+
      // ADDS A PARENT
   addParent(parent: any): Observable<any> {
     const headers = new HttpHeaders().set("Content-type", "application/json");

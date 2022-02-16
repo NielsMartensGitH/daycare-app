@@ -32,10 +32,12 @@ export class ParentsComponent implements OnInit {
   currentParent!:string;
   parentId: number = 1;
   editThisParent!: any;
+  daycare_id!:any
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
-    this.dataStorage.getAllParents().subscribe(parents => this.parents$ = parents);
+    this.daycare_id = sessionStorage.getItem('daycare_id')
+    this.dataStorage.getAllParentsByDaycare(this.daycare_id).subscribe(parents => this.parents$ = parents);
     
   }
 
@@ -75,8 +77,10 @@ export class ParentsComponent implements OnInit {
   onAddChild(child:Child){
 
 
-    this.dataStorage.addChild(child).subscribe(() => this.ngOnInit());
-
+    this.dataStorage.addChild(child).subscribe((res)=> {
+      console.log(res)
+    });
+    
 
   }
 
