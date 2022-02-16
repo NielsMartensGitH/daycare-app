@@ -5,7 +5,6 @@
         <div class="modal-header kindfox-green-bg">
           <img src="../../assets/img/Kindfoxlogowhite.png" width="150px" class="logo">
           <h5 class="modal-title" id="exampleModalLabel">Diary</h5>
-          {{passedInChild}}
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
           (click)=onClose()></button>
        </div>
@@ -28,11 +27,11 @@
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
                                     <i class="fas fa-smile-beam" #food_smile
-                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-smile-beam' && food_smile}"
+                                    appSmile
                                     (click)="smileIndFood = 'fas fa-smile-beam'">
                                     </i>
                                     <i class="fas fa-frown-open" #food_smile
-                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-frown-open' && food_smile}"
+                                    appSmile
                                         (click)="smileIndFood = 'fas fa-frown-open'"></i>
                             </div>
                         </div>
@@ -50,12 +49,12 @@
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
                                 <i class="fas fa-smile-beam" #sleep_smile
-                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-smile-beam' && sleep_smile}"
-                                    (click)="smileIndFood = 'fas fa-smile-beam'">
+                                    appSmile
+                                    (click)="smileIndSleep = 'fas fa-smile-beam'">
                                     </i>
                                     <i class="fas fa-frown-open" #sleep_smile
-                                    [ngClass]="{'yellow-face': smileIndFood == 'fas fa-frown-open' && sleep_smile}"
-                                        (click)="smileIndFood = 'fas fa-frown-open'"></i>
+                                    appSmile
+                                    (click)="smileIndSleep = 'fas fa-frown-open'"></i>
                             </div>
                         </div>
                     </div>

@@ -6,8 +6,8 @@
 
     <a class="kiddo noselect" (click)="addChildId(child.id)" routerLink="childdiaries"><i class="fas fa-baby border rounded-circle p-2"></i><span class="mx-2">{{child.child_firstname}}</span></a>
       
-        <span *ngIf="curchild.checked_in === 1" class="yesdot"></span>
-        <span *ngIf="curchild.checked_in === 0" class="nodot"></span>
+        <span *ngIf="child.checked_in === 1" class="yesdot"></span>
+        <span *ngIf="child.checked_in === 0" class="nodot"></span>
   </div>
 </div>
 
