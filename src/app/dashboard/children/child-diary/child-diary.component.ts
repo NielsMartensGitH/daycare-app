@@ -86,6 +86,7 @@ export class ChildDiaryComponent implements OnInit {
   }
 
   onPoop(ind:number){
+    this.poopInd = ind;
     console.log(ind)
     for (let i = ind; i >= 0; i--){
          this.poos[i] = true;

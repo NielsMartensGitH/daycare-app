@@ -130,6 +130,7 @@
                             class="help-block">This field is required!</span>
                 </div>
                 <button type="submit" class="btn btn-kindfox-primary m-3"
+                data-bs-dismiss="modal"
                 [disabled]="!childDiaryForm.valid"
                 (click)="onStatusChange(child)">Submit</button>
               </form>
