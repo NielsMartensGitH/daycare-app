@@ -12,6 +12,7 @@ export class MessageboardComponent implements OnInit {
   isMobileSize:boolean = false;
   screenWidthCheck!:any;
   className: string = "sidebar-toggle side-nav col-sm-2"
+  navbarClassName: string = "topbar-toggle"
 
 
   constructor(private router:Router) { }
@@ -37,8 +38,10 @@ export class MessageboardComponent implements OnInit {
     console.log(state)
     if (state == true) {
       this.className = "sidebar-toggle side-nav col-sm-2";
+      this.navbarClassName = "topbar-toggle";
     } else {
       this.className = "sidebar side-nav col-sm-2"
+      this.navbarClassName = "topbar";
     }
   }
 

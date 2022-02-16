@@ -1,26 +1,26 @@
 .side-nav {
-    padding-top: 7%;
+    padding-top: 30%;
     background-color: #85CDCA;
     color: white;
 }
 
 .sidebar {
     position: absolute;
-    right: -350px;
+    visibility: visible;
     top: 0;
     transition: 0.4s; 
 }
 
 .sidebar-toggle {
     position: absolute;
-    right: 0;
+    visibility: hidden;
     top: 0;
     transition: 0.4s; 
 }
 
-@media (min-width: 768px){
-    .sidenav{
-        padding-top: 90%;
+@media (min-width: 764px){
+    .side-nav{
+        padding-top: 7%;
     }
 }
 .contentarea{

@@ -1,5 +1,7 @@
 <!-- this is the navbar of the messageboard -->
-<app-mb-navbar (onToggle)="toggleSideBar($event)" [isMobileSize]="isMobileSize"></app-mb-navbar>
+<div class="{{navbarClassName}}">
+  <app-mb-navbar (onToggle)="toggleSideBar($event)" [isMobileSize]="isMobileSize"></app-mb-navbar>
+</div>
 
 <!-- everything below the navbar -->
   <div class="container-fluid">
@@ -9,22 +11,11 @@
         <router-outlet></router-outlet>
     <!-- <app-mb-content></app-mb-content> -->
       </div>
-        <div class="{{className}}" *ngIf="!isMobileSize">
+        <div class="{{className}}">
           <div class="row mx-1">
           <!-- our sidebar on the right of the page -->
           <app-mb-sidebar [parentId]="parent_id"></app-mb-sidebar>
           </div>
-          <div *ngIf="isMobileSize">
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarshow" aria-labelledby="sidebarshow">
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                <app-mb-sidebar [parentId]="parent_id"></app-mb-sidebar>
-              </div>
-            </div>
-          </div>
-      </div>
+        </div>
     </div>
   </div>
