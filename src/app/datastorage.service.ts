@@ -26,6 +26,13 @@ export class DatastorageService {
     
   }
 
+  // METHOD FOR POSTING CHILDREN and PARENTS
+
+  addParentAndChild(newObj: any) :Observable<any>{
+    const headers = new HttpHeaders().set("Content-type", "application/json");
+    return this.http.post(this.url + 'childrenparents', newObj, {headers: headers});
+  }
+
 
   // ===================== ALL METHODS WITH DAYCARE ENDPOINTS ====================
 

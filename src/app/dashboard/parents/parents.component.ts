@@ -78,7 +78,10 @@ export class ParentsComponent implements OnInit {
 
 
     this.dataStorage.addChild(child).subscribe((res)=> {
-      console.log(res)
+      console.log(res);
+      console.log(child.parent_id);
+      this.dataStorage.addParentAndChild(JSON.stringify({child_id:res, parent_id:child.parent_id})).subscribe(() => this.ngOnInit())
+      
     });
     
 

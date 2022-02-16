@@ -21,11 +21,13 @@ export class ParentAddComponent implements OnInit {
   password!:string;
   parentAddForm!: FormGroup;
   avatar = "/assets/img/defaultavatar.png";
-  daycare_id = 1;
+  daycare_id!:any;
 
   constructor(private EncrDecr: EncrDecrService) { }
 
   ngOnInit(): void {
+    this.daycare_id = sessionStorage.getItem('daycare_id');
+
     this.parentAddForm = new FormGroup({
         'firstname': new FormControl(null, Validators.required),
         'lastname': new FormControl(null, Validators.required),
