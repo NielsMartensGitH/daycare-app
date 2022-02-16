@@ -21,11 +21,6 @@
           <div class="container green-border mt-3" *ngFor="let child of childparents$">
             <span>{{child.child_firstname}}</span>
             <span>{{child.child_lastname}}</span>
-            <span>
-              <button type="button" class="btn btn-secondary rounded-circle m-1"
-              (click)="deleteChild(child)"
-              ><i class="far fa-trash-alt"></i></button>
-            </span>
           </div>
         </div>
         <div class="modal-footer">
