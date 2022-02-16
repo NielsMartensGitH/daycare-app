@@ -9,3 +9,12 @@ button.btn.btn-kindfox-success {
  button.btn.btn-kindfox-success:hover {
     background-color: #66A7A4;
   }
+
+  button.btn.btn-kindfox-warning {
+    background-color: #E27D60 ;
+    color: white
+ }
+ button.btn.btn-kindfox-warning:hover {
+   background-color: #c66145 ;
+   color: white
+}

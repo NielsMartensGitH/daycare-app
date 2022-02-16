@@ -30,15 +30,12 @@
                 <label for="eventDate" class="form-label">Enter the date</label>
                 <input type="date" class="form-control"
                 #event_date>
-                <label for="eventColor" class="form-label">Enter the date</label>
-                <input type="color" class="form-control"
-                #event_color>
               </div>
           </form>
         </div>
         <div class="d-flex d-flex justify-content-center d-row m-3 p-3">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-          (click)="onSbt(eventName.value, event_date.value, event_color.value)">Save the event</button>
+          <button type="button" class="btn btn-kindfox-warning" data-bs-dismiss="modal"
+          (click)="onSbt(eventName.value, event_date.value)">Save the event</button>
         </div>
       </div>
     </div>

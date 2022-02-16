@@ -9,10 +9,9 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ParentDetailsComponent implements OnInit {
   @Output() addedChild = new EventEmitter<Child>();
-  @Output() deletedChild = new EventEmitter<Child>();
-  @Input() detail!: number;
-  addChildClicked:boolean = false;
-  childparents$:any;
+  @Input() detail!: number; //parent id 
+  addChildClicked:boolean = false; //to toggle open/close button
+  childparents$:any; 
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -25,10 +24,9 @@ export class ParentDetailsComponent implements OnInit {
     this.ngOnInit();
   }
 
-  deleteChild(child:Child){
-    this.deletedChild.emit(child)
-  }
-
+  
+  //WHEN A NEW PARENT IS PASSED DOWN TO THE CHILD COMP FROM THE PARENT COMP
+  //FETCH A NEW PARENT WITH THE PASSED IN ID
   ngOnChanges() {
     {
       this.dataStorage.getChildParents(this.detail).subscribe(childparents => this.childparents$ = childparents)

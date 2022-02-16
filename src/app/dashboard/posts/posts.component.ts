@@ -162,16 +162,15 @@ export class PostsComponent implements OnInit {
 
   // 
 
-  messageId(id: number) {
-    if (id == this.msgId) { // When we already opened the comments of this posts (when msgID is already known) it will close again
-      this.msgToggle = false;
-      this.msgId = 0;
-    } else { // else comments will be shown
-      this.msgId = id;
-      this.msgToggle = true;
+    messageId(id: number) {
+      if (id == this.msgId) { // When we already opened the comments of this posts (when msgID is already known) it will close again
+        this.msgToggle = false;
+        this.msgId = 0;
+      } else { // else comments will be shown
+        this.msgId = id;
+        this.msgToggle = true;
+      }
     }
-   
-  }
 
   addFiles(files: any) {
     this.files = files;   
