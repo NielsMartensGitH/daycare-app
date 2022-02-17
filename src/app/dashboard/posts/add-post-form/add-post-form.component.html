@@ -10,7 +10,7 @@
 
           <!-- postsForm -->
     
-          <form [formGroup]="postsForm" (ngSubmit)="addPost(model.editorData)">
+          <form [formGroup]="postsForm" (ngSubmit)="addPost()">
             <div class="my-3">
               <input type="text" class="form-control" formControlName="title" id="titleInput" placeholder="Choose a title">
 
@@ -48,7 +48,8 @@
               rows="3" 
               placeholder="What's your message?"
               #message></textarea> -->
-              <ckeditor formControlName="message" [(ngModel)]="model.editorData"  [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+              <ckeditor  #editor data="<p>Hello, world!</p>"></ckeditor>
+     
 
               <!-- only shows when value is invalid after clicking inside input -->
               <span *ngIf="!postsForm.get('message')?.valid && postsForm.get('message')?.touched">Please type a message!</span>
@@ -64,3 +65,4 @@
       </div>
     </div>
   </div>
+

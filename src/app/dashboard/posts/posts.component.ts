@@ -39,6 +39,9 @@ export class PostsComponent implements OnInit {
     this.dataStorage.getPostsByDayCare(this.curDaycare).subscribe( 
       posts => {
         this.posts$ = posts;
+         this.posts$.forEach(post => {
+           console.log(post.message)
+         })
 
       })
 

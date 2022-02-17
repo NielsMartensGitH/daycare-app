@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, AfterViewInit , EventEmitter, Output, ViewChild } from '@angular/core';
 import { Posts } from 'src/app/shared/model/posts.model';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
@@ -14,17 +14,17 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   templateUrl: './add-post-form.component.html',
   styleUrls: ['./add-post-form.component.css']
 })
-export class AddPostFormComponent implements OnInit {
+export class AddPostFormComponent implements OnInit, AfterViewInit  {
+
+  @ViewChild('editor') editor: any;
   @Output() onSubmitted = new EventEmitter();  // sends new message to method onSubmitted 
   @Output() addFiles = new EventEmitter();
   postsForm!: FormGroup; // Here we instantiate our postsForm for our formcontrol
   privacies: string[] = ["public", "private"]; // Possitble values for our select element where we choouse message privacy
   default = null;
   $posts!: Posts[];
-  public Editor = ClassicEditor;
-  public model = {
-    editorData: '<p>Hello, world!</p>'
-}; 
+  sendHTML: string
+  edit: any
 
   images: Image[] = [];
   ImagesId: number[] = [] // postID of our newly created post which we will give to our EventEmitter
@@ -35,9 +35,41 @@ export class AddPostFormComponent implements OnInit {
   children$!: Child[]; // Here we will put all the children of the daycare which we can chose from in select element when adding private posts
 
 
-  constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService, private fb: FormBuilder) {}
+  constructor(private dataStorage: DatastorageService, private uploadfile: FileuploadService, private fb: FormBuilder) {
+
+  }
+
+  ngAfterViewInit() {
+    let editor = this.editor.elementRef.nativeElement;
+    ClassicEditor.create(editor, {
+      cloudServices: {
+        tokenUrl: 'https://87138.cke-cs.com/token/dev/6b3d2130908f8e38937968d8d710487d962dfa113c438370e967aa30eb15?limit=10',
+        uploadUrl: 'https://87138.cke-cs.com/easyimage/upload/'
+      },
+    } )
+    .then(editor => {
+      this.edit = editor
+    
+     
+    }
+     
+    
+
+
+
+    )
+    .catch();
+
+    
+  }
+
+  public getEditor() {
+
+    console.log(this.editor.editorInstance)
+  }
 
   ngOnInit() {
+
 
    
 
@@ -54,7 +86,7 @@ export class AddPostFormComponent implements OnInit {
       'title': new FormControl(null, [Validators.required]),
       'privacy': new FormControl(null, [Validators.required]),
       'child': new FormControl(""),
-      'message': new FormControl(null, [Validators.required]),
+      'message': new FormControl(null),
       'photos': new FormControl(null)
     })
 
@@ -71,7 +103,8 @@ export class AddPostFormComponent implements OnInit {
 
   // ADD POST
 
-  addPost(message: string) {
+  addPost() {
+    const message = this.edit.getData()
 
   const privacy = this.postsForm.controls["privacy"].value; // we store the selected value of our 'privacy' select element here in a variable
   const child = this.postsForm.controls["child"].value; // we store the selected value of our 'child' select element here in a variable

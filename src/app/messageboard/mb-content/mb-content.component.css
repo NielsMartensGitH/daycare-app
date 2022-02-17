@@ -98,6 +98,20 @@ button.btn.btn-kindfox-primary {
      color: yellow;
  }
 
+ 
+
+ :host ::ng-deep figure {
+    margin: 0 auto;
+    width: 80%
+ }
+ 
+ :host ::ng-deep  img { 
+    max-width: 850px;
+    border: 1px solid;
+    border-radius: 25px;
+    
+  }
+
 
 
 
