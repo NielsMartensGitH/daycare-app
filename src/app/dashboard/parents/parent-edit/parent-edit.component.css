@@ -1,3 +1,16 @@
 input.ng-invalid.ng-touched {
     border: 1px solid red;
   }
+
+  button.btn.btn-kindfox-success {
+    background-color: #85CDCA;
+    color: white
+ }
+ button.btn.btn-kindfox-success:hover {
+    background-color: #66A7A4;
+  }
+
+  button.btn.btn-kindfox-secondary {
+    background-color: #DDDDD2;
+    color: white
+ }
