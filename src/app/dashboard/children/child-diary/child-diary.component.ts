@@ -13,7 +13,7 @@ export class ChildDiaryComponent implements OnInit {
   @Output() diaryAdded = new EventEmitter<any>(); //emit a new diary to the parent via the custom event
   @Output() btnStatusChange = new EventEmitter<Child>();
   childDiaryForm!:FormGroup; 
-  daycare_id = 1;
+  daycare_id!:any;
   moods = ["very good", "good", "not so good", "bad"];
   involvements = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
   poopies = ['fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo'];
@@ -45,6 +45,10 @@ export class ChildDiaryComponent implements OnInit {
   
 
   ngOnInit(): void {
+    //ASSIGN THE DAYCAYRE ID IN THE SESSION STORAGE 
+    this.daycare_id = sessionStorage.getItem('daycare_id');
+
+    //FORM INPUT VALIDATORS
     this.childDiaryForm = new FormGroup({
       'message_food': new FormControl(null, Validators.required),
       'message_sleep': new FormControl(null, Validators.required),

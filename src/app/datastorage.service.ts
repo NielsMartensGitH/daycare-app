@@ -210,6 +210,11 @@ export class DatastorageService {
     return this.http.get<any>(this.url + 'diaries').pipe();
   }
 
+  // GET ALL THE DIARIES OF A SPECIFIC DAYCARE
+  getDiariesByDaycareId(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'diaries/daycare_id/' + id).pipe();
+  }
+
     // DELETES A DIARY
   deleteDiary(id: number): Observable<any> {
     return this.http.delete(this.url + 'diaries/' + id, {responseType: 'text'});

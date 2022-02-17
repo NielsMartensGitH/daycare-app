@@ -9,29 +9,38 @@ import { TimeService } from 'src/app/time.service';
 })
 export class DiariesComponent implements OnInit {
   diaries$!: any[]; // fetch of all the diaries by one specific daycare
-
+  daycare_id!:any;
   msgId!: number; // for showing ONLY comments of this id 
   msgToggle: boolean = false; // FALSE IS NOT SHOWING COMMENTS , TRUE IS SHOWING COMMENTS
 
   constructor(private dataStorage: DatastorageService, private timeService: TimeService) { }
 
   ngOnInit() {
-    this.dataStorage.getAllDiaries().subscribe( 
-        diaries => {
-          this.diaries$ = diaries;
-          this.diaries$.map((obj:any) => {
-            obj.poop = obj.poop.split("&")
+    //assign the id of the current daycare
+    this.daycare_id = JSON.parse(sessionStorage.getItem('daycare_id') || '{}' );
+
+    //fetch the diaries by the daycare id
+    this.dataStorage.getDiariesByDaycareId(this.daycare_id).subscribe( 
+            
+      diaries => {
+           this.diaries$ = diaries;
+           this.diaries$.map((obj:any) => {
+              obj.poop = obj.poop.split("&") //split the string of poop styles into an array
+            })
+            console.log(this.diaries$)
           })
-        })
+    
   }
 
   // METHOD WHICH SENDS A TIMESTAMP TO OUR TimeService
 
   calculateTimeSince(timeStamp: string) {
-    const timestamp = new Date(timeStamp);
-    timestamp.setHours( timestamp.getHours() + 1 );
-    timestamp.setMinutes( timestamp.getMinutes() + 7);
-    return this.timeService.timeSince(timestamp);
+    
+      const timestamp = new Date(timeStamp);
+      timestamp.setHours( timestamp.getHours() + 1 );
+      timestamp.setMinutes( timestamp.getMinutes() + 7);
+      return this.timeService.timeSince(timestamp);
+    
   }
 
   // DELETE DIARY
