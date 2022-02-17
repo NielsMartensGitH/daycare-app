@@ -11,7 +11,7 @@ export class MessageboardComponent implements OnInit {
   parent_id!:any;
   isMobileSize:boolean = false;
   screenWidthCheck!:any;
-  className: string = "sidebar-toggle side-nav col-sm-2"
+  className: string = "sidebar side-nav col-sm-2"
   navbarClassName: string = "topbar-toggle"
 
 

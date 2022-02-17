@@ -10,6 +10,7 @@
     visibility: visible;
     top: 0;
     transition: 0.4s; 
+    height: 6000px;
 }
 
 .sidebar-toggle {
