@@ -97,7 +97,8 @@ button.btn.btn-kindfox-primary {
  .yellow-face {
      color: yellow;
  }
-
-
-
-
+ @media (max-width: 764px){
+    .search{
+        padding-top: 20%;
+    }
+}
