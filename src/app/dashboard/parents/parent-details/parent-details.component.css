@@ -1,0 +1,31 @@
+.green-border {
+    border: 5px solid #85CDCA;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+button.btn.btn-kindfox-success {
+    background-color: #85CDCA;
+    color: white
+ }
+ button.btn.btn-kindfox-success:hover {
+    background-color: #66A7A4;
+  }
+
+  button.btn.btn-kindfox-primary {
+    background-color: #41B3A3 ;
+    color: white
+ }
+ button.btn.btn-kindfox-primary:hover {
+    background-color: #2B7B71 ;
+    color: white
+ }
+
+ .kindfox-orange-bg {
+    background-color: #E27D60;
+    color: white;
+    margin: 0px;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+ }
