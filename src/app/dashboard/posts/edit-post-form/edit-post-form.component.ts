@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-edit-post-form',
@@ -7,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./edit-post-form.component.css']
 })
 export class EditPostFormComponent implements OnInit {
+  @ViewChild('editor') editor: any;
   @Output() onSubmitted = new EventEmitter(); // When submitting edited message 
   @Input() message!: string; // Here we catch our message from our parents PostsComponent
   @Input() postId!: number; // Here we catch our message id from our parent postscomponent
@@ -14,6 +16,8 @@ export class EditPostFormComponent implements OnInit {
   privacies: string[] = ["public", "private"]; // Possitble values for our select element where we choouse message privacy
   default = null; 
   curDaycare!: any; // Currentdaycare id from our sessionstorage
+  sendHTML: string
+  edit: any
   constructor() { }
  
   ngOnChanges() {
@@ -23,6 +27,8 @@ export class EditPostFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    
 
     this.curDaycare = sessionStorage.getItem('daycare_id');
 
@@ -39,12 +45,41 @@ export class EditPostFormComponent implements OnInit {
       'message': this.message
     })
 
+    this.edit.setData(this.message)
+  }
 
+  // FOR THE CKEDITOR WE NEED TO ADD CLOUDSERVICE FOR IMAGES 
+  ngAfterViewInit() {
+    let editor = this.editor.elementRef.nativeElement;
+    ClassicEditor.create(editor, {
+      cloudServices: {
+        tokenUrl: 'https://87138.cke-cs.com/token/dev/6b3d2130908f8e38937968d8d710487d962dfa113c438370e967aa30eb15?limit=10', // OUR FREE TOKEN 30DAYS TRIAL
+        uploadUrl: 'https://87138.cke-cs.com/easyimage/upload/' // HERE THE IMAGES WILL BE STORED
+      },
+    } )
+    .then(editor => {
+      this.edit = editor
+           
+    
+     
+    }
+    
+    )
+    .catch();
+
+    
+  }
+
+  public getEditor() {
+
+    console.log(this.editor.editorInstance)
   }
 
   // sending our new object with messagedata to our parent
-  editPost(message: string) {
+  editPost() {
     
+     // GET DATA FROM THE CKEDITOR
+     const message = this.edit.getData()
     
     const privacy = this.postsForm.controls["privacy"].value
 

@@ -15,3 +15,23 @@
 body {
     overflow-x: hidden;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #b8b7b7;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #41B3A3;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
