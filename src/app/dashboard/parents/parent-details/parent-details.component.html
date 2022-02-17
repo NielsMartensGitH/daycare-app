@@ -2,7 +2,7 @@
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header kindfox-orange-bg">
           <h5 class="modal-title" id="exampleModalLabel">Parent details</h5>
           
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -10,24 +10,22 @@
         <div class="modal-body">
           <div class="d-flex d-row">
             <h3 class="mr-1">Children</h3>
-            <button class="btn btn-success rounded-pill ml-1"
+            <button class="btn btn-kindfox-success rounded-pill ml-1 pl-2"
             (click)="addChildClicked = !addChildClicked"><i class="fas fa-plus-circle"></i> Add</button>
           </div>
           <div *ngIf="addChildClicked">
             <app-child-add 
             (onChildAdded)="addChild($event)"
-            [parentId]="detail"></app-child-add>
+            (closeAddChildBtn)="addChildClicked = $event"
+            [parentId]="detail"
+            [isClicked]="addChildClicked"></app-child-add>
           </div>
           <div class="container green-border mt-3" *ngFor="let child of childparents$">
             <span>{{child.child_firstname}}</span>
             <span>{{child.child_lastname}}</span>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"
-          (click)="onSaveChanges()">Save changes</button>
-        </div>
+        
       </div>
     </div>
   </div>

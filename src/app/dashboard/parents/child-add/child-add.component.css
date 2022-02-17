@@ -1,0 +1,13 @@
+.green-border {
+    border: 5px solid #85CDCA;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+button.btn.btn-kindfox-success {
+    background-color: #85CDCA;
+    color: white
+ }
+ button.btn.btn-kindfox-success:hover {
+    background-color: #66A7A4;
+  }

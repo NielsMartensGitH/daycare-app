@@ -10,7 +10,9 @@ import { Child } from 'src/app/shared/model/child.models';
 })
 export class ChildAddComponent implements OnInit {
   @Output() onChildAdded = new EventEmitter<Child>();
+  @Output() closeAddChildBtn = new EventEmitter<boolean>();
   @Input() parentId:any;
+  @Input() isClicked:boolean;
   id:any = null;
   child_firstname!:string;
   child_lastname!:string;
@@ -33,6 +35,8 @@ export class ChildAddComponent implements OnInit {
       )
 
     this.onChildAdded.emit(newChild);
+    this.isClicked = false;
+    this.closeAddChildBtn.emit(this.isClicked)
   }
 
   

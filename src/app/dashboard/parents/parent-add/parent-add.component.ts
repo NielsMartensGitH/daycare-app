@@ -48,6 +48,7 @@ export class ParentAddComponent implements OnInit {
 
     this.onSubmitted.emit(newParent);
     this.parentAddForm.reset()
+    console.log(newParent)
   }
 
   
