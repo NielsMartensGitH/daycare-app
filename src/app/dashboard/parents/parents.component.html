@@ -96,13 +96,13 @@
       </div>
       <div class="modal-body">
       <h4>Are you sure you want to delete {{currentParent}}?</h4>
-      <p>if you press the button Delete, {{currentParent}} will be deleted permanently</p>
+      <p class="kindfox-red-font"><i class="fas fa-exclamation-triangle"></i> {{currentParent}} and all the children assigned  will be deleted permanently</p>
       
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+      <div class="d-flex d-row justify-content-center m-3">
+        <button type="button" class="btn btn-kindfox-danger btn-lg" data-bs-dismiss="modal"
         (click)="sureDelete = true">Delete</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        <button type="button" class="btn btn-kindfox-success btn-lg" data-bs-dismiss="modal"
         (click)="sureDelete = !true">Cancel</button>
       </div>
     </div>

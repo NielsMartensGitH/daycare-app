@@ -151,3 +151,8 @@ button.btn.btn-kindfox-primary {
         width: 80%
      }
 }
+ @media (max-width: 764px){
+    .search{
+        padding-top: 20%;
+    }
+}

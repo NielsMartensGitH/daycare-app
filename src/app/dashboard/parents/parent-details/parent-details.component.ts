@@ -8,7 +8,7 @@ import { Child } from 'src/app/shared/model/child.models';
   styleUrls: ['./parent-details.component.css']
 })
 export class ParentDetailsComponent implements OnInit {
-  @Output() addedChild = new EventEmitter<Child>();
+  @Output() addedChild = new EventEmitter<Child>(); 
   @Input() detail!: number; //parent id 
   addChildClicked:boolean = false; //to toggle open/close button
   childparents$:any; 
@@ -21,7 +21,11 @@ export class ParentDetailsComponent implements OnInit {
   addChild(newChild:Child){
     this.addedChild.emit(newChild);
 
+    //AFTER THE BABY IS EMITTED TO THE PARENTS AND ADDED TO THE SERVER, INVOKE THE
+    //NGONINIT TO SHOW THAT BABY
+    setTimeout(() =>{
     this.ngOnInit();
+  },1000)
   }
 
   
@@ -32,8 +36,6 @@ export class ParentDetailsComponent implements OnInit {
       this.dataStorage.getChildParents(this.detail).subscribe(childparents => this.childparents$ = childparents)
     }
  }
-  onSaveChanges(){
-    this.ngOnInit();
-  }
+  
   
 }
