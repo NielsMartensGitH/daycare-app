@@ -16,11 +16,7 @@ export class MbNavbarComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.isMobileSize)
   }
-  logOut(){
-    //here we clear the whole storage and go back to login
-    sessionStorage.clear();
-    this.router.navigate(['/login'])
-  }
+
   sideBar(){
 
   }
@@ -32,5 +28,11 @@ export class MbNavbarComponent implements OnInit {
     } else {
       this.onToggle.emit(this.toggleValue)
     }
+  }
+
+  logOut(){
+    //here we clear the whole storage and go back to login
+    sessionStorage.clear();
+    this.router.navigate(['/login'])
   }
 }
