@@ -33,11 +33,11 @@
               </select>
             </div>
             
-            <!-- for adding photos , only png or jpeg -->
-            <div class="my-3">
+            <!-- for adding photos , only png or jpeg NOT USED RIGHT NOW! -->
+            <!-- <div class="my-3">
               <label class=""form-label>Add pictures</label>
               <input formControlName="photos" type="file" multiple class="form-control" accept="image/png, image/jpeg" (change)="onChange($event)">
-            </div>
+            </div> -->
 
 
             <div class="my-3">
@@ -48,6 +48,8 @@
               rows="3" 
               placeholder="What's your message?"
               #message></textarea> -->
+
+              <!-- CKEDITOR INPUTFIELD -->
               <ckeditor  #editor data="<p>Hello, world!</p>"></ckeditor>
      
 

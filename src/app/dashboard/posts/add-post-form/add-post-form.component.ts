@@ -18,7 +18,7 @@ export class AddPostFormComponent implements OnInit, AfterViewInit  {
 
   @ViewChild('editor') editor: any;
   @Output() onSubmitted = new EventEmitter();  // sends new message to method onSubmitted 
-  @Output() addFiles = new EventEmitter();
+  // @Output() addFiles = new EventEmitter(); // NOT USED RIGHT NOW
   postsForm!: FormGroup; // Here we instantiate our postsForm for our formcontrol
   privacies: string[] = ["public", "private"]; // Possitble values for our select element where we choouse message privacy
   default = null;
@@ -39,12 +39,13 @@ export class AddPostFormComponent implements OnInit, AfterViewInit  {
 
   }
 
+  // FOR THE CKEDITOR WE NEED TO ADD CLOUDSERVICE FOR IMAGES 
   ngAfterViewInit() {
     let editor = this.editor.elementRef.nativeElement;
     ClassicEditor.create(editor, {
       cloudServices: {
-        tokenUrl: 'https://87138.cke-cs.com/token/dev/6b3d2130908f8e38937968d8d710487d962dfa113c438370e967aa30eb15?limit=10',
-        uploadUrl: 'https://87138.cke-cs.com/easyimage/upload/'
+        tokenUrl: 'https://87138.cke-cs.com/token/dev/6b3d2130908f8e38937968d8d710487d962dfa113c438370e967aa30eb15?limit=10', // OUR FREE TOKEN 30DAYS TRIAL
+        uploadUrl: 'https://87138.cke-cs.com/easyimage/upload/' // HERE THE IMAGES WILL BE STORED
       },
     } )
     .then(editor => {
@@ -52,11 +53,7 @@ export class AddPostFormComponent implements OnInit, AfterViewInit  {
     
      
     }
-     
     
-
-
-
     )
     .catch();
 
@@ -104,6 +101,8 @@ export class AddPostFormComponent implements OnInit, AfterViewInit  {
   // ADD POST
 
   addPost() {
+
+    // GET DATA FROM THE CKEDITOR
     const message = this.edit.getData()
 
   const privacy = this.postsForm.controls["privacy"].value; // we store the selected value of our 'privacy' select element here in a variable
@@ -134,12 +133,12 @@ export class AddPostFormComponent implements OnInit, AfterViewInit  {
     this.postsForm.reset();
   }
 
-      // On file Select they will be pushed to our files array for uploading multiple files
-    onChange(event: any) {
-      const files = event.target.files;
-      this.addFiles.emit(files)
+      // On file Select they will be pushed to our files array for uploading multiple files NOT USED RIGHT NOW!
+    // onChange(event: any) {
+    //   const files = event.target.files;
+    //   this.addFiles.emit(files)
       
-    }
+    // }
 
     // this method will set validator of child to required if in select element of 'privacy' the selected value is 'private' 
     setvalidator() {
