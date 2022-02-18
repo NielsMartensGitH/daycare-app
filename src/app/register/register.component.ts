@@ -73,8 +73,9 @@ export class RegisterComponent implements OnInit {
             //we add daycare if email is not use
             this.dataStorage.addDaycare(newDaycare).subscribe((data) => {
               console.log(data);
-              sessionStorage.setItem('daycare_id', data)
+              sessionStorage.setItem('daycare_id', data.id)
               this.router.navigate(['/dashboard'])
+              
             });
           }
           else{

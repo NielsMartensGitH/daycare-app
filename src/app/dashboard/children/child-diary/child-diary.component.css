@@ -37,6 +37,12 @@ button.btn-smile {
     border-radius: 15px;
 }
 
+.form-green-border {
+    border: 2px solid #85CDCA;
+    padding: 10px;
+    border-radius: 15px;
+}
+
 .kindfox-green-bg {
     background-color: #85CDCA;
     border-radius: 5px;

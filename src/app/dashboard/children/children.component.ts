@@ -48,11 +48,11 @@ export class ChildrenComponent implements OnInit {
     }, 500)
   }
 
-  onBtnChange(child:Child){
+  //onBtnChange(child:Child){
    
-      this.dataStorage.editChild(child).subscribe(() => this.ngOnInit())
+      //this.dataStorage.editChild(child).subscribe(() => this.ngOnInit())
       
-   }
+   //}
 
    editChild(child:any){
      this.dataStorage.editChild(child).subscribe(() => this.ngOnInit());

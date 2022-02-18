@@ -11,9 +11,10 @@
 
        
         <div class="modal-body m-2">
-            <form (ngSubmit)="onSubmit(message_food.value, message_sleep.value, messageAct.value, extraMessage.value)" [formGroup]="childDiaryForm">
+            <form class="form-green-border p-4 m-0" (ngSubmit)="onSubmit(message_food.value, message_sleep.value, messageAct.value, extraMessage.value)" [formGroup]="childDiaryForm">
                 <div class="mb-3 row">
                     <div class="col form-floating m-2 p-4 green-border">
+                        <!---FOOD MESSAGE-->
                         <div class="row">
                             <p class="kindfox-font-orange">What I ate?</p>
                             <textarea name="" id="" cols="30" rows="3"
@@ -24,6 +25,7 @@
                             <span *ngIf="!childDiaryForm.get('message_food')?.valid && childDiaryForm.get('message_food')?.touched" 
                             class="help-block">This field is required!</span>
                         </div>
+                        <!---FOOD SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
                                     <i class="fas fa-smile-beam" #food_smile
@@ -36,6 +38,7 @@
                             </div>
                         </div>
                     </div>
+                    <!----SLEEP MESSAGE-->
                     <div class="col form-floating m-2 p-4 green-border">
                         <div class="row">
                             <p class="kindfox-font-orange">How I slept?</p>
@@ -46,6 +49,7 @@
                             <span *ngIf="!childDiaryForm.get('message_sleep')?.valid && childDiaryForm.get('message_sleep')?.touched" 
                             class="help-block">This field is required!</span>
                         </div>
+                        <!---SLEEP SMILEYS-->
                         <div class="d-flex d-row justify-content-center m-3">
                             <div class="kindfox-green-bg">
                                 <i class="fas fa-smile-beam" #sleep_smile
@@ -59,6 +63,7 @@
                         </div>
                     </div>
                 </div>
+                <!----POT VISITS-->
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
                     <div class="col d-flex d-row">
                         <h5 class="mr-3">Pot visits</h5>
@@ -83,6 +88,7 @@
                         
                     </div>
                 </div>
+                <!---WELL BEING-->
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
                     <div class="col d-flex d-row">
                         <h5>My well-being</h5>
@@ -95,6 +101,7 @@
                         </div>
                     </div>
                 </div>
+                <!----ACTIVITIES MESSAGE-->
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Activities</p>
@@ -106,6 +113,7 @@
                     <span *ngIf="!childDiaryForm.get('messageAct')?.valid && childDiaryForm.get('messageAct')?.touched" 
                             class="help-block">This field is required!</span>
                 </div>
+                <!---INVOLVEMENT-->
                 <div class="row kindfox-green-bg mt-3 mb-3 p-3">
                     <div class="col">
                         <h5>Involvement</h5>
@@ -118,6 +126,7 @@
                         </div>
                     </div>
                 </div>
+                <!--MESSAGE TO THE PARENT-->
                 <div class="row green-border">
                     <div class="col form-floating m-3">
                         <p class="kindfox-font-orange">Message to the parent</p>
@@ -132,7 +141,7 @@
                 <button type="submit" class="btn btn-kindfox-primary m-3"
                 data-bs-dismiss="modal"
                 [disabled]="!childDiaryForm.valid"
-                (click)="onStatusChange(child)">Submit</button>
+                >Submit</button>
               </form>
         </div>
       </div>

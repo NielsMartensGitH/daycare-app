@@ -23,7 +23,7 @@ export class ParentsComponent implements OnInit {
   constructor(private dataStorage: DatastorageService) { }
 
   ngOnInit(): void {
-    this.daycare_id = sessionStorage.getItem('daycare_id')
+    this.daycare_id = JSON.parse(sessionStorage.getItem('daycare_id') || '{}');
     this.dataStorage.getAllParentsByDaycare(this.daycare_id).subscribe(parents => this.parents$ = parents);
     
     this.screenWidthCheck = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

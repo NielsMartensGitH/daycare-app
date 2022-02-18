@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DatastorageService } from 'src/app/datastorage.service';
 import { Child } from 'src/app/shared/model/child.models';
 
 @Component({
@@ -11,29 +10,25 @@ import { Child } from 'src/app/shared/model/child.models';
 export class ChildDiaryComponent implements OnInit {
   @Input() child!:Child //child passed from the children
   @Output() diaryAdded = new EventEmitter<any>(); //emit a new diary to the parent via the custom event
-  @Output() btnStatusChange = new EventEmitter<Child>();
   childDiaryForm!:FormGroup; 
-  daycare_id!:any;
-  moods = ["very good", "good", "not so good", "bad"];
+  daycare_id!:any; //this sets the daycare id
+  moods = ["very good", "good", "not so good", "bad"]; 
   involvements = ["I am often very interested", "I am sometimes involved", "I find it hard to play", "I am lost in the game"];
-  poopies = ['fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo'];
-  poopStyle = ["brown-poop","brown-poop","brown-poop","brown-poop","brown-poop"]
+  poopies = ['fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo','fas fa-poo'];//what we loop through in the child-diary
+  poopStyle = ["brown-poop","brown-poop","brown-poop","brown-poop","brown-poop"];//what we send to the server
   smileIndFood!:string;
   smileIndSleep!:string;
   poopInd!:number;
   moodMsg!:number;
   involvementMsg!:number;
-  parsedChild!:any;
-  yellowFace = false;
   poos = [false, false, false,false,false];
   passedInChild!:Child;
-  //childName = `${this.passed_child.child_firstname} ${this.passed_child.child_lastname}`
-  constructor(private dataStorage:DatastorageService) { }
+  constructor() { }
 
 
 
   ngOnChanges(){
-
+    //when you the input from the parent component changes -> set the ngClass condition to false
     for (let i = 0; i < this.poos.length; i++){
       this.poos[i] = false;
       
@@ -65,30 +60,32 @@ export class ChildDiaryComponent implements OnInit {
   onSubmit(messageFood:string, messageSleep:string, messageAct:string, extraMessage:string){
       const newDiary = {
         type_id: 1,
-        child_id: this.child.id,
+        child_id: this.child.id, 
         food: messageFood,
         foodSmile: this.smileIndFood,
         sleep: messageSleep,
         sleepSmile: this.smileIndSleep,
-        poop: this.poopStyle.slice(0, this.poopInd+1).join("&"),
-        //poop: this.poopies[this.poopInd],
-        mood: this.moods[this.moodMsg],
+        //slice only the right amount of poop styles and assign it as a string
+        poop: this.poopStyle.slice(0, this.poopInd+1).join("&"), 
+        mood: this.moods[this.moodMsg], //get a certain mood by its id
         activities: messageAct,
-        involvement: this.involvements[this.involvementMsg],
+        involvement: this.involvements[this.involvementMsg], //get a certain involvement by its id
         extra_message: extraMessage,
         daycare_id: this.daycare_id,
-        privacy: 1
+        privacy: 1 //the privacy is always set to 1, bc the diaries are always private
       }
       console.log(newDiary);
 
-      this.diaryAdded.emit(newDiary);
+      this.diaryAdded.emit(newDiary); //emit to children comp, where the service methods posts it
       
       //Set all the values of the poos to false
       this.poos.map((el) => el = false)
       
-      this.childDiaryForm.reset();
+      this.childDiaryForm.reset(); //reset all the input fields
   }
 
+  //this method gets the id of the poop, assigns it to poopInd (so we can use it as arg in slicing the poopStyle array)
+  //and also sets all the poops whose index is lower than the ind
   onPoop(ind:number){
     this.poopInd = ind;
     console.log(ind)
@@ -97,14 +94,12 @@ export class ChildDiaryComponent implements OnInit {
     }
   }
   
+  //when pressed close -> set all the poop ngClass condition to false, so poops are not brown anymore
   onClose(){
     this.poos.forEach((el) => el=false);
     this.ngOnInit();
   }
 
-  onStatusChange(child:Child){
-    child.diary_sent = 1;
-    this.btnStatusChange.emit(child)
-  }
+  
   
 }
