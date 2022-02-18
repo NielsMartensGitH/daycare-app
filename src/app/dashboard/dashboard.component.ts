@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     //small check if there is a daycare id in the sessionstorage
     if(sessionStorage.getItem('daycare_id') == null){
-      //this.router.navigate(['/login'])
+      this.router.navigate(['/login'])
     }
   }
 

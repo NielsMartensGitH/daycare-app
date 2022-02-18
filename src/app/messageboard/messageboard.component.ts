@@ -21,7 +21,7 @@ export class MessageboardComponent implements OnInit {
     //here we check if the person has logged in as a parent
     //if not then they will be send back to the loginscreen
     if(sessionStorage.getItem('parentID')===null){
-      //this.router.navigate(['/login'])
+      this.router.navigate(['/login'])
     }
     this.parent_id = sessionStorage.getItem('parentID')
 
