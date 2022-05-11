@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -43,11 +44,6 @@ import { DiarycommentsComponent } from './dashboard/diaries/diarycomments/diaryc
 import { ImgToggleDirective } from './dashboard/children/img-toggle.directive';
 import { EncrDecrService } from '../app/encr-decr.service';
 import { MbCommentsComponent } from './messageboard/mb-content/mb-comments/mb-comments.component';
-import { ChildEditComponent } from './dashboard/children/child-edit/child-edit.component';
-import { MbDiariesComponent } from './messageboard/mb-diaries/mb-diaries.component';
-import { MbDiarycommentsComponent } from './messageboard/mb-diaries/mb-diarycomments/mb-diarycomments.component';
-
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -89,13 +85,16 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     DiariesComponent,
     DiarycommentsComponent,
     ImgToggleDirective,
-    MbCommentsComponent,
-    ChildEditComponent,
-    MbDiariesComponent,
-    MbDiarycommentsComponent
+    MbCommentsComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRouterModule, FullCalendarModule, ReactiveFormsModule, FormsModule, CKEditorModule
+    BrowserModule, 
+    HttpClientModule, 
+    AppRouterModule, 
+    FullCalendarModule, 
+    ReactiveFormsModule, 
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [EncrDecrService],
   bootstrap: [AppComponent],
